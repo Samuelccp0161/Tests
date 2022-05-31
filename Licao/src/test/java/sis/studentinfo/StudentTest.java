@@ -1,7 +1,9 @@
+package sis.studentinfo;
+
 import org.junit.Test;
 import static  org.junit.Assert.assertEquals;
 
-public class StudentTest extends junit.framework.TestCase {
+public class StudentTest  {
     private String name;
 
     @Test

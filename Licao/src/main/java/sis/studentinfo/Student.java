@@ -1,10 +1,12 @@
+package sis.studentinfo;
+
 public class Student {
     String Name;
-    Student(String Name){
+     public Student(String Name){
         this.Name = Name;
     }
 
-    String getName(){
+     public String getName(){
         return Name;
     }
 
