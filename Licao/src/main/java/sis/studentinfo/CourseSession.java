@@ -55,7 +55,7 @@ public class CourseSession{
         final int sessionLength = 16;
         final int daysInWeek = 7;
         final int daysFromFridayToMonday =  3;
-        int numberOfDays = sessionLength * daysInWeek - daysFromFridayToMonday;
+        int numberOfDays = sessionLength * daysInWeek    - daysFromFridayToMonday;
         calendar.add(calendar.DAY_OF_YEAR, numberOfDays);
         Date endDate = calendar.getTime();
         return calendar.getTime();

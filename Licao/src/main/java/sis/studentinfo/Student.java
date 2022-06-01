@@ -1,7 +1,8 @@
 package sis.studentinfo;
 
 public class Student {
-    String Name;
+
+    private String Name;
      public Student(String Name){
         this.Name = Name;
     }

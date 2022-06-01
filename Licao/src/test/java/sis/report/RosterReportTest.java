@@ -1,5 +1,5 @@
 package sis.report;
-
+import sis.studentinfo.*;
 import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,8 +16,8 @@ import static org.junit.Assert.assertEquals;
 public class RosterReportTest {
     private CourseSession session;
     private Date startDate;
-//    @Before
-//    public void setUp() throws Exception {
+///    @Before
+///    public void setUp() throws Exception {
 //        session = new CourseSession("ENGL", "101", startDate);
 //    }
 
@@ -29,6 +29,8 @@ public class RosterReportTest {
         session.enroll(new Student("B"));
 
         String rosterReport = new RosterReport(session).getReport();
+        System.out.println(rosterReport);
+
         assertEquals(RosterReport.ROSTER_REPORT_HEADER +
                 "A" + RosterReport.NEWLINE +
                 "B" + RosterReport.NEWLINE +

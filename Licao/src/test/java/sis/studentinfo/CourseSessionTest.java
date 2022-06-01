@@ -34,12 +34,14 @@ public class CourseSessionTest extends TestCase {
         session.enroll(student1);
         assertEquals(1, session.getNumberOfStudents());
         assertEquals(student1, session.get(0));
+        System.out.println(student1.getName());
 
         Student student2 = new Student("Jesus Silva");
         session.enroll(student2);
         assertEquals(2, session.getNumberOfStudents());
         assertEquals(student1, session.get(0));
         assertEquals(student2, session.get(1));
+        System.out.println(student2.getName());
     }
 
     public void testCourseDates(){
