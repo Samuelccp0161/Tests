@@ -5,17 +5,22 @@ public class Pawn {
     String color;
     public static final String WHITE = "white";
     public static final String BLACK = "black";
-    public Pawn(String color) {
+    public static final String INCOLOR = "incolor";
+    private char representation;
+    public Pawn(String color, char representation) {
         this.color = color;
+        this.representation = representation;
     }
 
-    public Pawn(){
-        this.color = WHITE;
+
+    public char getRepresentation(){
+        return representation;
     }
 
     String getColor() {
         return color;
     }
+
 
 
 }
