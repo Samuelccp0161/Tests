@@ -15,8 +15,11 @@ public class CourseSession{
     private java.util.ArrayList<Student> students = new java.util.ArrayList<Student>();
     private Date startDate;
     public static final String NEWLINE = System.getProperty("line.separator");
-    public static final String ROSTER_REPORT_HEADER = "Student" + NEWLINE + "" + NEWLINE;
-    public static final String ROSTER_REPORT_FOOTER = NEWLINE + " #students";
+    private static void incrementCount(){
+        ++count;
+    }
+
+     private static int count;
 
     public CourseSession(String department, String number) {
         this.department = department;
@@ -27,6 +30,7 @@ public class CourseSession{
         this.department = department;
         this.number = number;
         this.startDate = startDate;
+        CourseSession.incrementCount();
     }
     public String getDepartment(){
         return department;
@@ -49,6 +53,10 @@ public class CourseSession{
         return students;
     }
 
+    private static void incrementCount(){
+        count = count + 1;
+    }
+
     public Date getEndDate(){
         GregorianCalendar calendar = new GregorianCalendar();
         calendar.setTime(startDate);
@@ -57,7 +65,7 @@ public class CourseSession{
         final int daysFromFridayToMonday =  3;
         int numberOfDays = sessionLength * daysInWeek    - daysFromFridayToMonday;
         calendar.add(calendar.DAY_OF_YEAR, numberOfDays);
-        Date endDate = calendar.getTime();
+//        Date endDate = calendar.getTime();
         return calendar.getTime();
     }
 
@@ -78,7 +86,13 @@ public class CourseSession{
         return startDate;
     }
 
+    static int getCount(){
+        return count;
+    }
 
+    static void resetCount(){
+        count = 0;
+    }
 
 
 }

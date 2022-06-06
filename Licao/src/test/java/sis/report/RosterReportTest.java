@@ -6,7 +6,7 @@ import org.junit.Test;
 import sis.studentinfo.CourseSession;
 import sis.studentinfo.DateUtil;
 import sis.studentinfo.Student;
-
+import static sis.report.ReportConstant.NEWLINE;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -24,7 +24,7 @@ public class RosterReportTest {
     @Test
     public void testRosterReport(){
 
-        CourseSession session = new CourseSession("ENGL", "101", new DateUtil().createDate(2003,1,6));
+        CourseSession session = new CourseSession("ENGL", "101", DateUtil.createDate(2003,1,6));
         session.enroll(new Student("A"));
         session.enroll(new Student("B"));
 
@@ -32,9 +32,9 @@ public class RosterReportTest {
         System.out.println(rosterReport);
 
         assertEquals(RosterReport.ROSTER_REPORT_HEADER +
-                "A" + RosterReport.NEWLINE +
-                "B" + RosterReport.NEWLINE +
-                RosterReport.ROSTER_REPORT_FOOTER + "2" + RosterReport.NEWLINE, rosterReport);
+                "A" + NEWLINE +
+                "B" + NEWLINE +
+                RosterReport.ROSTER_REPORT_FOOTER + "2" + NEWLINE, rosterReport);
     }
 
 }
