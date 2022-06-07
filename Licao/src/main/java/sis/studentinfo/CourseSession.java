@@ -15,22 +15,27 @@ public class CourseSession{
     private java.util.ArrayList<Student> students = new java.util.ArrayList<Student>();
     private Date startDate;
     public static final String NEWLINE = System.getProperty("line.separator");
-    private static void incrementCount(){
-        ++count;
-    }
 
      private static int count;
 
-    public CourseSession(String department, String number) {
+    CourseSession(String department, String number) {
         this.department = department;
         this.number = number;
     }
 
-    public CourseSession(String department, String number, Date startDate){
+    public static CourseSession create(
+        String department,
+        String number,
+        Date startDate) {
+        incrementCount();
+        return new CourseSession(department, number, startDate);
+    }
+
+    private CourseSession(String department, String number, Date startDate){
         this.department = department;
         this.number = number;
         this.startDate = startDate;
-        CourseSession.incrementCount();
+        incrementCount();
     }
     public String getDepartment(){
         return department;
@@ -41,7 +46,13 @@ public class CourseSession{
     public int getNumberOfStudents(){
         return students.size();
     }
+
+    private int numberOfCredits;
+    void setNumberOfCredits(int numberOfCredits){
+        this.numberOfCredits = numberOfCredits;
+    }
     public void enroll(Student student){
+        student.addCredits(numberOfCredits);
         students.add(student);
     }
 
@@ -54,7 +65,7 @@ public class CourseSession{
     }
 
     private static void incrementCount(){
-        count = count + 1;
+        ++count;
     }
 
     public Date getEndDate(){
