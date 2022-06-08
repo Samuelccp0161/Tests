@@ -1,8 +1,9 @@
 package chess;
 
+import chess.pieces.Piece;
 import org.junit.Before;
 import org.junit.Test;
-//import chess.pieces.Pawn;
+import util.StringUtil;
 
 //import java.util.ArrayList;
 
@@ -18,28 +19,28 @@ public class BoardTest {
         board = new Board();
     }
 
-    @Test
-    public void testCreate(){
-
-        assertEquals(0,  board.getNumOfPieces());
-    }
+//    @Test
+//    public void testCreate(){
+//
+//        assertEquals(0,  board.getNumOfPieces());
+//    }
 
    @Test
-    public void testInitialize(){
-
+   public void testCreate() {
+        Piece.resetCount();
        board.initialize();
-       assertEquals(16,board.getNumOfPieces());
-       System.out.println(board.getNumOfPieces());
-       assertEquals("........" + Board.NEWLINE +
-               "PPPPPPPP" + Board.NEWLINE +
-               "........" + Board.NEWLINE +
-               "........" + Board.NEWLINE +
-               "........" + Board.NEWLINE +
-               "........" + Board.NEWLINE +
-               "pppppppp" + Board.NEWLINE +
-               "........", board.printBoardTwo());
+       assertEquals(16, Piece.getCountWhite());
+       assertEquals(16, Piece.getCountBlack());
+       assertEquals(32, board.getNumbOfPieces());
+       String blankRank = StringUtil.appendNewLine("........");
+       assertEquals(
+               StringUtil.appendNewLine("RNBQKBNR") +
+                       StringUtil.appendNewLine("PPPPPPPP") +
+                       blankRank + blankRank + blankRank + blankRank +
+                       StringUtil.appendNewLine("pppppppp") +
+                       StringUtil.appendNewLine("rnbqkbnr"),
+               board.printBoardTwo());
 
-       System.out.println(board.printBoardTwo());
-    }
+   }
 
 }
