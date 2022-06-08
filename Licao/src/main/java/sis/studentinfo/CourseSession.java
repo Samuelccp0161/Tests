@@ -35,7 +35,7 @@ public class CourseSession{
         this.department = department;
         this.number = number;
         this.startDate = startDate;
-        incrementCount();
+
     }
     public String getDepartment(){
         return department;

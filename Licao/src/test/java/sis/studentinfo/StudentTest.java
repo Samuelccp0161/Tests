@@ -19,12 +19,13 @@ public class StudentTest  {
         assertEquals("Silva Pedro", secondStudent.getName());
         System.out.println(secondStudentName);
     }
-
+    @Test
     public void testFullTime() {
         Student student = new Student("a");
         assertFalse(student.isFullTime());
     }
 
+    @Test
     public void testCredits(){
      Student student = new Student("a");
      assertEquals(0, student.getCredits());
@@ -34,6 +35,7 @@ public class StudentTest  {
      assertEquals(7, student.getCredits());
     }
 
+    @Test
     public void testStudentStatus(){
         Student student = new Student("a");
             assertEquals(0,student.getCredits());
@@ -49,9 +51,10 @@ public class StudentTest  {
 
         student.addCredits(5);
         assertEquals(Student.CREDITS_REQUIRED_FOR_FULL_TIME, student.getCredits());
-        assertFalse(student.isFullTime());
+        assertTrue(student.isFullTime());
     }
 
+    @Test
     public void testInState(){
         Student student = new Student("a");
         assertFalse(student.isInState());

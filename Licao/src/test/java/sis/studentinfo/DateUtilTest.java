@@ -1,12 +1,14 @@
 package sis.studentinfo;
 
+import org.junit.Test;
+
 import static  org.junit.Assert.assertEquals;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.*;
 
 public class DateUtilTest {
-
+    @Test
     public void testCreateDate(){
         Date date = DateUtil.createDate(2000, 1, 1);
         Calendar calendar = new GregorianCalendar();
