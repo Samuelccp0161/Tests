@@ -99,17 +99,6 @@ public class Piece {
 
     public static void resetCount(){
         countWhite = 0;
-        countBlack = 0;
     }
 
-    boolean isBlack(){
-        if (color.equals(BLACK))
-            return true;
-        else return false;
-    }
-    boolean isWhite(){
-        if (color.equals(WHITE))
-        return true;
-        else return false;
-    }
 }

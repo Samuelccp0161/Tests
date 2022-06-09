@@ -27,7 +27,7 @@ public class BoardTest {
 
    @Test
    public void testCreate() {
-
+        Piece.resetCount();
        board.initialize();
        assertEquals(16, Piece.getCountWhite());
        assertEquals(16, Piece.getCountBlack());
