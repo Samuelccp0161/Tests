@@ -8,7 +8,7 @@ import java.util.GregorianCalendar;
 //import java.util.*;
 //import java.util.ArrayList;
 
-public class CourseSession{
+public class CourseSession implements Comparable<CourseSession> {
 //    public long getEndDate;
     private String department;
     private String number;
@@ -16,6 +16,14 @@ public class CourseSession{
     private Date startDate;
     public static final String NEWLINE = System.getProperty("line.separator");
 
+    public int compareTo(CourseSession that) {
+        int compare =
+            this.getDepartment().compareTo(that.getDepartment());
+        if (compare == 0)
+            compare =
+            this.getNumber().compareTo(that.getNumber());
+        return compare;
+    }
      private static int count;
 
     CourseSession(String department, String number) {

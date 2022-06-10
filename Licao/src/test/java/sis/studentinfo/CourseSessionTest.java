@@ -9,6 +9,8 @@ import java.util.Date;
 import static sis.studentinfo.DateUtil.createDate;
 //import studentinf.Student;
 
+
+
 public class CourseSessionTest extends TestCase {
 
     private CourseSession session;
@@ -21,6 +23,21 @@ public class CourseSessionTest extends TestCase {
         startDate = createDate(2003, 1,6);
         session = createCourseSession();
 
+    }
+    @Test
+    public void testComparable(){
+        final Date date = new Date();
+        CourseSession sessionA = CourseSession.create("CMSC", "101", date);
+        CourseSession sessionB = CourseSession.create("ENGL", "101", date);
+        assertTrue(sessionA.compareTo(sessionB) < 0);
+        assertTrue(sessionB.compareTo(sessionA) > 0);
+
+        CourseSession sessionC = CourseSession.create("CMSC", "101", date);
+        assertEquals(0, sessionA.compareTo(sessionC));
+
+        CourseSession sessionD = CourseSession.create("CMSC", "210", date);
+        assertTrue(sessionA.compareTo(sessionD) < 0);
+        assertTrue(sessionB.compareTo(sessionC) > 0);
     }
 
     @Test
