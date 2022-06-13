@@ -10,7 +10,6 @@ import util.StringUtil;
 
         BoardTest.class,
         CharacterTest.class,
-        StringUtil.class,
         testPiece.class
 })
 
