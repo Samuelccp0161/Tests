@@ -29,10 +29,12 @@ public class BoardTest {
    public void testCreate() {
         Piece.resetCount();
        board.initialize();
+       assertEquals(8, board.PiecesCount('p'));
        assertEquals(16, Piece.getCountWhite());
        assertEquals(16, Piece.getCountBlack());
        assertEquals(32, board.getNumbOfPieces());
        String blankRank = StringUtil.appendNewLine("........");
+       System.out.println(Board.PiecesCount('p'));
        assertEquals(
                StringUtil.appendNewLine("RNBQKBNR") +
                        StringUtil.appendNewLine("PPPPPPPP") +

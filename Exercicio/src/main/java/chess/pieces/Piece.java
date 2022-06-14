@@ -10,6 +10,7 @@ public class Piece {
     private char representation;
     private static int countWhite;
     private static int countBlack;
+//    private static int countWhitePawn;
 
     public static Piece noColor() {
         return new Piece(Colors.NO_COLOR, Name.NO_COLOR, '.');
@@ -38,7 +39,9 @@ public class Piece {
     private static Piece createBlack(Name name, char representation){
         incrementCountBlack();
         return new Piece(Colors.BLACK,name, representation);
-
+    }
+    private static  Piece createScore(Name name, char representation){
+        return new Piece(Colors.NO_COLOR, name, '.');
     }
 
     public static final char PAWN_REPRESENTATION = 'p';
@@ -47,9 +50,11 @@ public class Piece {
     public static final char BISHOP_REPRESENTATION = 'b';
     public static final char QUEEN_REPRESENTATION = 'q';
     public static final char KING_REPRESENTATION = 'k';
+    public static final char NO_REPRESENTATION = '.';
 
 
     public static Piece createWhitePawn(){
+//        incrementCountWhitePawn();
         return createWhite(Name.PAWN, 'p');
     }
     public static Piece createBlackPawn() {
@@ -85,6 +90,7 @@ public class Piece {
     public static Piece createBlackKing() {
         return createBlack(Name.KING, 'K');
     }
+//    public static Piece createSpotss() { return createScore(Name.NO_COLOR, '.');}
     public char getRepresentation(){
         if (color.equals(Colors.BLACK)){
             return Character.toUpperCase(representation);
@@ -94,6 +100,9 @@ public class Piece {
     private static void incrementCountWhite(){
         ++countWhite;
     }
+//    private static void incrementCountWhitePawn(){
+//        ++countWhitePawn;
+//    }
     private static void incrementCountBlack(){
         ++countBlack;
     }
@@ -109,6 +118,7 @@ public class Piece {
     public static int getCountBlack(){
         return countBlack;
     }
+//    public static int getCountWhitePawn(){return countWhitePawn;}
 
     public static void resetCount(){
         countWhite = 0;
