@@ -3,13 +3,16 @@ package chess;
 import chess.pieces.Piece;
 import util.StringUtil;
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class Board {
 
     private final ArrayList<Piece> arrayPawn;
     private ArrayList<Piece> firstRank;
     private ArrayList<Piece> secondRank;
+    private  ArrayList<Piece> thirdRank;
+    private ArrayList<Piece> fourthRank;
+    private ArrayList<Piece> fifthRank;
+    private ArrayList<Piece> sixthRank;
     private ArrayList<Piece> seventhRank;
     private ArrayList<Piece> eighthRank;
 
@@ -20,6 +23,10 @@ public class Board {
         arrayPawn = new ArrayList<>();
         this.firstRank = new ArrayList<>();
         this.secondRank = new ArrayList<>();
+        this.thirdRank = new ArrayList<>();
+        this.fourthRank = new ArrayList<>();
+        this.fifthRank = new ArrayList<>();
+        this.sixthRank = new ArrayList<>();
         this.seventhRank = new ArrayList<>();
         this.eighthRank = new ArrayList<>();
 
@@ -47,6 +54,42 @@ public class Board {
         secondRank.add(Piece.createWhitePawn());
         secondRank.add(Piece.createWhitePawn());
 
+        thirdRank.add(Piece.createNoPoints());
+        thirdRank.add(Piece.createNoPoints());
+        thirdRank.add(Piece.createNoPoints());
+        thirdRank.add(Piece.createNoPoints());
+        thirdRank.add(Piece.createNoPoints());
+        thirdRank.add(Piece.createNoPoints());
+        thirdRank.add(Piece.createNoPoints());
+        thirdRank.add(Piece.createNoPoints());
+
+        fourthRank.add(Piece.createNoPoints());
+        fourthRank.add(Piece.createNoPoints());
+        fourthRank.add(Piece.createNoPoints());
+        fourthRank.add(Piece.createNoPoints());
+        fourthRank.add(Piece.createNoPoints());
+        fourthRank.add(Piece.createNoPoints());
+        fourthRank.add(Piece.createNoPoints());
+        fourthRank.add(Piece.createNoPoints());
+
+        fifthRank.add(Piece.createNoPoints());
+        fifthRank.add(Piece.createNoPoints());
+        fifthRank.add(Piece.createNoPoints());
+        fifthRank.add(Piece.createNoPoints());
+        fifthRank.add(Piece.createNoPoints());
+        fifthRank.add(Piece.createNoPoints());
+        fifthRank.add(Piece.createNoPoints());
+        fifthRank.add(Piece.createNoPoints());
+
+        sixthRank.add(Piece.createNoPoints());
+        sixthRank.add(Piece.createNoPoints());
+        sixthRank.add(Piece.createNoPoints());
+        sixthRank.add(Piece.createNoPoints());
+        sixthRank.add(Piece.createNoPoints());
+        sixthRank.add(Piece.createNoPoints());
+        sixthRank.add(Piece.createNoPoints());
+        sixthRank.add(Piece.createNoPoints());
+
         seventhRank.add(Piece.createBlackPawn());
         seventhRank.add(Piece.createBlackPawn());
         seventhRank.add(Piece.createBlackPawn());
@@ -67,9 +110,9 @@ public class Board {
 
     }
 
-    public int getNumbOfPiecesWhite(){
-        return firstRank.size();
-    }
+//    public int getNumbOfPiecesWhite(){
+//        return firstRank.size();
+//    }
     public int getNumbOfPieces() {
         return firstRank.size() + secondRank.size() + seventhRank.size() + eighthRank.size();
     }
@@ -141,14 +184,58 @@ public class Board {
 //                secondRankRepresentation() + Board.NEWLINE +
 //                zeroRepresentation()+ Board.NEWLINE;
 //    }
-    public int PiecesCount(char representation) {
+    public int piecesCount(char representation) {
         int count = 0;
-        for (Piece p : firstRank) {
-//                if (firstRank.get(0).getRepresentation() == representation) {
-//
-//                }
+        for (Piece piece : firstRank) {
+            if (piece.getRepresentation() == representation) {
+                count +=1;
+            }
+        }
+        for (Piece piece :secondRank){
+            if(piece.getRepresentation() == representation){
+                count +=1;
+            }
+        }
+        for (Piece piece :thirdRank){
+            if(piece.getRepresentation() == representation){
+                count +=1;
+            }
+        }
+        for (Piece piece :fourthRank){
+            if(piece.getRepresentation() == representation){
+                count +=1;
+            }
+        }
+        for (Piece piece :fifthRank){
+            if(piece.getRepresentation() == representation){
+                count +=1;
+            }
+        }
+        for (Piece piece :sixthRank){
+            if(piece.getRepresentation() == representation){
+                count +=1;
+            }
+        }
+        for (Piece piece :seventhRank){
+            if(piece.getRepresentation() == representation){
+                count +=1;
+            }
+        }
+        for (Piece piece :eighthRank){
+            if(piece.getRepresentation() == representation){
+                count +=1;
+            }
         }
 
-        return representation;
+        return count;
     }
+
+//    public int searchPiece(){
+//        for(Piece piece: firstRank){
+//            if(piece.getRepresentation() == searchPiece());
+//        }
+//        int piece = searchPiece();
+//
+//        return piece;
+//    }
 }

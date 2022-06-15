@@ -29,12 +29,19 @@ public class BoardTest {
    public void testCreate() {
         Piece.resetCount();
        board.initialize();
-       assertEquals(8, board.PiecesCount('p'));
+//       assertEquals(2, board.piecesCount('r'));
+       assertEquals(2, board.piecesCount('R'));
+       assertEquals(2, board.piecesCount('n'));
+       assertEquals(2, board.piecesCount('b'));
+       assertEquals(1, board.piecesCount('k'));
+       assertEquals(8, board.piecesCount('p'));
+       assertEquals(2, board.piecesCount('R'));
+       System.out.println(board.piecesCount('P'));
+//       assertEquals(8, board.PiecesCount('p'));
        assertEquals(16, Piece.getCountWhite());
        assertEquals(16, Piece.getCountBlack());
        assertEquals(32, board.getNumbOfPieces());
        String blankRank = StringUtil.appendNewLine("........");
-       System.out.println(Board.PiecesCount('p'));
        assertEquals(
                StringUtil.appendNewLine("RNBQKBNR") +
                        StringUtil.appendNewLine("PPPPPPPP") +
@@ -44,5 +51,9 @@ public class BoardTest {
                board.printBoardTwo());
 
    }
+//   @Test
+//   public void testSearchPiece(){
+//
+//   }
 
 }

@@ -53,6 +53,7 @@ public class testPiece {
 //    }
 @Test
     public void testCreate() {
+
         verifyCreation(
                 Piece.createWhitePawn(), Piece.createBlackPawn(),
                 Piece.Name.PAWN, Piece.PAWN_REPRESENTATION);
@@ -71,7 +72,7 @@ public class testPiece {
                 Piece.Name.KING, Piece.KING_REPRESENTATION);
         Piece blank = Piece.noColor();
         assertEquals('.', blank.getRepresentation());
-        assertEquals(Piece.Name.NO_COLOR, blank.getType());
+        assertEquals(Piece.Name.NO_POINTS, blank.getType());
     }
 
     private void verifyCreation(Piece whitePiece, Piece blackPiece,
