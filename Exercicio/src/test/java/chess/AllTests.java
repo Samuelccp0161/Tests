@@ -3,7 +3,7 @@ package chess;
 import chess.pieces.testPiece;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
-import util.StringUtil;
+//import util.StringUtil;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
@@ -15,6 +15,3 @@ import util.StringUtil;
 
 public class AllTests {
 }
-
-
-

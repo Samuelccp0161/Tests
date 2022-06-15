@@ -53,25 +53,32 @@ public class testPiece {
 //    }
 @Test
     public void testCreate() {
+
         verifyCreation(
                 Piece.createWhitePawn(), Piece.createBlackPawn(),
                 Piece.Name.PAWN, Piece.PAWN_REPRESENTATION);
+
         verifyCreation(
                 Piece.createWhiteRook(), Piece.createBlackRook(),
                 Piece.Name.ROOK, Piece.ROOK_REPRESENTATION);
+
         verifyCreation(
                 Piece.createWhiteKnight(), Piece.createBlackKnight(),
                 Piece.Name.KNIGHT, Piece.KNIGHT_REPRESENTATION);
+
         verifyCreation(
                 Piece.createWhiteBishop(), Piece.createBlackBishop(),
                 Piece.Name.BISHOP, Piece.BISHOP_REPRESENTATION);
+
         verifyCreation(Piece.createWhiteQueen(), Piece.createBlackQueen(),
                 Piece.Name.QUEEN, Piece.QUEEN_REPRESENTATION);
+
         verifyCreation(Piece.createWhiteKing(), Piece.createBlackKing(),
                 Piece.Name.KING, Piece.KING_REPRESENTATION);
+
         Piece blank = Piece.noColor();
         assertEquals('.', blank.getRepresentation());
-        assertEquals(Piece.Name.NO_COLOR, blank.getType());
+        assertEquals(Piece.Name.NO_POINTS, blank.getType());
     }
 
     private void verifyCreation(Piece whitePiece, Piece blackPiece,

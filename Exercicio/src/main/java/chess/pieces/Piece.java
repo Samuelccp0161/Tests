@@ -10,10 +10,11 @@ public class Piece {
     private char representation;
     private static int countWhite;
     private static int countBlack;
-//    private static int countWhitePawn;
+    //    private static int countWhitePawn;
+    private static int column;
 
     public static Piece noColor() {
-        return new Piece(Colors.NO_COLOR, Name.NO_COLOR, '.');
+        return new Piece(Colors.NO_COLOR, Name.NO_POINTS, '.');
     }
 
     public Name getType() {
@@ -22,7 +23,8 @@ public class Piece {
 
 
     private enum Colors {WHITE, BLACK, NO_COLOR}
-    public enum Name{PAWN, KNIGHT, ROOK, BISHOP, QUEEN, KING, NO_COLOR}
+    public enum Name{PAWN, KNIGHT, ROOK, BISHOP, QUEEN, KING, NO_POINTS}
+
     private Name name;
     private Colors color;
 
@@ -51,7 +53,6 @@ public class Piece {
     public static final char QUEEN_REPRESENTATION = 'q';
     public static final char KING_REPRESENTATION = 'k';
     public static final char NO_REPRESENTATION = '.';
-
 
     public static Piece createWhitePawn(){
 //        incrementCountWhitePawn();
@@ -90,9 +91,13 @@ public class Piece {
     public static Piece createBlackKing() {
         return createBlack(Name.KING, 'K');
     }
+
+    public static Piece createNoPoints(){
+        return createScore(Name.NO_POINTS,'.');
+    }
 //    public static Piece createSpotss() { return createScore(Name.NO_COLOR, '.');}
     public char getRepresentation(){
-        if (color.equals(Colors.BLACK)){
+        if (color == Colors.BLACK){
             return Character.toUpperCase(representation);
         }
         return representation;
@@ -106,8 +111,6 @@ public class Piece {
     private static void incrementCountBlack(){
         ++countBlack;
     }
-
-
 //    String getCOLORS() {
 //        return color;
 //    }
@@ -118,7 +121,7 @@ public class Piece {
     public static int getCountBlack(){
         return countBlack;
     }
-//    public static int getCountWhitePawn(){return countWhitePawn;}
+//    public static int getCoun tWhitePawn(){return countWhitePawn;}
 
     public static void resetCount(){
         countWhite = 0;
@@ -132,4 +135,8 @@ public class Piece {
         if (color == Colors.BLACK){return true;}
         else return false;
     }
+    public static int getColumn() {
+        return column;
+    }
 }
+
