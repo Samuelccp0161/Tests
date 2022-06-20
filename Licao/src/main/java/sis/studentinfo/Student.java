@@ -58,16 +58,16 @@ public class Student {
         total += gradingStrategy.getGradePointsFor(grade);
         return total / grades.size();
     }
-    int gradePointsFor(Grade grade) {
-        return gradingStrategy.getGradePointsFor(grade);
-    }
-    private int basicGradePointsFor(Grade grade){
-        if (grade == Student.Grade.A) return 4;
-        if (grade == Student.Grade.B) return 3;
-        if (grade == Student.Grade.C) return 2;
-        if (grade == Student.Grade.D) return 1;
-        return 0;
-    }
+//    int gradePointsFor(Grade grade) {
+//        return gradingStrategy.getGradePointsFor(grade);
+//    }
+//    private int basicGradePointsFor(Grade grade){
+//        if (grade == Student.Grade.A) return 4;
+//        if (grade == Student.Grade.B) return 3;
+//        if (grade == Student.Grade.C) return 2;
+//        if (grade == Student.Grade.D) return 1;
+//        return 0;
+//    }
 //    double gradePointsFor(Grade grade){
 //         if(isSenatorsSon){
 //             if (grade == Grade.A) return 4;
@@ -84,6 +84,7 @@ public class Student {
 //             return points;
 //         }
 //    }
+
 
 }
 

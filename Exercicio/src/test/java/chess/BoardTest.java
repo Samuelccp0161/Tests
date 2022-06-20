@@ -18,26 +18,29 @@ public class BoardTest {
    @Test
    public void testCreate() {
         Piece.resetCount();
-       board.initialize();
+        Piece.resetCountBlack();
+        board.initialize();
+
        assertEquals(2, board.piecesCount('R'));
        assertEquals(2, board.piecesCount('n'));
        assertEquals(2, board.piecesCount('b'));
        assertEquals(1, board.piecesCount('k'));
        assertEquals(8, board.piecesCount('p'));
        assertEquals(2, board.piecesCount('R'));
-       System.out.println(board.piecesCount('P'));
-//       assertEquals(8, board.PiecesCount('p'));
+
        assertEquals(16, Piece.getCountWhite());
        assertEquals(16, Piece.getCountBlack());
        assertEquals(32, board.getNumbOfPieces());
-       String blankRank = StringUtil.appendNewLine("........");
        assertEquals(
                StringUtil.appendNewLine("RNBQKBNR") +
                        StringUtil.appendNewLine("PPPPPPPP") +
-                       blankRank + blankRank + blankRank + blankRank +
+                       StringUtil.appendNewLine("........") +
+                       StringUtil.appendNewLine("........") +
+                       StringUtil.appendNewLine("........") +
+                       StringUtil.appendNewLine("........") +
                        StringUtil.appendNewLine("pppppppp") +
                        StringUtil.appendNewLine("rnbqkbnr"),
-               board.printBoardTwo());
+               board.printBoard());
 
    }
    @Test
@@ -49,7 +52,32 @@ public class BoardTest {
 
    @Test
     public void testNewBoard(){
+       Piece.resetCount();
+       Piece.resetCountBlack();
 
+       assertEquals(
+               StringUtil.appendNewLine("........") +
+                       StringUtil.appendNewLine("........") +
+                       StringUtil.appendNewLine("........") +
+                       StringUtil.appendNewLine("........") +
+                       StringUtil.appendNewLine("........") +
+                       StringUtil.appendNewLine("........") +
+                       StringUtil.appendNewLine("........") +
+                       StringUtil.appendNewLine("........"),
+               board.printBoard());
+       System.out.println(board.printBoard());
    }
 
+   @Test
+   public void pushPiece(){
+        board.push("c4", Piece.createBlackKing());
+        assertEquals(board.getPiece("c4").getType(), Piece.Name.KING );
+   }
+
+   @Test
+    public void powerPieces(){
+        board.push("d7", Piece.createBlackBishop());
+        assertEquals(board.getPiece("d7").getType(), Piece.Name.BISHOP);
+        assertEquals(3, board.getBishopPower(), 3);
+   }
 }

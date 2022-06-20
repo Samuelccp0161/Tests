@@ -97,7 +97,7 @@ public class Piece {
     }
 //    public static Piece createSpotss() { return createScore(Name.NO_COLOR, '.');}
     public char getRepresentation(){
-        if (color == Colors.BLACK){
+        if (color == Colors.BLACK) {
             return Character.toUpperCase(representation);
         }
         return representation;
@@ -125,6 +125,9 @@ public class Piece {
 
     public static void resetCount(){
         countWhite = 0;
+    }
+    public static void resetCountBlack(){
+        countBlack = 0;
     }
 
     public boolean isWhite(){
