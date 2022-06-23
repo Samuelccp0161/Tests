@@ -12,7 +12,7 @@ public class Board {
 
         this.allRanks = new ArrayList<>();
         for (int i = 0; i < 8; i++) {
-            allRanks.add(new ArrayList<Piece>());
+            allRanks.add(new ArrayList<>());
         }
 
         for (int i = 0; i < 8; i++) {
@@ -106,31 +106,9 @@ public class Board {
         char rank = position.charAt(1);
 
         file -= 'a';
-// parei aqui por conta do horario, vou ter que refatorar sem usar if, else ou for.
-        if (rank == '1') {
-            return allRanks.get(0).get(file);
+        rank -= '1';
 
-        } else if (rank == '2') {
-            return allRanks.get(1).get(file);
-
-        } else if (rank == '3') {
-            return allRanks.get(2).get(file);
-
-        } else if (rank == '4') {
-            return allRanks.get(3).get(file);
-
-        } else if (rank == '5') {
-            return allRanks.get(4).get(file);
-
-        } else if (rank == '6') {
-            return allRanks.get(5).get(file);
-
-        } else if (rank == '7') {
-            return allRanks.get(6).get(file);
-
-        } else {
-            return allRanks.get(7).get(file);
-        }
+        return allRanks.get(rank).get(file);
     }
 
     public void push(String position, Piece piece) {
@@ -138,64 +116,43 @@ public class Board {
         char rank = position.charAt(1);
 
         file -= 'a';
+        rank -= '1';
 
-        if (rank == '1') {
-             allRanks.get(0).set(file, piece);
+        allRanks.get(rank).set(file,piece);
 
-        } else if (rank == '2') {
-            allRanks.get(1).set(file, piece);
-
-        } else if (rank == '3') {
-           allRanks.get(2).set(file, piece);
-
-        } else if (rank == '4') {
-            allRanks.get(3).set(file, piece);
-
-        } else if (rank == '5') {
-            allRanks.get(4).set(file, piece);
-
-        } else if (rank == '6') {
-           allRanks.get(5).set(file, piece);
-
-        } else if (rank == '7') {
-            allRanks.get(6).set(file, piece);
-
-        } else {
-            allRanks.get(7).set(file,piece);
-        }
     }
 
-    public double pawnPower(){
-        return 0.5;
-    }
-    public int rookPower(){
-        return 5;
-    }
-    public double knightPower(){
-        return 2.5;
-    }
-    public int bishopPower(){
-        return 3;
-    }
-    public int queenPower(){
-        return 9;
-    }
+    public double powerBlack(){
+        double powerd;
 
-    public double getPawnPower(){
-        return pawnPower();
-    }
-    public int getRookPower(){
-        return rookPower();
-    }
-    public double getKnightPower(){
-        return knightPower();
-    }
-    public int getBishopPower(){
-        return bishopPower();
-    }
-    public int getQueenPower(){
-        return queenPower();
-    }
+       powerd = piecesCount('Q') * 9;
+       powerd += piecesCount('R') * 5;
+       powerd += piecesCount('B') * 3;
+       powerd += piecesCount('N') * 2.5;
+       powerd += piecesCount('P') * 0.5;
 
+       return powerd;
+    }
+    public double powerWhite(){
+       double powers;
 
+        powers = piecesCount('q') * 9;
+        powers += piecesCount('r') * 5;
+        powers += piecesCount('b')* 3;
+        powers += piecesCount('n') * 2.5;
+        powers += piecesCount('p') * 0.5;
+
+        return powers;
+    }
+//tenho que criar um powerPawnwhite para os peões.
+
+/* por conta que cada pẽao sozinho em uma colunha seu valor é 1, e se tiver mais peões na mesma coluna seu valor é 0.5.
+
+*    public double powerPawnWhite(){
+*        for (int i = 0; 7 < i; i++) {
+*            for (int j = 0; j < 7; j++) {
+*                if ()
+*            }
+*        }
+}*/
 }

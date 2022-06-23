@@ -74,10 +74,14 @@ public class BoardTest {
         assertEquals(board.getPiece("c4").getType(), Piece.Name.KING );
    }
 
-   @Test
-    public void powerPieces(){
-        board.push("d7", Piece.createBlackBishop());
-        assertEquals(board.getPiece("d7").getType(), Piece.Name.BISHOP);
-        assertEquals(3, board.getBishopPower(), 3);
-   }
+/*   @Test
+*    public void powerPieces(){
+*        board.push("a7", Piece.createBlackBishop());
+*        assertEquals(3, board.powerBlack(), 0.05);
+*
+*       board.push("a2", Piece.createWhitePawn());
+*       assertEquals(0.5, board.powerWhite(), 0.05);
+   }*/
+
+
 }
