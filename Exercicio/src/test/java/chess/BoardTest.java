@@ -74,14 +74,25 @@ public class BoardTest {
         assertEquals(board.getPiece("c4").getType(), Piece.Name.KING );
    }
 
-/*   @Test
-*    public void powerPieces(){
-*        board.push("a7", Piece.createBlackBishop());
-*        assertEquals(3, board.powerBlack(), 0.05);
-*
-*       board.push("a2", Piece.createWhitePawn());
-*       assertEquals(0.5, board.powerWhite(), 0.05);
-   }*/
+    @Test
+    public void powerPieces(){
+
+        board.push("b1", Piece.createWhitePawn());
+        board.push("b6", Piece.createWhitePawn());
+        board.push("b3", Piece.createWhitePawn());
+        board.push("a1", Piece.createWhitePawn());
+        board.push("a2", Piece.createWhitePawn());
+
+        board.push("c3", Piece.createBlackPawn());
+        board.push("c1", Piece.createBlackPawn());
+        board.push("d2", Piece.createBlackPawn());
+
+        assertEquals(2.5, board.powerWhite(), 0.05);
+        assertEquals(2, board.powerBlack(), 0.05);
+
+        System.out.println(board.powerPawn('p'));
+        System.out.println(board.powerBlack());
+   }
 
 
 }

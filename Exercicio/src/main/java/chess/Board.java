@@ -2,6 +2,7 @@ package chess;
 
 import chess.pieces.Piece;
 import util.StringUtil;
+
 import java.util.ArrayList;
 
 public class Board {
@@ -73,7 +74,7 @@ public class Board {
     }
 
 
-    public String printBoard(){
+    public String printBoard() {
 
         StringBuilder buffer = new StringBuilder();
 
@@ -83,17 +84,19 @@ public class Board {
         }
         return buffer.toString();
     }
-    public void printRank(StringBuilder buffer, int index){
+
+    public void printRank(StringBuilder buffer, int index) {
         for (int i = 0; i < allRanks.get(index).size(); i++) {
             buffer.append(allRanks.get(index).get(i).getRepresentation());
 
         }
     }
+
     public int piecesCount(char representation) {
         int count = 0;
-        for (int i = 0; i <=7 ; i++) {
+        for (int i = 0; i <= 7; i++) {
             for (int j = 0; j < allRanks.size(); j++) {
-                if (allRanks.get(i).get(j).getRepresentation() == representation){
+                if (allRanks.get(i).get(j).getRepresentation() == representation) {
                     count++;
                 }
             }
@@ -118,41 +121,48 @@ public class Board {
         file -= 'a';
         rank -= '1';
 
-        allRanks.get(rank).set(file,piece);
+        allRanks.get(rank).set(file, piece);
 
     }
 
-    public double powerBlack(){
+    public double powerBlack() {
         double powerd;
 
-       powerd = piecesCount('Q') * 9;
-       powerd += piecesCount('R') * 5;
-       powerd += piecesCount('B') * 3;
-       powerd += piecesCount('N') * 2.5;
-       powerd += piecesCount('P') * 0.5;
-
-       return powerd;
+        powerd = piecesCount('Q') * 9;
+        powerd += piecesCount('R') * 5;
+        powerd += piecesCount('B') * 3;
+        powerd += piecesCount('N') * 2.5;
+        powerd += powerPawn('P');
+        return powerd;
     }
-    public double powerWhite(){
-       double powers;
+
+    public double powerWhite() {
+        double powers;
 
         powers = piecesCount('q') * 9;
         powers += piecesCount('r') * 5;
-        powers += piecesCount('b')* 3;
+        powers += piecesCount('b') * 3;
         powers += piecesCount('n') * 2.5;
-        powers += piecesCount('p') * 0.5;
-
+        powers += powerPawn('p');
         return powers;
     }
-//tenho que criar um powerPawnwhite para os peões.
 
-/* por conta que cada pẽao sozinho em uma colunha seu valor é 1, e se tiver mais peões na mesma coluna seu valor é 0.5.
+    public double powerPawn(char pawns) {
+        int count = 0;
+        double power = 0;
 
-*    public double powerPawnWhite(){
-*        for (int i = 0; 7 < i; i++) {
-*            for (int j = 0; j < 7; j++) {
-*                if ()
-*            }
-*        }
-}*/
+        for (int i = 0; i <= 7; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (allRanks.get(j).get(i).getRepresentation() == pawns)
+                    count += 1;
+            }
+
+            if (count > 1)
+                power += count * 0.5;
+            else power += count;
+
+            count = 0;
+        }
+        return power;
+    }
 }
