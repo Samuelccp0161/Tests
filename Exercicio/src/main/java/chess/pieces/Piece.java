@@ -1,6 +1,6 @@
 package chess.pieces;
 
-public class Piece {
+public class Piece implements Comparable<Piece>{
 
 //    String color
 //    private final String name;
@@ -20,19 +20,44 @@ public class Piece {
     public Name getType() {
         return name;
     }
-
+    @Override
+    public int compareTo(Piece piece){
+        if(getPower() == piece.getPower()){
+            return 0;
+        }
+        else if (getPower() > piece.getPower()){
+            return 1;
+        }
+        else return -1;
+    }
 
     private enum Colors {WHITE, BLACK, NO_COLOR}
-    public enum Name{PAWN, KNIGHT, ROOK, BISHOP, QUEEN, KING, NO_POINTS}
-
+    public enum Name{
+        PAWN(1),
+        KNIGHT(2.5),
+        ROOK(5),
+        BISHOP(3),
+        QUEEN(9),
+        KING(0),
+        NO_POINTS(0);
+        private final double power;
+        Name(double power) {
+           this.power = power;
+        }
+        public double getPower(){
+            return power;
+        }
+    }
+    public double getPower(){
+        return name.getPower();
+    }
     private Name name;
     private Colors color;
-
     private Piece(Colors color, Name name, char representation) {
         this.color = color;
         this.name = name;
         this.representation = representation;
-    }
+            }
 
     private static Piece createWhite(Name name, char representation){
         incrementCountWhite();
@@ -46,13 +71,14 @@ public class Piece {
         return new Piece(Colors.NO_COLOR, name, '.');
     }
 
+
     public static final char PAWN_REPRESENTATION = 'p';
     public static final char ROOK_REPRESENTATION = 'r';
     public static final char KNIGHT_REPRESENTATION = 'n';
     public static final char BISHOP_REPRESENTATION = 'b';
     public static final char QUEEN_REPRESENTATION = 'q';
     public static final char KING_REPRESENTATION = 'k';
-    public static final char NO_REPRESENTATION = '.';
+//    public static final char NO_REPRESENTATION = '.';
 
     public static Piece createWhitePawn(){
 //        incrementCountWhitePawn();
@@ -138,8 +164,9 @@ public class Piece {
         if (color == Colors.BLACK){return true;}
         else return false;
     }
-    public static int getColumn() {
-        return column;
-    }
+//    public static int getColumn() {
+//        return column;
+//    }
+
 }
 

@@ -8,8 +8,7 @@ import java.util.ArrayList;
 public class Board {
 
     private final ArrayList<ArrayList<Piece>> allRanks;
-
-    Board() {
+        Board() {
 
         this.allRanks = new ArrayList<>();
         for (int i = 0; i < 8; i++) {
@@ -128,10 +127,10 @@ public class Board {
     public double powerBlack() {
         double powerd;
 
-        powerd = piecesCount('Q') * 9;
-        powerd += piecesCount('R') * 5;
-        powerd += piecesCount('B') * 3;
-        powerd += piecesCount('N') * 2.5;
+        powerd = piecesCount('Q') * Piece.Name.QUEEN.getPower();
+        powerd += piecesCount('R') * Piece.Name.ROOK.getPower();
+        powerd += piecesCount('B') * Piece.Name.BISHOP.getPower();
+        powerd += piecesCount('N') * Piece.Name.KNIGHT.getPower();
         powerd += powerPawn('P');
         return powerd;
     }
@@ -139,30 +138,47 @@ public class Board {
     public double powerWhite() {
         double powers;
 
-        powers = piecesCount('q') * 9;
-        powers += piecesCount('r') * 5;
-        powers += piecesCount('b') * 3;
-        powers += piecesCount('n') * 2.5;
+        powers = piecesCount('q') * Piece.Name.QUEEN.getPower();
+        powers += piecesCount('r') * Piece.Name.ROOK.getPower();
+        powers += piecesCount('b') * Piece.Name.BISHOP.getPower();
+        powers += piecesCount('n') * Piece.Name.KNIGHT.getPower();
         powers += powerPawn('p');
         return powers;
     }
 
-    public double powerPawn(char pawns) {
+    public double powerPawn(char representation) {
         int count = 0;
         double power = 0;
 
         for (int i = 0; i <= 7; i++) {
             for (int j = 0; j < 8; j++) {
-                if (allRanks.get(j).get(i).getRepresentation() == pawns)
+                if (allRanks.get(j).get(i).getRepresentation() == representation)
                     count += 1;
             }
 
             if (count > 1)
-                power += count * 0.5;
-            else power += count;
+                power += count * Piece.Name.PAWN.getPower() / 2;
+            else power += count * Piece.Name.PAWN.getPower();
 
             count = 0;
         }
         return power;
     }
+
+    public ArrayList<Piece> pieceWhite = new ArrayList<>();
+    public ArrayList<Piece> pieceBlack = new ArrayList<>();
+        public void pieceLists() {
+            for (int i = 0; i <= 7; i++) {
+                for (int j = 0; j < allRanks.size(); j++) {
+                    if(allRanks.get(i).get(j).isWhite()){
+                        pieceWhite.add(allRanks.get(i).get(j));
+                    }
+                    else if (allRanks.get(i).get(j).isBlack()) {
+                        pieceBlack.add(allRanks.get(i).get(j));
+                    }
+                }
+            }
+        }
 }
+
+// allRanks.get(7).set(7, Piece.createBlackRook());

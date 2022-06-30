@@ -41,6 +41,7 @@ public class BoardTest {
                        StringUtil.appendNewLine("pppppppp") +
                        StringUtil.appendNewLine("rnbqkbnr"),
                board.printBoard());
+       System.out.println(board.printBoard());
 
    }
    @Test
@@ -93,6 +94,24 @@ public class BoardTest {
         System.out.println(board.powerPawn('p'));
         System.out.println(board.powerBlack());
    }
+
+   @Test
+    public void pieceListColorsTest(){
+
+        board.push("a1", Piece.createWhitePawn());
+        board.push("a2", Piece.createWhiteRook());
+        board.push("a3", Piece.createWhiteQueen());
+        assertEquals( 'p', Piece.createWhitePawn().getRepresentation());
+        assertEquals( 'r', Piece.createWhiteRook().getRepresentation());
+        assertEquals( 'q', Piece.createWhiteQueen().getRepresentation());
+        board.pieceLists();
+        for(Piece piece: board.pieceWhite)
+            System.out.println(piece.getRepresentation());
+   }
+
+//   public void compereTo(){
+//
+//   }
 
 
 }

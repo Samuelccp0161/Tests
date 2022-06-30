@@ -104,6 +104,7 @@ public class StudentTest  {
         assertGpa(createHonorsStudent(Student.Grade.C), 3.0);
         assertGpa(createHonorsStudent(Student.Grade.D), 2.0);
         assertGpa(createHonorsStudent(Student.Grade.F), 0.0);
+
     }
 
 
