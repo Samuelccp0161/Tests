@@ -4,7 +4,9 @@ import chess.pieces.Piece;
 import org.junit.Before;
 import org.junit.Test;
 import util.StringUtil;
+
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class BoardTest {
 
@@ -97,21 +99,34 @@ public class BoardTest {
 
    @Test
     public void pieceListColorsTest(){
+        assertEquals(0,board.getPieceBlackList().size());
+        assertEquals(0,board.getPieceWhiteList().size());
 
         board.push("a1", Piece.createWhitePawn());
         board.push("a2", Piece.createWhiteRook());
         board.push("a3", Piece.createWhiteQueen());
-        assertEquals( 'p', Piece.createWhitePawn().getRepresentation());
-        assertEquals( 'r', Piece.createWhiteRook().getRepresentation());
-        assertEquals( 'q', Piece.createWhiteQueen().getRepresentation());
+        board.push("b5", Piece.createBlackPawn());
+        board.push("b1", Piece.createBlackRook());
+        board.push("c4", Piece.createBlackQueen());
+
         board.pieceLists();
-        for(Piece piece: board.pieceWhite)
-            System.out.println(piece.getRepresentation());
+
+       board.getOrdWhite();
+       for (Piece p : board.getPieceWhiteList())
+           System.out.println(p.getRepresentation());
+       assertEquals('q', board.getPieceWhiteList().get(0).getRepresentation());
+       assertEquals('r', board.getPieceWhiteList().get(1).getRepresentation());
+       assertEquals('p', board.getPieceWhiteList().get(2).getRepresentation());
+
+       board.getOrdBlack();
+       for (Piece p : board.getPieceBlackList())
+           System.out.println(p.getRepresentation());
+       assertEquals('Q', board.getPieceBlackList().get(0).getRepresentation());
+       assertEquals('R', board.getPieceBlackList().get(1).getRepresentation());
+       assertEquals('P', board.getPieceBlackList().get(2).getRepresentation());
+
+
+
    }
-
-//   public void compereTo(){
-//
-//   }
-
 
 }

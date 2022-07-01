@@ -2,8 +2,9 @@ package chess;
 
 import chess.pieces.Piece;
 import util.StringUtil;
-
 import java.util.ArrayList;
+import java.util.Collections;
+
 
 public class Board {
 
@@ -121,7 +122,6 @@ public class Board {
         rank -= '1';
 
         allRanks.get(rank).set(file, piece);
-
     }
 
     public double powerBlack() {
@@ -165,20 +165,31 @@ public class Board {
         return power;
     }
 
-    public ArrayList<Piece> pieceWhite = new ArrayList<>();
-    public ArrayList<Piece> pieceBlack = new ArrayList<>();
-        public void pieceLists() {
-            for (int i = 0; i <= 7; i++) {
-                for (int j = 0; j < allRanks.size(); j++) {
-                    if(allRanks.get(i).get(j).isWhite()){
-                        pieceWhite.add(allRanks.get(i).get(j));
-                    }
-                    else if (allRanks.get(i).get(j).isBlack()) {
-                        pieceBlack.add(allRanks.get(i).get(j));
-                    }
+    private final ArrayList<Piece> pieceWhite = new ArrayList<>();
+    private final ArrayList<Piece> pieceBlack = new ArrayList<>();
+    public void pieceLists() {
+        for (int i = 0; i <= 7; i++) {
+            for (int j = 0; j < allRanks.size(); j++) {
+                if(allRanks.get(i).get(j).isWhite()){
+                    pieceWhite.add(allRanks.get(i).get(j));
+                }
+                else if (allRanks.get(i).get(j).isBlack()) {
+                    pieceBlack.add(allRanks.get(i).get(j));
                 }
             }
         }
+    }
+    public ArrayList<Piece> getPieceWhiteList(){
+        return pieceWhite;
+    }
+    public ArrayList<Piece> getPieceBlackList(){
+        return pieceBlack;
+    }
+    public void getOrdWhite(){
+        Collections.sort(pieceWhite);
+    }
+    public void getOrdBlack(){
+        Collections.sort(pieceBlack);
+    }
 }
 
-// allRanks.get(7).set(7, Piece.createBlackRook());

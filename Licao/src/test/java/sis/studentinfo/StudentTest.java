@@ -54,7 +54,7 @@ public class StudentTest  {
     @Test
     public void testStudentStatus(){
         Student student = new Student("a");
-            assertEquals(0,student.getCredits());
+        assertEquals(0,student.getCredits());
         assertFalse(student.isFullTime());
 
         student.addCredits(3);
@@ -80,8 +80,8 @@ public class StudentTest  {
         assertFalse(student.isInState());
     }
 
-//    @Test
-//    public void testCalculateGpa() {
+///    @Test
+///    public void testCalculateGpa() {
 //        Student student = new Student("a");
 //        assertGpa(student, 0.0);
 //        student.addGrade(Student.Grade.A);

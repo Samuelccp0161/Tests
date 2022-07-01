@@ -1,6 +1,6 @@
 package chess;
 
-import chess.pieces.testPiece;
+import chess.pieces.TestPiece;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 //import util.StringUtil;
@@ -10,7 +10,7 @@ import org.junit.runners.Suite;
 
         BoardTest.class,
         CharacterTest.class,
-        testPiece.class
+        TestPiece.class
 })
 
 public class AllTests {

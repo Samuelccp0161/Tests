@@ -2,17 +2,9 @@ package chess.pieces;
 
 public class Piece implements Comparable<Piece>{
 
-//    String color
-//    private final String name;
-//    public static final String WHITE = "white";
-//    public static final String BLACK = "black";
-
-    private char representation;
+    private final char representation;
     private static int countWhite;
     private static int countBlack;
-    //    private static int countWhitePawn;
-    private static int column;
-
     public static Piece noColor() {
         return new Piece(Colors.NO_COLOR, Name.NO_POINTS, '.');
     }
@@ -22,13 +14,7 @@ public class Piece implements Comparable<Piece>{
     }
     @Override
     public int compareTo(Piece piece){
-        if(getPower() == piece.getPower()){
-            return 0;
-        }
-        else if (getPower() > piece.getPower()){
-            return 1;
-        }
-        else return -1;
+        return Double.compare(piece.getPower(),getPower());
     }
 
     private enum Colors {WHITE, BLACK, NO_COLOR}
@@ -48,16 +34,17 @@ public class Piece implements Comparable<Piece>{
             return power;
         }
     }
+
     public double getPower(){
         return name.getPower();
     }
-    private Name name;
-    private Colors color;
+    private final Name name;
+    private final Colors color;
     private Piece(Colors color, Name name, char representation) {
         this.color = color;
         this.name = name;
         this.representation = representation;
-            }
+    }
 
     private static Piece createWhite(Name name, char representation){
         incrementCountWhite();
@@ -67,10 +54,6 @@ public class Piece implements Comparable<Piece>{
         incrementCountBlack();
         return new Piece(Colors.BLACK,name, representation);
     }
-    private static  Piece createScore(Name name, char representation){
-        return new Piece(Colors.NO_COLOR, name, '.');
-    }
-
 
     public static final char PAWN_REPRESENTATION = 'p';
     public static final char ROOK_REPRESENTATION = 'r';
@@ -78,10 +61,8 @@ public class Piece implements Comparable<Piece>{
     public static final char BISHOP_REPRESENTATION = 'b';
     public static final char QUEEN_REPRESENTATION = 'q';
     public static final char KING_REPRESENTATION = 'k';
-//    public static final char NO_REPRESENTATION = '.';
 
     public static Piece createWhitePawn(){
-//        incrementCountWhitePawn();
         return createWhite(Name.PAWN, 'p');
     }
     public static Piece createBlackPawn() {
@@ -118,37 +99,25 @@ public class Piece implements Comparable<Piece>{
         return createBlack(Name.KING, 'K');
     }
 
-    public static Piece createNoPoints(){
-        return createScore(Name.NO_POINTS,'.');
-    }
-//    public static Piece createSpotss() { return createScore(Name.NO_COLOR, '.');}
     public char getRepresentation(){
         if (color == Colors.BLACK) {
             return Character.toUpperCase(representation);
         }
         return representation;
     }
+
     private static void incrementCountWhite(){
         ++countWhite;
     }
-//    private static void incrementCountWhitePawn(){
-//        ++countWhitePawn;
-//    }
     private static void incrementCountBlack(){
         ++countBlack;
     }
-//    String getCOLORS() {
-//        return color;
-//    }
     public static int getCountWhite(){
         return countWhite;
     }
-
     public static int getCountBlack(){
         return countBlack;
     }
-//    public static int getCoun tWhitePawn(){return countWhitePawn;}
-
     public static void resetCount(){
         countWhite = 0;
     }
@@ -157,16 +126,11 @@ public class Piece implements Comparable<Piece>{
     }
 
     public boolean isWhite(){
-        if (color == Colors.WHITE ){return true;}
-        else return false;
+        return color == Colors.WHITE;
     }
     public boolean isBlack(){
-        if (color == Colors.BLACK){return true;}
-        else return false;
+        return color == Colors.BLACK;
     }
-//    public static int getColumn() {
-//        return column;
-//    }
 
 }
 
