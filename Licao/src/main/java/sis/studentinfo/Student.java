@@ -9,7 +9,7 @@ public class Student {
     static final String IN_STATE = "CO";
     private String state = "";
     private boolean isHonors = false;
-    private GradingStrategy gradingStrategy = new RegularGradingStrategy();
+    private GradingStrategy gradingStrategy = new BasicGradingStrategy();
 
     void setGradingStrategy(GradingStrategy gradingStrategy){
         this.gradingStrategy = gradingStrategy;
@@ -22,7 +22,7 @@ public class Student {
     void addGrade(Grade grade){
         grades.add(grade);
     }
-    enum Grade{A, B, C, D,F};
+    public static enum Grade{A, B, C, D,F};
      public Student(String Name){
         this.Name = Name;
     }

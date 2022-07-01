@@ -12,13 +12,13 @@ public class StudentTest  {
 
 
     private Student createHonorsStudent(Student.Grade grade){
-        Student student = new Student("a");
-        student.setGradingStrategy(new HonorsGradingStrategy());
+        Student student = createHonorsStudent();
+        student.addGrade(grade);
         return student;
     }
     private Student createHonorsStudent(){
         Student student = new Student("a");
-        student.setHonors();
+        student.setGradingStrategy(new HonorsGradingStrategy());
         return student;
     }
 
@@ -105,6 +105,26 @@ public class StudentTest  {
         assertGpa(createHonorsStudent(Student.Grade.D), 2.0);
         assertGpa(createHonorsStudent(Student.Grade.F), 0.0);
 
+    }
+@Test
+    public void testSwitchResults(){
+        enum Score {fieldGoal, touchdown, extraPoint, twoPointConversion, safety};
+        int totalPoints = 0;
+        Score score = Score.touchdown;
+
+        switch (score){
+            case fieldGoal : totalPoints += 3;
+            break;
+            case touchdown : totalPoints += 6;
+            break;
+            case extraPoint : totalPoints +=1;
+            break;
+            case twoPointConversion :
+            case safety :
+                totalPoints += 2;
+            break;
+        }
+        assertEquals(6, totalPoints);
     }
 
 
