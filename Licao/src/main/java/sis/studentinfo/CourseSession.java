@@ -13,7 +13,7 @@ public class CourseSession implements Comparable<CourseSession> {
     private String department;
     private String number;
     private java.util.ArrayList<Student> students = new java.util.ArrayList<Student>();
-    private Date startDate;
+    public Date startDate;
     public static final String NEWLINE = System.getProperty("line.separator");
 
     public int compareTo(CourseSession that) {
@@ -26,7 +26,7 @@ public class CourseSession implements Comparable<CourseSession> {
     }
      private static int count;
 
-    CourseSession(String department, String number) {
+    protected CourseSession(String department, String number) {
         this.department = department;
         this.number = number;
     }
@@ -39,7 +39,7 @@ public class CourseSession implements Comparable<CourseSession> {
         return new CourseSession(department, number, startDate);
     }
 
-    private CourseSession(String department, String number, Date startDate){
+    public CourseSession(String department, String number, Date startDate){
         this.department = department;
         this.number = number;
         this.startDate = startDate;
@@ -63,7 +63,8 @@ public class CourseSession implements Comparable<CourseSession> {
         student.addCredits(numberOfCredits);
         students.add(student);
     }
-
+    protected int getSessionLength(){
+        return 16; }
     public Student get (int index){
         return students.get(index);
     }
@@ -78,11 +79,11 @@ public class CourseSession implements Comparable<CourseSession> {
 
     public Date getEndDate(){
         GregorianCalendar calendar = new GregorianCalendar();
-        calendar.setTime(startDate);
+        calendar.setTime(getStartDate());
         final int sessionLength = 16;
         final int daysInWeek = 7;
         final int daysFromFridayToMonday =  3;
-        int numberOfDays = sessionLength * daysInWeek    - daysFromFridayToMonday;
+        int numberOfDays = getSessionLength() * daysInWeek    - daysFromFridayToMonday;
         calendar.add(calendar.DAY_OF_YEAR, numberOfDays);
 //        Date endDate = calendar.getTime();
         return calendar.getTime();
@@ -101,7 +102,7 @@ public class CourseSession implements Comparable<CourseSession> {
 //        return buffer.toString();
 //    }
 
-    public Date getStartDate(){
+    protected Date getStartDate(){
         return startDate;
     }
 
