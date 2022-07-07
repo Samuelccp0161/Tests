@@ -8,11 +8,9 @@ import java.util.GregorianCalendar;
 //import java.util.*;
 //import java.util.ArrayList;
 
-public class CourseSession implements Comparable<CourseSession> {
+public class CourseSession extends Session  {
 //    public long getEndDate;
-    private String department;
-    private String number;
-    private java.util.ArrayList<Student> students = new java.util.ArrayList<Student>();
+
     public Date startDate;
     public static final String NEWLINE = System.getProperty("line.separator");
 
@@ -26,11 +24,6 @@ public class CourseSession implements Comparable<CourseSession> {
     }
      private static int count;
 
-    protected CourseSession(String department, String number) {
-        this.department = department;
-        this.number = number;
-    }
-
     public static CourseSession create(
         String department,
         String number,
@@ -40,38 +33,10 @@ public class CourseSession implements Comparable<CourseSession> {
     }
 
     public CourseSession(String department, String number, Date startDate){
-        this.department = department;
-        this.number = number;
-        this.startDate = startDate;
-
-    }
-    public String getDepartment(){
-        return department;
-    }
-    public String getNumber(){
-        return number;
-    }
-    public int getNumberOfStudents(){
-        return students.size();
-    }
-
-    private int numberOfCredits;
-    void setNumberOfCredits(int numberOfCredits){
-        this.numberOfCredits = numberOfCredits;
-    }
-    public void enroll(Student student){
-        student.addCredits(numberOfCredits);
-        students.add(student);
+       super(department, number, startDate);
     }
     protected int getSessionLength(){
         return 16; }
-    public Student get (int index){
-        return students.get(index);
-    }
-
-    public ArrayList<Student> getAllStudents() {
-        return students;
-    }
 
     private static void incrementCount(){
         ++count;
@@ -101,10 +66,6 @@ public class CourseSession implements Comparable<CourseSession> {
 //        buffer.append(ROSTER_REPORT_FOOTER + students.size() + NEWLINE);
 //        return buffer.toString();
 //    }
-
-    protected Date getStartDate(){
-        return startDate;
-    }
 
     static int getCount(){
         return count;

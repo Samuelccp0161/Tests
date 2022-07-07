@@ -1,9 +1,11 @@
 package sis;
+import sis.SuperClassTest.SuperClassTest;
 import sis.report.RosterReportTest;
 import sis.studentinfo.*;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
+import sis.summer.SummerCourseSessionTest;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses( {
@@ -12,7 +14,9 @@ import org.junit.runners.Suite;
         RosterReportTest.class,
         DateUtilTest.class,
         BasicGradingStrategyTest.class,
-        HonorsGradingStrategyTest.class
+        HonorsGradingStrategyTest.class,
+        SummerCourseSessionTest.class,
+        SuperClassTest.class,
 })
 public class AllTests {
 }

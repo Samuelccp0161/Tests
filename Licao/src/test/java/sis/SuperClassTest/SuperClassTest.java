@@ -1,8 +1,8 @@
-package sis.summer;
+package sis.SuperClassTest;
 
 import org.junit.Test;
-import sis.studentinfo.SubClass;
-import sis.studentinfo.SuperClass;
+import sis.SuperClass.SubClass;
+import sis.SuperClass.SuperClass;
 
 import static org.junit.Assert.assertTrue;
 
