@@ -124,9 +124,7 @@ public class BoardTest {
        assertEquals('Q', board.getPieceBlackList().get(0).getRepresentation());
        assertEquals('R', board.getPieceBlackList().get(1).getRepresentation());
        assertEquals('P', board.getPieceBlackList().get(2).getRepresentation());
-
-
-
    }
+
 
 }

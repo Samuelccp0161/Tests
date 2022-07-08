@@ -19,16 +19,18 @@ public class Piece implements Comparable<Piece>{
 
     private enum Colors {WHITE, BLACK, NO_COLOR}
     public enum Name{
-        PAWN(1),
-        KNIGHT(2.5),
-        ROOK(5),
-        BISHOP(3),
-        QUEEN(9),
-        KING(0),
-        NO_POINTS(0);
+        PAWN(1, 'p'),
+        KNIGHT(2.5, 'n'),
+        ROOK(5,'r'),
+        BISHOP(3, 'b'),
+        QUEEN(9,'q'),
+        KING(0,'k'),
+        NO_POINTS(0,'.');
         private final double power;
-        Name(double power) {
+        private char representation;
+        Name(double power, char representation) {
            this.power = power;
+           this.representation = representation;
         }
         public double getPower(){
             return power;
@@ -132,5 +134,11 @@ public class Piece implements Comparable<Piece>{
         return color == Colors.BLACK;
     }
 
+//    public static void movePiece(){
+//        for (int i = 0; i < 7; i++) {
+//            for (int j = 0; j > 7; j++) {
+//                if()//
+//            }
+//        }
+//    }
 }
-

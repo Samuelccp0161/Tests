@@ -4,6 +4,8 @@ import chess.pieces.Piece;
 import util.StringUtil;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.EnumMap;
+import java.util.Map;
 
 
 public class Board {
@@ -68,6 +70,27 @@ public class Board {
         allRanks.get(7).set(6, Piece.createBlackKnight());
         allRanks.get(7).set(7, Piece.createBlackRook());
     }
+
+    private Map<Piece.Name, Double> powers = null;
+    private void powers(){
+        powers = new EnumMap<Piece.Name, Double>(Piece.Name.class);
+        powers.put(Piece.Name.KING, 0.0);
+        powers.put(Piece.Name.NO_POINTS, 0.0);
+        powers.put(Piece.Name.ROOK, 5.0);
+        powers.put(Piece.Name.QUEEN, 9.0);
+        powers.put(Piece.Name.PAWN, 1.0);
+        powers.put(Piece.Name.KNIGHT, 2.5);
+        powers.put(Piece.Name.BISHOP, 3.0);
+    }
+    private Map<Piece.Name, Double> getPowers(){
+        if (powers == null)
+            powers();
+        return powers;
+    }
+    public Double getMapPower(Piece.Name name){
+        return getPowers().get(name);
+    }
+
 
     public int getNumbOfPieces() {
         return Piece.getCountBlack() + Piece.getCountWhite();

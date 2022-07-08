@@ -53,8 +53,8 @@ public class TestPiece {
     public void compareTo(){
         Piece pieceQueen = Piece.createBlackQueen();
         Piece piecePawn = Piece.createWhitePawn();
-        assertEquals(1, pieceQueen.compareTo(piecePawn));
-        assertEquals(-1, piecePawn.compareTo(pieceQueen));
+        assertEquals(-1, pieceQueen.compareTo(piecePawn));
+        assertEquals(1, piecePawn.compareTo(pieceQueen));
         System.out.println(piecePawn.compareTo(pieceQueen));
 
     }
