@@ -5,6 +5,8 @@ import org.junit.Before;
 import org.junit.Test;
 import util.StringUtil;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -124,7 +126,18 @@ public class BoardTest {
        assertEquals('Q', board.getPieceBlackList().get(0).getRepresentation());
        assertEquals('R', board.getPieceBlackList().get(1).getRepresentation());
        assertEquals('P', board.getPieceBlackList().get(2).getRepresentation());
+
+
    }
+    @Test
+    public void freeTestPosition(){
+        ArrayList<String> value = new ArrayList<>();
+        value = board.freePositions("a1", Piece.createBlackKing());
+        assertTrue(value.contains("a2"));
+        assertTrue(value.contains("b1"));
+        assertTrue(value.contains("b2"));
+
+    }
 
 
 }

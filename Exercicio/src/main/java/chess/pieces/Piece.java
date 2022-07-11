@@ -133,12 +133,4 @@ public class Piece implements Comparable<Piece>{
     public boolean isBlack(){
         return color == Colors.BLACK;
     }
-
-//    public static void movePiece(){
-//        for (int i = 0; i < 7; i++) {
-//            for (int j = 0; j > 7; j++) {
-//                if()//
-//            }
-//        }
-//    }
 }
