@@ -132,11 +132,27 @@ public class BoardTest {
     @Test
     public void freeTestPosition(){
         ArrayList<String> value = new ArrayList<>();
+        value = board.freePositions("d4", Piece.createBlackKing());
+        System.out.println(value);
+        assertTrue(value.contains("c3"));
+        assertTrue(value.contains("c4"));
+        assertTrue(value.contains("c5"));
+
+        assertTrue(value.contains("d3"));
+        assertTrue(value.contains("d5"));
+
+        assertTrue(value.contains("e5"));
+        assertTrue(value.contains("e4"));
+        assertTrue(value.contains("e3"));
+
+//      ----------------------------------
+
         value = board.freePositions("a1", Piece.createBlackKing());
+        System.out.println(value);
         assertTrue(value.contains("a2"));
         assertTrue(value.contains("b1"));
         assertTrue(value.contains("b2"));
-
+        assertEquals(3, value.size());
     }
 
 

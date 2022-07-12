@@ -215,12 +215,36 @@ public class Board {
         Collections.sort(pieceBlack);
     }
 
-    public ArrayList<String> freePositions(String position, Piece piece){
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                if ()
-            }
-        }
+    public ArrayList<String> freePositions(String position, Piece piece) {
+        ArrayList<String> list = new ArrayList<>();
+
+        char column = position.charAt(0);
+        char line = position.charAt(1);
+
+        char app = (char) (line+1);
+        char att = (char) (column+1);
+        char aqq = (char)(line -1);
+        char acc = (char)(column -1);
+
+        String n = ""  +column + app ;
+        String nu = ""  +att + app ;
+        String num = "" +att +line;
+        String numb = ""  +att + aqq;
+        String numbe = "" +acc + line;
+        String number = "" +acc + aqq;
+        String numbere = "" + acc + app;
+        String numberer = "" + column + aqq ;
+
+        list.add(n);
+        list.add(nu);
+        list.add(num);
+        list.add(numb);
+        list.add(numbe);
+        list.add(number);
+        list.add(numbere);
+        list.add(numberer);
+
+        return list;
     }
 
 }
