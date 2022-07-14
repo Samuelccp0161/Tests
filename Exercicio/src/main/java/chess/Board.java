@@ -73,7 +73,7 @@ public class Board {
 
     private Map<Piece.Name, Double> powers = null;
     private void powers(){
-        powers = new EnumMap<Piece.Name, Double>(Piece.Name.class);
+        powers = new EnumMap<>(Piece.Name.class);
         powers.put(Piece.Name.KING, 0.0);
         powers.put(Piece.Name.NO_POINTS, 0.0);
         powers.put(Piece.Name.ROOK, 5.0);
@@ -91,11 +91,9 @@ public class Board {
         return getPowers().get(name);
     }
 
-
     public int getNumbOfPieces() {
         return Piece.getCountBlack() + Piece.getCountWhite();
     }
-
 
     public String printBoard() {
 
@@ -215,37 +213,44 @@ public class Board {
         Collections.sort(pieceBlack);
     }
 
-    public ArrayList<String> freePositions(String position, Piece piece) {
+    public ArrayList<String> freePositions(String position, Piece ignoredPiece) {
         ArrayList<String> list = new ArrayList<>();
+        ArrayList<String> newList = new ArrayList<>();
 
         char column = position.charAt(0);
         char line = position.charAt(1);
 
-        char app = (char) (line+1);
-        char att = (char) (column+1);
-        char aqq = (char)(line -1);
-        char acc = (char)(column -1);
+        char up = (char) (line+1);
+        char right = (char) (column+1);
+        char down = (char)(line -1);
+        char left = (char)(column -1);
 
-        String n = ""  +column + app ;
-        String nu = ""  +att + app ;
-        String num = "" +att +line;
-        String numb = ""  +att + aqq;
-        String numbe = "" +acc + line;
-        String number = "" +acc + aqq;
-        String numbere = "" + acc + app;
-        String numberer = "" + column + aqq ;
+        list.add("" + column + up);
+        list.add("" + column + down);
+        list.add("" + right + line);
+        list.add("" + left + line);
+        list.add("" + left + up);
+        list.add("" + right + up);
+        list.add("" + left + down);
+        list.add("" + right + down);
 
-        list.add(n);
-        list.add(nu);
-        list.add(num);
-        list.add(numb);
-        list.add(numbe);
-        list.add(number);
-        list.add(numbere);
-        list.add(numberer);
+        for (String pos : list)// para cada string pos dentro de list, executar:
+            if (moveValid(pos))
+                newList.add(pos);
 
-        return list;
+        return newList;
     }
+    public boolean moveValid(String position){
+        char column = position.charAt(0);
+        char line = position.charAt(1);
+
+        if (line < '1' || line > '8'){
+            return false;
+        }
+        return column >= 'a' && column <= 'h';
+    }
+
+
 
 }
 

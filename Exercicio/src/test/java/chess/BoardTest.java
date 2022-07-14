@@ -7,8 +7,7 @@ import util.StringUtil;
 
 import java.util.ArrayList;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class BoardTest {
 
@@ -144,16 +143,26 @@ public class BoardTest {
         assertTrue(value.contains("e5"));
         assertTrue(value.contains("e4"));
         assertTrue(value.contains("e3"));
+        assertEquals(8,value.size() );
 
 //      ----------------------------------
 
         value = board.freePositions("a1", Piece.createBlackKing());
-        System.out.println(value);
         assertTrue(value.contains("a2"));
         assertTrue(value.contains("b1"));
         assertTrue(value.contains("b2"));
+        System.out.println(value);
         assertEquals(3, value.size());
-    }
+
+
+        value = board.freePositions("a8", Piece.createBlackKing());
+        assertTrue(value.contains("a7"));
+        assertTrue(value.contains("b7"));
+        assertTrue(value.contains("b8"));
+        System.out.println(value);
+        assertEquals(3, value.size());
+
+        }
 
 
 }
