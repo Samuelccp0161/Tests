@@ -10,7 +10,8 @@ import org.junit.runners.Suite;
 
         BoardTest.class,
         CharacterTest.class,
-        TestPiece.class
+        TestPiece.class,
+        GameTest.class,
 })
 
 public class AllTests {

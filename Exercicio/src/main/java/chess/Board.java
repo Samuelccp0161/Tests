@@ -11,7 +11,7 @@ import java.util.Map;
 public class Board {
 
     private final ArrayList<ArrayList<Piece>> allRanks;
-        Board() {
+    public Board() {
 
         this.allRanks = new ArrayList<>();
         for (int i = 0; i < 8; i++) {
@@ -28,6 +28,7 @@ public class Board {
             allRanks.get(6).add(Piece.noColor());
             allRanks.get(7).add(Piece.noColor());
         }
+        Piece.resetCount();
 
     }
 
@@ -144,48 +145,6 @@ public class Board {
 
         allRanks.get(rank).set(file, piece);
     }
-
-    public double powerBlack() {
-        double powerd;
-
-        powerd = piecesCount('Q') * Piece.Name.QUEEN.getPower();
-        powerd += piecesCount('R') * Piece.Name.ROOK.getPower();
-        powerd += piecesCount('B') * Piece.Name.BISHOP.getPower();
-        powerd += piecesCount('N') * Piece.Name.KNIGHT.getPower();
-        powerd += powerPawn('P');
-        return powerd;
-    }
-
-    public double powerWhite() {
-        double powers;
-
-        powers = piecesCount('q') * Piece.Name.QUEEN.getPower();
-        powers += piecesCount('r') * Piece.Name.ROOK.getPower();
-        powers += piecesCount('b') * Piece.Name.BISHOP.getPower();
-        powers += piecesCount('n') * Piece.Name.KNIGHT.getPower();
-        powers += powerPawn('p');
-        return powers;
-    }
-
-    public double powerPawn(char representation) {
-        int count = 0;
-        double power = 0;
-
-        for (int i = 0; i <= 7; i++) {
-            for (int j = 0; j < 8; j++) {
-                if (allRanks.get(j).get(i).getRepresentation() == representation)
-                    count += 1;
-            }
-
-            if (count > 1)
-                power += count * Piece.Name.PAWN.getPower() / 2;
-            else power += count * Piece.Name.PAWN.getPower();
-
-            count = 0;
-        }
-        return power;
-    }
-
     private final ArrayList<Piece> pieceWhite = new ArrayList<>();
     private final ArrayList<Piece> pieceBlack = new ArrayList<>();
     public void pieceLists() {
@@ -212,45 +171,14 @@ public class Board {
     public void getOrdBlack(){
         Collections.sort(pieceBlack);
     }
-
-    public ArrayList<String> freePositions(String position, Piece ignoredPiece) {
-        ArrayList<String> list = new ArrayList<>();
-        ArrayList<String> newList = new ArrayList<>();
-
+    public boolean isValidPosition(String position){
         char column = position.charAt(0);
         char line = position.charAt(1);
-
-        char up = (char) (line+1);
-        char right = (char) (column+1);
-        char down = (char)(line -1);
-        char left = (char)(column -1);
-
-        list.add("" + column + up);
-        list.add("" + column + down);
-        list.add("" + right + line);
-        list.add("" + left + line);
-        list.add("" + left + up);
-        list.add("" + right + up);
-        list.add("" + left + down);
-        list.add("" + right + down);
-
-        for (String pos : list)// para cada string pos dentro de list, executar:
-            if (moveValid(pos))
-                newList.add(pos);
-
-        return newList;
-    }
-    public boolean moveValid(String position){
-        char column = position.charAt(0);
-        char line = position.charAt(1);
-
         if (line < '1' || line > '8'){
             return false;
         }
         return column >= 'a' && column <= 'h';
     }
-
-
 
 }
 

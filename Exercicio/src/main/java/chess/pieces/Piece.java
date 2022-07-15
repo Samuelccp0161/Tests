@@ -121,10 +121,7 @@ public class Piece implements Comparable<Piece>{
         return countBlack;
     }
     public static void resetCount(){
-        countWhite = 0;
-    }
-    public static void resetCountBlack(){
-        countBlack = 0;
+        countWhite = countBlack = 0;
     }
 
     public boolean isWhite(){

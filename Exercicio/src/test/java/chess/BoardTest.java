@@ -20,8 +20,6 @@ public class BoardTest {
 
    @Test
    public void testCreate() {
-        Piece.resetCount();
-        Piece.resetCountBlack();
         board.initialize();
 
        assertEquals(2, board.piecesCount('R'));
@@ -56,10 +54,7 @@ public class BoardTest {
 
    @Test
     public void testNewBoard(){
-       Piece.resetCount();
-       Piece.resetCountBlack();
-
-       assertEquals(
+        assertEquals(
                StringUtil.appendNewLine("........") +
                        StringUtil.appendNewLine("........") +
                        StringUtil.appendNewLine("........") +
@@ -76,26 +71,6 @@ public class BoardTest {
    public void pushPiece(){
         board.push("c4", Piece.createBlackKing());
         assertEquals(board.getPiece("c4").getType(), Piece.Name.KING );
-   }
-
-    @Test
-    public void powerPieces(){
-
-        board.push("b1", Piece.createWhitePawn());
-        board.push("b6", Piece.createWhitePawn());
-        board.push("b3", Piece.createWhitePawn());
-        board.push("a1", Piece.createWhitePawn());
-        board.push("a2", Piece.createWhitePawn());
-
-        board.push("c3", Piece.createBlackPawn());
-        board.push("c1", Piece.createBlackPawn());
-        board.push("d2", Piece.createBlackPawn());
-
-        assertEquals(2.5, board.powerWhite(), 0.05);
-        assertEquals(2, board.powerBlack(), 0.05);
-
-        System.out.println(board.powerPawn('p'));
-        System.out.println(board.powerBlack());
    }
 
    @Test
@@ -125,44 +100,5 @@ public class BoardTest {
        assertEquals('Q', board.getPieceBlackList().get(0).getRepresentation());
        assertEquals('R', board.getPieceBlackList().get(1).getRepresentation());
        assertEquals('P', board.getPieceBlackList().get(2).getRepresentation());
-
-
    }
-    @Test
-    public void freeTestPosition(){
-        ArrayList<String> value = new ArrayList<>();
-        value = board.freePositions("d4", Piece.createBlackKing());
-        System.out.println(value);
-        assertTrue(value.contains("c3"));
-        assertTrue(value.contains("c4"));
-        assertTrue(value.contains("c5"));
-
-        assertTrue(value.contains("d3"));
-        assertTrue(value.contains("d5"));
-
-        assertTrue(value.contains("e5"));
-        assertTrue(value.contains("e4"));
-        assertTrue(value.contains("e3"));
-        assertEquals(8,value.size() );
-
-//      ----------------------------------
-
-        value = board.freePositions("a1", Piece.createBlackKing());
-        assertTrue(value.contains("a2"));
-        assertTrue(value.contains("b1"));
-        assertTrue(value.contains("b2"));
-        System.out.println(value);
-        assertEquals(3, value.size());
-
-
-        value = board.freePositions("a8", Piece.createBlackKing());
-        assertTrue(value.contains("a7"));
-        assertTrue(value.contains("b7"));
-        assertTrue(value.contains("b8"));
-        System.out.println(value);
-        assertEquals(3, value.size());
-
-        }
-
-
 }
