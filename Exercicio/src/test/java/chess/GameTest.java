@@ -22,8 +22,7 @@ public class GameTest {
     public void testCreate(){
         assertEquals(64, game.piecesCount('.'));
         assertEquals(0, game.getNumbOfPieces());
-
-
+//      ----------------------------------
         assertEquals(StringUtil.appendNewLine("........") +
                         StringUtil.appendNewLine("........") +
                         StringUtil.appendNewLine("........") +
@@ -44,7 +43,7 @@ public class GameTest {
         assertEquals(1, game.piecesCount('k'));
         assertEquals(8, game.piecesCount('p'));
         assertEquals(2, game.piecesCount('R'));
-
+//      ----------------------------------
         assertEquals(16, Piece.getCountWhite());
         assertEquals(16, Piece.getCountBlack());
         assertEquals(32, game.getNumbOfPieces());
@@ -72,50 +71,60 @@ public class GameTest {
         game.push("b3", Piece.createWhitePawn());
         game.push("a1", Piece.createWhitePawn());
         game.push("a2", Piece.createWhitePawn());
-
+//      ----------------------------------
         game.push("c3", Piece.createBlackPawn());
         game.push("c1", Piece.createBlackPawn());
         game.push("d2", Piece.createBlackPawn());
-
+//      ----------------------------------
         assertEquals(2.5, game.powerWhite(), 0.05);
         assertEquals(2, game.powerBlack(), 0.05);
-
+//      ----------------------------------
         System.out.println(game.powerPawn('p'));
         System.out.println(game.powerBlack());
     }
     @Test
     public void testKingMoves(){
         ArrayList<String> value = new ArrayList<>();
-        value = game.kingMoves("d4", Piece.createBlackKing());
+        value = game.possibleMoves("d4", Piece.createBlackKing());
         System.out.println(value);
         assertTrue(value.contains("c3"));
         assertTrue(value.contains("c4"));
         assertTrue(value.contains("c5"));
-
+//      ----------------------------------
         assertTrue(value.contains("d3"));
         assertTrue(value.contains("d5"));
-
+//      ----------------------------------
         assertTrue(value.contains("e5"));
         assertTrue(value.contains("e4"));
         assertTrue(value.contains("e3"));
         assertEquals(8,value.size() );
-
 //      ----------------------------------
-
-        value = game.kingMoves("a1", Piece.createBlackKing());
+        value = game.possibleMoves("a1", Piece.createBlackKing());
         assertTrue(value.contains("a2"));
         assertTrue(value.contains("b1"));
         assertTrue(value.contains("b2"));
         System.out.println(value);
         assertEquals(3, value.size());
-
-
-        value = game.kingMoves("a8", Piece.createBlackKing());
+//      ----------------------------------
+        value = game.possibleMoves("a8", Piece.createBlackKing());
         assertTrue(value.contains("a7"));
         assertTrue(value.contains("b7"));
         assertTrue(value.contains("b8"));
         System.out.println(value);
         assertEquals(3, value.size());
-
+    }
+    @Test
+    public void testQueenMove(){
+        ArrayList<String> valueQueen = new ArrayList<>();
+        valueQueen = game.possibleMoves("a1", Piece.createBlackQueen());
+        assertTrue(valueQueen.contains("a2"));
+        assertTrue(valueQueen.contains("a3"));
+        assertTrue(valueQueen.contains("a4"));
+        assertTrue(valueQueen.contains("a5"));
+        assertTrue(valueQueen.contains("a6"));
+        assertTrue(valueQueen.contains("a7"));
+        assertTrue(valueQueen.contains("a8"));
+        System.out.println(valueQueen);
+        assertEquals(8, valueQueen.size());
     }
 }

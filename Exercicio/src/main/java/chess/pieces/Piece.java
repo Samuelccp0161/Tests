@@ -23,11 +23,11 @@ public class Piece implements Comparable<Piece>{
         KNIGHT(2.5, 'n'),
         ROOK(5,'r'),
         BISHOP(3, 'b'),
-        QUEEN(9,'q'),
+        QUEEN(9,'q' ),
         KING(0,'k'),
         NO_POINTS(0,'.');
         private final double power;
-        private char representation;
+        private final char representation;
         Name(double power, char representation) {
            this.power = power;
            this.representation = representation;
@@ -101,6 +101,12 @@ public class Piece implements Comparable<Piece>{
         return createBlack(Name.KING, 'K');
     }
 
+    public boolean queenDiferenc(){
+        if(Name.QUEEN != Name.KING){
+            return true ;
+        }
+        return false;
+    }
     public char getRepresentation(){
         if (color == Colors.BLACK) {
             return Character.toUpperCase(representation);

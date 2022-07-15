@@ -179,6 +179,12 @@ public class Board {
         }
         return column >= 'a' && column <= 'h';
     }
-
+    public int countPiecesInColumn(int column, char representation) {
+        int count = 0;
+        for (int j = 0; j < 8; j++) { // Para cada peça na coluna i
+            if (allRanks.get(j).get(column).getRepresentation() == representation)
+                count++;
+        } return count;
+    }
 }
 

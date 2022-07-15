@@ -49,19 +49,14 @@ public class Game {
         powers += powerPawn('p');
         return powers;
     }
-
+//    public ArrayList<ArrayList<Piece>> setPut(){
+//        return board.put();
+//    }
     public double powerPawn(char representation) {
         int count = 0;
         double power = 0;
-
         for (int i = 0; i <= 7; i++) { // Para cada coluna i
-            for (int j = 0; j < 8; j++) { // Para cada peça na coluna i
-                if (allRanks.get(j).get(i).getRepresentation() == representation)
-                    count += 1;
-            }
-            /* ----> fazer um metodo no board aonde:                 ^
-             * vai retornar o numero de peças que tem numa coluna.   |
-             */
+                count = board.countPiecesInColumn(i, representation);
             if (count > 1)
                 power += count * Piece.Name.PAWN.getPower() / 2;
             else power += count * Piece.Name.PAWN.getPower();
@@ -71,7 +66,7 @@ public class Game {
         return power;
     }
 
-    public ArrayList<String> kingMoves(String position, Piece piece) {
+    private ArrayList<String> kingMoves(String position, Piece piece) {
         ArrayList<String> list = new ArrayList<>();
         ArrayList<String> newList = new ArrayList<>();
 
@@ -92,13 +87,43 @@ public class Game {
         list.add("" + left + down);
         list.add("" + right + down);
 
-        for (String pos : list)// para cada string pos dentro de list, executar:
+        for (String pos : list) // para cada String "pos"  dentro de list, executar:
             if (board.isValidPosition(pos))
                 newList.add(pos);
 
         return newList;
     }
 
+    private ArrayList<String> queenMoves(String position, Piece piece){
+        ArrayList<String> listQueen = new ArrayList<>();
+        ArrayList<String> newListQueen = new ArrayList<>();
+        char column = position.charAt(0);
+        char line = position.charAt(1);
+        char up = (char) (line);
+//        char right = (char) (column+1);
+//        char down = (char)(line -1);
+//        char left = (char)(column -1);
+        for (int i = 0; i < line; i++) {
+            listQueen.add("" + column + up);
+        }
 
+//        listQueen.add("" + column + down);
+//        listQueen.add("" + right + line);
+//        listQueen.add("" + left + line);
+
+        for (String positionQueen : listQueen) // para cada String "positionQueen" dentro de list, executar:
+            if (board.isValidPosition(positionQueen))
+                newListQueen.add(positionQueen);
+
+        return newListQueen;
+    }
+
+    public ArrayList<String> possibleMoves(String position, Piece piece){
+        if(piece.getType() == Piece.Name.KING){
+            return kingMoves(position, piece);
+        } else if (piece.getType() == Piece.Name.QUEEN){
+            return queenMoves(position, piece);
+        } return null;
+    }
 
 }

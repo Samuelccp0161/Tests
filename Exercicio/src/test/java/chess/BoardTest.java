@@ -101,4 +101,18 @@ public class BoardTest {
        assertEquals('R', board.getPieceBlackList().get(1).getRepresentation());
        assertEquals('P', board.getPieceBlackList().get(2).getRepresentation());
    }
+   @Test
+    public void testPiecesInColor(){
+        assertEquals(0, board.countPiecesInColumn(0,'P'));
+        board.push("a1", Piece.createBlackPawn());
+        assertEquals(1, board.countPiecesInColumn(0,'P'));
+        board.push("a2", Piece.createBlackPawn());
+        assertEquals(2, board.countPiecesInColumn(0,'P'));
+        board.push("a3", Piece.createBlackPawn());
+        board.push("a4", Piece.createBlackPawn());
+        board.push("a5", Piece.createBlackPawn());
+        board.push("a6",Piece.createBlackBishop());
+        assertEquals(1, board.countPiecesInColumn(0, 'B'));
+        assertEquals(5, board.countPiecesInColumn(0, 'P'));
+   }
 }
