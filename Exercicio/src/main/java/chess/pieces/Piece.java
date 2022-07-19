@@ -1,5 +1,9 @@
 package chess.pieces;
 
+import chess.Board;
+
+import java.util.ArrayList;
+
 public class Piece implements Comparable<Piece>{
 
     private final char representation;
@@ -101,12 +105,6 @@ public class Piece implements Comparable<Piece>{
         return createBlack(Name.KING, 'K');
     }
 
-    public boolean queenDiferenc(){
-        if(Name.QUEEN != Name.KING){
-            return true ;
-        }
-        return false;
-    }
     public char getRepresentation(){
         if (color == Colors.BLACK) {
             return Character.toUpperCase(representation);
@@ -135,5 +133,73 @@ public class Piece implements Comparable<Piece>{
     }
     public boolean isBlack(){
         return color == Colors.BLACK;
+    }
+    private static ArrayList<String> kingMoves(String position) {
+        ArrayList<String> list = new ArrayList<>();
+        ArrayList<String> newList = new ArrayList<>();
+
+        char column = position.charAt(0);
+        char line = position.charAt(1);
+
+        char up = (char) (line+1);
+        char right = (char) (column+1);
+        char down = (char)(line -1);
+        char left = (char)(column -1);
+
+        list.add("" + column + up);
+        list.add("" + column + down);
+        list.add("" + right + line);
+        list.add("" + left + line);
+        list.add("" + left + up);
+        list.add("" + right + up);
+        list.add("" + left + down);
+        list.add("" + right + down);
+
+        for (String pos : list) // para cada String "pos"  dentro de list, executar:
+            if (Board.isValidPosition(pos))
+                newList.add(pos);
+
+        return newList;
+    }
+
+    private static ArrayList<String> queenMoves(String position){
+        ArrayList<String> listQueen = new ArrayList<>();
+        ArrayList<String> newListQueen = new ArrayList<>();
+        char column = position.charAt(0);
+        char line = position.charAt(1);
+
+        char up = (char) (line + 1);
+        char right = (char) (column +1 );
+        char down = (char)(line -1);
+        char left = (char)(column -1);
+
+        for (int i = 0; i < 8; i++) {
+            listQueen.add("" + column + up);
+            listQueen.add("" + right + line);
+            listQueen.add("" + right + up);
+            listQueen.add("" + right + down);
+            listQueen.add("" + column + down);
+            listQueen.add("" +  left + line);
+            listQueen.add("" + left + down);
+            listQueen.add("" + left + up);
+
+            right++ ;
+            up++;
+            left--;
+            down--;
+        }
+
+        for (String positionQueen : listQueen) // para cada String "positionQueen" dentro de list, executar:
+            if (Board.isValidPosition(positionQueen)) //validar posição de queen
+                newListQueen.add(positionQueen); // adicionar posição valida dentro da lista.
+
+        return newListQueen;
+    }
+    public static ArrayList<String> possibleMoves(String position, Piece piece){
+        if(piece.getType() == Piece.Name.KING){
+            return kingMoves(position);
+        } else if (piece.getType() == Piece.Name.QUEEN){
+            return queenMoves(position);
+        } return null;
     }
 }

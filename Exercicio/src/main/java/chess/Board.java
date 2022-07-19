@@ -171,7 +171,7 @@ public class Board {
     public void getOrdBlack(){
         Collections.sort(pieceBlack);
     }
-    public boolean isValidPosition(String position){
+    public static boolean isValidPosition(String position){
         char column = position.charAt(0);
         char line = position.charAt(1);
         if (line < '1' || line > '8'){
