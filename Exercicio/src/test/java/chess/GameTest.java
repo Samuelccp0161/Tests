@@ -7,8 +7,7 @@ import util.StringUtil;
 
 import java.util.ArrayList;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class GameTest {
     private Game game;
@@ -117,6 +116,7 @@ public class GameTest {
     public void testQueenMove(){
         ArrayList<String> valueQueen = new ArrayList<>();
         valueQueen = game.possibleMoves("a1", Piece.createBlackQueen());
+        System.out.println(game.possibleMoves("a1", Piece.createBlackQueen()));
         assertTrue(valueQueen.contains("a2"));
         assertTrue(valueQueen.contains("a3"));
         assertTrue(valueQueen.contains("a4"));
@@ -124,7 +124,17 @@ public class GameTest {
         assertTrue(valueQueen.contains("a6"));
         assertTrue(valueQueen.contains("a7"));
         assertTrue(valueQueen.contains("a8"));
-        System.out.println(valueQueen);
-        assertEquals(8, valueQueen.size());
+//      ----------------------------------
+        valueQueen = game.possibleMoves("a1", Piece.createBlackQueen());
+        System.out.println(game.possibleMoves("a1", Piece.createBlackQueen()));
+        assertTrue(valueQueen.contains("b1"));
+        assertTrue(valueQueen.contains("c1"));
+        assertTrue(valueQueen.contains("c1"));
+        assertTrue(valueQueen.contains("d1"));
+        assertTrue(valueQueen.contains("e1"));
+        assertTrue(valueQueen.contains("f1"));
+        assertTrue(valueQueen.contains("g1"));
+        assertEquals(7, valueQueen.size());
+
     }
 }

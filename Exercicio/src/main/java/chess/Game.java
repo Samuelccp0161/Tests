@@ -99,17 +99,19 @@ public class Game {
         ArrayList<String> newListQueen = new ArrayList<>();
         char column = position.charAt(0);
         char line = position.charAt(1);
-        char up = (char) (line +1 ); // tenho que fazer as possiveis movimentação da rainha, questao 8.
-//        char right = (char) (column+1);
-//        char down = (char)(line -1);
-//        char left = (char)(column -1);
-//        listQueen.add("" + column + down);
-//        listQueen.add("" + right + line);
-//        listQueen.add("" + left + line);
+
+        for (int i = 0; i < line; line++) {
+            char up = (char) (line + 1);
+            listQueen.add("" + column + up);
+
+        for (int j = 0; j < column; column++) {
+            char right = (char) (column + 1);
+            listQueen.add("" + right + line);
+        }}
 
         for (String positionQueen : listQueen) // para cada String "positionQueen" dentro de list, executar:
-            if (board.isValidPosition(positionQueen))
-                newListQueen.add(positionQueen);
+            if (board.isValidPosition(positionQueen)) //validar posição de queen
+                newListQueen.add(positionQueen); // adicionar posição valida dentro da lista.
 
         return newListQueen;
     }
