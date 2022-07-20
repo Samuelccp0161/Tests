@@ -21,7 +21,7 @@ public class Piece implements Comparable<Piece>{
         return Double.compare(piece.getPower(),getPower());
     }
 
-    private enum Colors {WHITE, BLACK, NO_COLOR}
+    protected enum Colors {WHITE, BLACK, NO_COLOR}
     public enum Name{
         PAWN(1, 'p'),
         KNIGHT(2.5, 'n'),
@@ -46,7 +46,7 @@ public class Piece implements Comparable<Piece>{
     }
     private final Name name;
     private final Colors color;
-    private Piece(Colors color, Name name, char representation) {
+    protected Piece(Colors color, Name name, char representation) {
         this.color = color;
         this.name = name;
         this.representation = representation;
@@ -92,16 +92,16 @@ public class Piece implements Comparable<Piece>{
     public static Piece createBlackBishop() {
         return createBlack(Name.BISHOP, 'B');
     }
-    public static Piece createWhiteQueen() {
+    public static Queen createWhiteQueen() {
         return createWhite(Name.QUEEN, 'q');
     }
-    public static Piece createBlackQueen() {
+    public static Queen createBlackQueen() {
         return createBlack(Name.QUEEN, 'Q');
     }
     public static Piece createWhiteKing() {
         return createWhite(Name.KING, 'k');
     }
-    public static Piece createBlackKing() {
+    public static King createBlackKing() {
         return createBlack(Name.KING, 'K');
     }
 
