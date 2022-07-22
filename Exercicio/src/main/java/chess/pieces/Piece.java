@@ -60,6 +60,12 @@ public class Piece implements Comparable<Piece>{
         incrementCountBlack();
         return new Piece(Colors.BLACK,name, representation);
     }
+    public static Queen createWhiteQueene(){
+        return new Queen(Colors.WHITE);
+    }
+    public static Queen createBlackQueene(){
+        return new Queen(Colors.BLACK);
+    }
 
     public static final char PAWN_REPRESENTATION = 'p';
     public static final char ROOK_REPRESENTATION = 'r';
