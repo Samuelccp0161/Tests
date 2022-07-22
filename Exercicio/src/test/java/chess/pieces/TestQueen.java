@@ -8,14 +8,14 @@ public class TestQueen {
 
     @Test
     public void testCreateQueen(){
-        Queen queenWhite = Piece.createWhiteQueene();
+        Queen queenWhite = Queen.createWhiteQueen();
         assertEquals('q', queenWhite.getRepresentation());
         assertTrue(queenWhite.isWhite());
         assertFalse(queenWhite.isBlack());
         assertEquals(9.0,queenWhite.getPower(), 0.05);
         assertEquals(Piece.Name.QUEEN,queenWhite.getType());
 
-        Queen queenBlack = Piece.createBlackQueene();
+        Queen queenBlack = Queen.createBlackQueen();
         assertEquals('Q', queenBlack.getRepresentation());
         assertTrue(queenBlack.isBlack());
         assertFalse(queenBlack.isWhite());

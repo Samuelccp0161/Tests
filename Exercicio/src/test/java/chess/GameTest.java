@@ -43,8 +43,8 @@ public class GameTest {
         assertEquals(8, game.piecesCount('p'));
         assertEquals(2, game.piecesCount('R'));
 //      ----------------------------------
-        assertEquals(16, Piece.getCountWhite());
-        assertEquals(16, Piece.getCountBlack());
+        assertEquals(16, game.getNumbOfPiecesWhite());
+        assertEquals(16, game.getNumbOfPiecesBlack());
         assertEquals(32, game.getNumbOfPieces());
         assertEquals(
                 StringUtil.appendNewLine("RNBQKBNR") +

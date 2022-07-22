@@ -4,8 +4,6 @@ import chess.pieces.Piece;
 import util.StringUtil;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.EnumMap;
-import java.util.Map;
 
 
 public class Board {
@@ -28,13 +26,11 @@ public class Board {
             allRanks.get(6).add(Piece.noColor());
             allRanks.get(7).add(Piece.noColor());
         }
-        Piece.resetCount();
 
     }
 
     public void initialize() {
 
-        Piece.resetCount();
         allRanks.get(0).set(0, Piece.createWhiteRook());
         allRanks.get(0).set(1, Piece.createWhiteKnight());
         allRanks.get(0).set(2, Piece.createWhiteBishop());
@@ -70,30 +66,22 @@ public class Board {
         allRanks.get(7).set(5, Piece.createBlackBishop());
         allRanks.get(7).set(6, Piece.createBlackKnight());
         allRanks.get(7).set(7, Piece.createBlackRook());
-    }
+        pieceWhite.clear();
+        pieceBlack.clear();
+        pieceLists();
+        setOrdWhite();
+        setOrdBlack();
 
-    private Map<Piece.Name, Double> powers = null;
-    private void powers(){
-        powers = new EnumMap<>(Piece.Name.class);
-        powers.put(Piece.Name.KING, 0.0);
-        powers.put(Piece.Name.NO_POINTS, 0.0);
-        powers.put(Piece.Name.ROOK, 5.0);
-        powers.put(Piece.Name.QUEEN, 9.0);
-        powers.put(Piece.Name.PAWN, 1.0);
-        powers.put(Piece.Name.KNIGHT, 2.5);
-        powers.put(Piece.Name.BISHOP, 3.0);
-    }
-    private Map<Piece.Name, Double> getPowers(){
-        if (powers == null)
-            powers();
-        return powers;
-    }
-    public Double getMapPower(Piece.Name name){
-        return getPowers().get(name);
     }
 
     public int getNumbOfPieces() {
-        return Piece.getCountBlack() + Piece.getCountWhite();
+        return pieceWhite.size() + pieceBlack.size();
+    }
+    public int getNumbOfPiecesWhite(){
+        return pieceWhite.size();
+    }
+    public int getNumbOfPiecesBlack(){
+        return pieceBlack.size();
     }
 
     public String printBoard() {
@@ -144,10 +132,17 @@ public class Board {
         rank -= '1';
 
         allRanks.get(rank).set(file, piece);
+        if (piece.isWhite()){
+            pieceWhite.add(piece);
+            setOrdWhite();
+        } else if (piece.isBlack()) {
+            pieceBlack.add(piece);
+            setOrdBlack();
+        }
     }
     private final ArrayList<Piece> pieceWhite = new ArrayList<>();
     private final ArrayList<Piece> pieceBlack = new ArrayList<>();
-    public void pieceLists() {
+    private void pieceLists() {
         for (int i = 0; i <= 7; i++) {
             for (int j = 0; j < allRanks.size(); j++) {
                 if(allRanks.get(i).get(j).isWhite()){
@@ -165,10 +160,10 @@ public class Board {
     public ArrayList<Piece> getPieceBlackList(){
         return pieceBlack;
     }
-    public void getOrdWhite(){
+    public void setOrdWhite(){
         Collections.sort(pieceWhite);
     }
-    public void getOrdBlack(){
+    public void setOrdBlack(){
         Collections.sort(pieceBlack);
     }
     public static boolean isValidPosition(String position){
