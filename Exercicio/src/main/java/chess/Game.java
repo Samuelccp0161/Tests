@@ -28,6 +28,12 @@ public class Game {
     public void push(String position, Piece piece){
         board.push(position, piece);
     }
+    public int getNumbOfPiecesWhite(){
+        return board.getNumbOfPiecesWhite();
+    }
+    public int getNumbOfPiecesBlack(){
+        return board.getNumbOfPiecesBlack();
+    }
     public double powerBlack() {
         double powerd;
 
