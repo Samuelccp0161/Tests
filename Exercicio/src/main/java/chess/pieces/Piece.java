@@ -92,16 +92,16 @@ public class Piece implements Comparable<Piece>{
     public static Piece createBlackBishop() {
         return createBlack(Name.BISHOP, 'B');
     }
-    public static Queen createWhiteQueen() {
+    public static Piece createWhiteQueen() {
         return createWhite(Name.QUEEN, 'q');
     }
-    public static Queen createBlackQueen() {
+    public static Piece createBlackQueen() {
         return createBlack(Name.QUEEN, 'Q');
     }
     public static Piece createWhiteKing() {
         return createWhite(Name.KING, 'k');
     }
-    public static King createBlackKing() {
+    public static Piece createBlackKing() {
         return createBlack(Name.KING, 'K');
     }
 

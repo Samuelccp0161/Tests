@@ -14,6 +14,7 @@ public class TestQueen {
         assertFalse(queenWhite.isBlack());
         assertEquals(9.0,queenWhite.getPower(), 0.05);
         assertEquals(Piece.Name.QUEEN,queenWhite.getType());
+
         Queen queenBlack = Piece.createBlackQueen();
         assertEquals('Q', queenBlack.getRepresentation());
         assertTrue(queenBlack.isBlack());
@@ -21,4 +22,6 @@ public class TestQueen {
         assertEquals(9.0,queenBlack.getPower(), 0.05);
         assertEquals(Piece.Name.QUEEN,queenBlack.getType());
     }
+
+
 }
