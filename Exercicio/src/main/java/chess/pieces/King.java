@@ -5,8 +5,8 @@ import chess.Board;
 import java.util.ArrayList;
 
 public class King extends Piece{
-    protected King(Colors color) {
-        super(color, Piece.Name.KING, KING_REPRESENTATION);
+    protected King(Colors color ) {
+        super(color, KING_REPRESENTATION, 0);
     }
     private static ArrayList<String> kingMoves(String position) {
         ArrayList<String> list = new ArrayList<>();

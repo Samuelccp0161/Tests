@@ -9,20 +9,20 @@ import static org.junit.Assert.*;
 public class TestKing extends TestPiece {
     @Test
     public void testKing(){
-            King kingWhite = Piece.createWhiteKing();
-            assertEquals('k', kingWhite.getRepresentation());
-            assertTrue(kingWhite.isWhite());
-            assertFalse(kingWhite.isBlack());
-            assertEquals(1.0,kingWhite.getPower(), 0.05);
-            assertEquals(Piece.Name.KING,kingWhite.getType());
+        King kingWhite = Piece.createWhiteKing();
+        assertEquals('k', kingWhite.getRepresentation());
+        assertTrue(kingWhite.isWhite());
+        assertFalse(kingWhite.isBlack());
+        assertEquals(0.0,kingWhite.getPower(), 0.05);
+        assertEquals(King.class,kingWhite.getClass());
 
-            King kingBlack = Piece.createBlackKing();
-            assertEquals('K', kingBlack.getRepresentation());
-            assertTrue(kingBlack.isBlack());
-            assertFalse(kingBlack.isWhite());
-            assertEquals(1.0,kingBlack.getPower(), 0.05);
-            assertEquals(Piece.Name.KING,kingBlack.getType());
-        }
+        King kingBlack = Piece.createBlackKing();
+        assertEquals('K', kingBlack.getRepresentation());
+        assertTrue(kingBlack.isBlack());
+        assertFalse(kingBlack.isWhite());
+        assertEquals(0.0,kingBlack.getPower(), 0.05);
+        assertEquals(King.class,kingBlack.getClass());
+    }
     @Test
     public void testKingMoves(){
         ArrayList<String> value = new ArrayList<>();
@@ -56,5 +56,5 @@ public class TestKing extends TestPiece {
         assertEquals(3, value.size());
     }
 
-    }
+}
 

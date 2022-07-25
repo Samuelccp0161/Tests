@@ -2,6 +2,7 @@ package chess;
 
 
 import chess.pieces.Piece;
+import chess.pieces.Queen;
 
 import java.util.ArrayList;
 
@@ -37,10 +38,10 @@ public class Game {
     public double powerBlack() {
         double powerd;
 
-        powerd = piecesCount('Q') * Piece.Name.QUEEN.getPower();
-        powerd += piecesCount('R') * Piece.Name.ROOK.getPower();
-        powerd += piecesCount('B') * Piece.Name.BISHOP.getPower();
-        powerd += piecesCount('N') * Piece.Name.KNIGHT.getPower();
+        powerd = piecesCount('Q') *  Piece.createBlackQueen().getPower();
+        powerd += piecesCount('R') * Piece.createBlackRook().getPower();
+        powerd += piecesCount('B') * Piece.createBlackBishop().getPower();
+        powerd += piecesCount('N') * Piece.createBlackKnight().getPower();
         powerd += powerPawn('P');
         return powerd;
     }
@@ -48,10 +49,10 @@ public class Game {
     public double powerWhite() {
         double powers;
 
-        powers = piecesCount('q') * Piece.Name.QUEEN.getPower();
-        powers += piecesCount('r') * Piece.Name.ROOK.getPower();
-        powers += piecesCount('b') * Piece.Name.BISHOP.getPower();
-        powers += piecesCount('n') * Piece.Name.KNIGHT.getPower();
+        powers = piecesCount('q') * Piece.createWhiteQueen().getPower();
+        powers += piecesCount('r') * Piece.createWhiteRook().getPower();
+        powers += piecesCount('b') * Piece.createWhiteBishop().getPower();
+        powers += piecesCount('n') * Piece.createWhiteKnight().getPower();
         powers += powerPawn('p');
         return powers;
     }
@@ -61,8 +62,8 @@ public class Game {
         for (int i = 0; i <= 7; i++) { // Para cada coluna i
                 count = board.countPiecesInColumn(i, representation);
             if (count > 1)
-                power += count * Piece.Name.PAWN.getPower() / 2;
-            else power += count * Piece.Name.PAWN.getPower();
+                power += count * Piece.createBlackPawn().getPower()/ 2;
+            else power += count * Piece.createBlackPawn().getPower();
         }
         return power;
     }

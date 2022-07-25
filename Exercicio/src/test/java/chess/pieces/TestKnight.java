@@ -13,14 +13,14 @@ public class TestKnight extends TestPiece{
         assertTrue(knightWhite.isWhite());
         assertFalse(knightWhite.isBlack());
         assertEquals(2.5,knightWhite.getPower(), 0.05);
-        assertEquals(Piece.Name.KNIGHT,knightWhite.getType());
+        assertEquals(Knight.class,knightWhite.getClass());
 
         Knight knightBlack = Piece.createBlackKnight();
         assertEquals('N', knightBlack.getRepresentation());
         assertTrue(knightBlack.isBlack());
         assertFalse(knightBlack.isWhite());
         assertEquals(2.5,knightBlack.getPower(), 0.05);
-        assertEquals(Piece.Name.KNIGHT,knightBlack.getType());
+        assertEquals(Knight.class,knightBlack.getClass());
     }
 
 }

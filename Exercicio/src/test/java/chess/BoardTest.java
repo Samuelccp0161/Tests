@@ -1,5 +1,6 @@
 package chess;
 
+import chess.pieces.King;
 import chess.pieces.Piece;
 import org.junit.Before;
 import org.junit.Test;
@@ -68,7 +69,7 @@ public class BoardTest {
     public void pushPiece() {
         assertEquals(0, board.getNumbOfPieces());
         board.push("c4", Piece.createBlackKing());
-        assertEquals(board.getPiece("c4").getType(), Piece.Name.KING );
+        assertEquals(board.getPiece("c4").getClass(), King.class);
         assertEquals(1, board.getNumbOfPieces());
     }
 

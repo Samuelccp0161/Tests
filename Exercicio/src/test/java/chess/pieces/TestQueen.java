@@ -15,14 +15,14 @@ public class TestQueen {
         assertTrue(queenWhite.isWhite());
         assertFalse(queenWhite.isBlack());
         assertEquals(9.0,queenWhite.getPower(), 0.05);
-        assertEquals(Piece.Name.QUEEN,queenWhite.getType());
+        assertEquals(Queen.class,queenWhite.getClass());
 
         Queen queenBlack = Queen.createBlackQueen();
         assertEquals('Q', queenBlack.getRepresentation());
         assertTrue(queenBlack.isBlack());
         assertFalse(queenBlack.isWhite());
         assertEquals(9.0,queenBlack.getPower(), 0.05);
-        assertEquals(Piece.Name.QUEEN,queenBlack.getType());
+        assertEquals(Queen.class,queenBlack.getClass());
     }
     @Test
     public void testQueenMove(){

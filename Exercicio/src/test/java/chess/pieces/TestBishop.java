@@ -12,14 +12,14 @@ public class TestBishop {
             assertTrue(bishopWhite.isWhite());
             assertFalse(bishopWhite.isBlack());
             assertEquals(3.0,bishopWhite.getPower(), 0.05);
-            assertEquals(Piece.Name.BISHOP,bishopWhite.getType());
+            assertEquals(Bishop.class,bishopWhite.getClass());
 
             Bishop bishopBlack = Piece.createBlackBishop();
             assertEquals('B', bishopBlack.getRepresentation());
             assertTrue(bishopBlack.isBlack());
             assertFalse(bishopBlack.isWhite());
             assertEquals(3.0,bishopBlack.getPower(), 0.05);
-            assertEquals(Piece.Name.BISHOP,bishopBlack.getType());
+            assertEquals(Bishop.class,bishopBlack.getClass());
         }
 }
 

@@ -1,53 +1,26 @@
 package chess.pieces;
 
-import chess.Board;
-
 import java.util.ArrayList;
 
 public class Piece implements Comparable<Piece>{
-
+    private double power;
     private final char representation;
-    public static Piece noColor() {
-        return new Piece(Colors.NO_COLOR, Name.NO_POINTS, '.');
-    }
 
-    public Name getType() {
-        return name;
-    }
     @Override
     public int compareTo(Piece piece){
         return Double.compare(piece.getPower(),getPower());
     }
 
     protected enum Colors {WHITE, BLACK, NO_COLOR}
-    public enum Name{
-        PAWN(1, 'p'),
-        KNIGHT(2.5, 'n'),
-        ROOK(5,'r'),
-        BISHOP(3, 'b'),
-        QUEEN(9,'q' ),
-        KING(1,'k'),
-        NO_POINTS(0,'.');
-        private final double power;
-        private final char representation;
-        public double getPower(){
-            return power;
-        }
-        Name(double power, char representation) {
-           this.power = power;
-           this.representation = representation;
-        }
-
-    }
 
     public double getPower(){
-        return name.getPower();
+        return power;
     }
-    private final Name name;
+
     private final Colors color;
-    protected Piece(Colors color, Name name, char representation) {
+    protected Piece(Colors color, char representation, double power) {
         this.color = color;
-        this.name = name;
+        this.power = power;
         this.representation = representation;
     }
     public static final char PAWN_REPRESENTATION = 'p';
@@ -56,6 +29,10 @@ public class Piece implements Comparable<Piece>{
     public static final char BISHOP_REPRESENTATION = 'b';
     public static final char QUEEN_REPRESENTATION = 'q';
     public static final char KING_REPRESENTATION = 'k';
+    public static final char NO_PIECE_REPRESENTATION = '.';
+    public static NoPiece noColor() {
+        return new NoPiece(Colors.NO_COLOR);
+    }
 
     public static Pawn createWhitePawn(){
         return new Pawn(Colors.WHITE);
@@ -112,5 +89,4 @@ public class Piece implements Comparable<Piece>{
         ArrayList<String> moves = new ArrayList<>();
             return moves;
     }
-
 }

@@ -13,14 +13,14 @@ public class TestPawn extends TestPiece{
         assertTrue(pawnWhite.isWhite());
         assertFalse(pawnWhite.isBlack());
         assertEquals(1.0,pawnWhite.getPower(), 0.05);
-        assertEquals(Piece.Name.PAWN,pawnWhite.getType());
+        assertEquals(Pawn.class,pawnWhite.getClass());
 
         Pawn pawnBlack = Piece.createBlackPawn();
         assertEquals('P', pawnBlack.getRepresentation());
         assertTrue(pawnBlack.isBlack());
         assertFalse(pawnBlack.isWhite());
         assertEquals(1.0,pawnBlack.getPower(), 0.05);
-        assertEquals(Piece.Name.PAWN,pawnBlack.getType());
+        assertEquals(Pawn.class,pawnBlack.getClass());
     }
 
 }
