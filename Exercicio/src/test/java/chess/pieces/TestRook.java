@@ -19,7 +19,7 @@ public class TestRook {
             assertTrue(rookBlack.isBlack());
             assertFalse(rookBlack.isWhite());
             assertEquals(5.0,rookBlack.getPower(), 0.05);
-            assertEquals(Piece.Name.ROOK,rookBlack.getType());
+            assertEquals(Piece.Name.ROOK    ,rookBlack.getType());
         }
 
     }
