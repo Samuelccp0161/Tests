@@ -2,6 +2,7 @@ package sis.studentinfo;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
+import static sis.studentinfo.Student.isPalindrome;
 
 public class StudentTest  {
 //    private String name;
@@ -26,14 +27,25 @@ public class StudentTest  {
     @Test
     public void createStudent() {
         final String firstStudentName = "Alexandro Jesus";
-        Student student = new Student(firstStudentName);
-        assertEquals(firstStudentName, student.getName());
+        Student firstStudent = new Student(firstStudentName);
+        assertEquals(firstStudentName, firstStudent.getName());
+        assertEquals("Alexandro", firstStudent.getFirstName());
+        assertEquals("Jesus", firstStudent.getLastName());
+        assertEquals("", firstStudent.getMiddleName());
         System.out.println(firstStudentName);
 
-        final String secondStudentName = "Silva Pedro";
+        final String secondStudentName = "Pedro";
         Student secondStudent = new Student(secondStudentName);
-        assertEquals("Silva Pedro", secondStudent.getName());
+        assertEquals("", secondStudent.getFirstName());
+        assertEquals("Pedro", secondStudent.getLastName());
+        assertEquals("", secondStudent.getMiddleName());
         System.out.println(secondStudentName);
+
+        final String thirdStudentName = "Samuel David Cabral";
+        Student thirdStudent = new Student(thirdStudentName);
+        assertEquals("Samuel", thirdStudent.getFirstName());
+        assertEquals("David", thirdStudent.getMiddleName());
+        assertEquals("Cabral", thirdStudent.getLastName());
     }
     @Test
     public void testFullTime() {
@@ -126,6 +138,46 @@ public class StudentTest  {
         }
         assertEquals(6, totalPoints);
     }
+    @Test
+    public void testPalindrome(){
+        assertFalse(isPalindrome("abcdef"));
+        assertFalse(isPalindrome("abccda"));
+        assertTrue(isPalindrome("abccba"));
+        assertFalse(isPalindrome("abcxba"));
+        assertTrue(isPalindrome("a"));
+        assertTrue(isPalindrome("aa"));
+        assertFalse(isPalindrome("ab"));
+        assertTrue(isPalindrome(""));
+        assertTrue(isPalindrome("aaa"));
+        assertTrue(isPalindrome("aba"));
+        assertTrue(isPalindrome("abbba"));
+        assertTrue(isPalindrome("abba"));
+        assertFalse(isPalindrome("abbaa"));
+        assertFalse(isPalindrome("abcda"));
+    }
+    @Test
+    public void testForSkip(){
+        StringBuilder builder = new StringBuilder();
+        String string = "123456";
+        for (int i = 0; i < string.length(); i += 2) {
+            builder.append(string.charAt(i));
+            assertEquals("135", builder.toString());
+        }
+    }
+
+    public void testFibonacci(){
+        assertEquals(0, fib(0));
+        assertEquals(1, fib(1));
+        assertEquals(1, fib(2));
+        assertEquals(2, fib(3));
+        assertEquals(3, fib(4));
+        assertEquals(5, fib(5));
+        assertEquals(8, fib(6));
+        assertEquals(13, fib(7));
+        assertEquals(21, fib(8));
+        assertEquals(34, fib(9));
+        assertEquals(55, fib(10));
 
 
+    }
 }
