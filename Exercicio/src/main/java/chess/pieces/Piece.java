@@ -3,7 +3,7 @@ package chess.pieces;
 import java.util.ArrayList;
 
 public class Piece implements Comparable<Piece>{
-    private double power;
+    private final double power;
     private final char representation;
 
     @Override
@@ -30,10 +30,15 @@ public class Piece implements Comparable<Piece>{
     public static final char QUEEN_REPRESENTATION = 'q';
     public static final char KING_REPRESENTATION = 'k';
     public static final char NO_PIECE_REPRESENTATION = '.';
+    public boolean isWhite(){
+        return color == Colors.WHITE;
+    }
+    public boolean isBlack(){
+        return color == Colors.BLACK;
+    }
     public static NoPiece noColor() {
         return new NoPiece(Colors.NO_COLOR);
     }
-
     public static Pawn createWhitePawn(){
         return new Pawn(Colors.WHITE);
     }
@@ -77,16 +82,7 @@ public class Piece implements Comparable<Piece>{
         }
         return representation;
     }
-
-    public boolean isWhite(){
-        return color == Colors.WHITE;
-    }
-    public boolean isBlack(){
-        return color == Colors.BLACK;
-    }
-
     public ArrayList<String> possibleMoves(String position){
-        ArrayList<String> moves = new ArrayList<>();
-            return moves;
+        return new ArrayList<>();
     }
 }

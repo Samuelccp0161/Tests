@@ -5,9 +5,6 @@ import chess.pieces.Piece;
 import org.junit.Before;
 import org.junit.Test;
 import util.StringUtil;
-
-import java.util.ArrayList;
-
 import static org.junit.Assert.*;
 
 public class GameTest {

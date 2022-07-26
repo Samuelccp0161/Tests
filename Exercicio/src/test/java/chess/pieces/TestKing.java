@@ -25,7 +25,7 @@ public class TestKing extends TestPiece {
     }
     @Test
     public void testKingMoves(){
-        ArrayList<String> value = new ArrayList<>();
+        ArrayList<String> value;
         King king = Piece.createBlackKing();
         value = king.possibleMoves("d4");
         System.out.println(value);

@@ -26,7 +26,7 @@ public class TestQueen {
     }
     @Test
     public void testQueenMove(){
-        ArrayList<String> valueQueen = new ArrayList<>();
+        ArrayList<String> valueQueen;
         Queen queen = Piece.createWhiteQueen();
         valueQueen = queen.possibleMoves("e4");
         System.out.println(queen.possibleMoves("e4"));

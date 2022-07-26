@@ -37,7 +37,7 @@ public class King extends Piece{
     }
     @Override
     public ArrayList<String> possibleMoves(String position){
-        ArrayList<String> moves = new ArrayList<>();
+        ArrayList<String> moves;
         moves = kingMoves(position);
         return moves;
     }

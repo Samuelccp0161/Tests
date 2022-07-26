@@ -9,6 +9,24 @@ import java.util.Collections;
 public class Board {
 
     private final ArrayList<ArrayList<Piece>> allRanks;
+    private final ArrayList<Piece> pieceWhite = new ArrayList<>();
+    private final ArrayList<Piece> pieceBlack = new ArrayList<>();
+    public void setOrdWhite(){
+        Collections.sort(pieceWhite);
+    }
+    public void setOrdBlack(){
+        Collections.sort(pieceBlack);
+    }
+    public int getNumbOfPieces() {
+        return pieceWhite.size() + pieceBlack.size();
+    }
+    public int getNumbOfPiecesWhite(){
+        return pieceWhite.size();
+    }
+    public int getNumbOfPiecesBlack(){
+        return pieceBlack.size();
+    }
+
     public Board() {
 
         this.allRanks = new ArrayList<>();
@@ -28,7 +46,6 @@ public class Board {
         }
 
     }
-
     public void initialize() {
 
         allRanks.get(0).set(0, Piece.createWhiteRook());
@@ -73,17 +90,6 @@ public class Board {
         setOrdBlack();
 
     }
-
-    public int getNumbOfPieces() {
-        return pieceWhite.size() + pieceBlack.size();
-    }
-    public int getNumbOfPiecesWhite(){
-        return pieceWhite.size();
-    }
-    public int getNumbOfPiecesBlack(){
-        return pieceBlack.size();
-    }
-
     public String printBoard() {
 
         StringBuilder buffer = new StringBuilder();
@@ -94,14 +100,12 @@ public class Board {
         }
         return buffer.toString();
     }
-
     public void printRank(StringBuilder buffer, int index) {
         for (int i = 0; i < allRanks.get(index).size(); i++) {
             buffer.append(allRanks.get(index).get(i).getRepresentation());
 
         }
     }
-
     public int piecesCount(char representation) {
         int count = 0;
         for (int i = 0; i <= 7; i++) {
@@ -113,7 +117,6 @@ public class Board {
         }
         return count;
     }
-
     public Piece getPiece(String position) {
         char file = position.charAt(0);
         char rank = position.charAt(1);
@@ -123,7 +126,6 @@ public class Board {
 
         return allRanks.get(rank).get(file);
     }
-
     public void push(String position, Piece piece) {
         char file = position.charAt(0);
         char rank = position.charAt(1);
@@ -140,8 +142,6 @@ public class Board {
             setOrdBlack();
         }
     }
-    private final ArrayList<Piece> pieceWhite = new ArrayList<>();
-    private final ArrayList<Piece> pieceBlack = new ArrayList<>();
     private void pieceLists() {
         for (int i = 0; i <= 7; i++) {
             for (int j = 0; j < allRanks.size(); j++) {
@@ -159,12 +159,6 @@ public class Board {
     }
     public ArrayList<Piece> getPieceBlackList(){
         return pieceBlack;
-    }
-    public void setOrdWhite(){
-        Collections.sort(pieceWhite);
-    }
-    public void setOrdBlack(){
-        Collections.sort(pieceBlack);
     }
     public static boolean isValidPosition(String position){
         char column = position.charAt(0);

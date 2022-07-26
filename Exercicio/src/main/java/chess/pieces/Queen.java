@@ -43,7 +43,7 @@ public class Queen extends Piece{
     }
     @Override
     public ArrayList<String> possibleMoves(String position){
-        ArrayList<String> moves = new ArrayList<>();
+        ArrayList<String> moves;
         moves = queenMoves(position);
         return moves;
     }
