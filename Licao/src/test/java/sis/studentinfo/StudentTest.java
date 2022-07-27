@@ -2,16 +2,14 @@ package sis.studentinfo;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
-import static sis.studentinfo.Student.isPalindrome;
+import static sis.studentinfo.Student.*;
 
 public class StudentTest  {
-//    private String name;
+
     private static final double GRADE_TOLERANCE = 0.5;
     private void assertGpa(Student student, double expectedGpa){
         assertEquals(expectedGpa, student.getGpa(), GRADE_TOLERANCE);
     }
-
-
     private Student createHonorsStudent(Student.Grade grade){
         Student student = createHonorsStudent();
         student.addGrade(grade);
@@ -22,8 +20,6 @@ public class StudentTest  {
         student.setGradingStrategy(new HonorsGradingStrategy());
         return student;
     }
-
-
     @Test
     public void createStudent() {
         final String firstStudentName = "Alexandro Jesus";
@@ -52,7 +48,6 @@ public class StudentTest  {
         Student student = new Student("a");
         assertFalse(student.isFullTime());
     }
-
     @Test
     public void testCredits(){
      Student student = new Student("a");
@@ -62,7 +57,6 @@ public class StudentTest  {
      student.addCredits(4);
      assertEquals(7, student.getCredits());
     }
-
     @Test
     public void testStudentStatus(){
         Student student = new Student("a");
@@ -81,7 +75,6 @@ public class StudentTest  {
         assertEquals(Student.CREDITS_REQUIRED_FOR_FULL_TIME, student.getCredits());
         assertTrue(student.isFullTime());
     }
-
     @Test
     public void testInState(){
         Student student = new Student("a");
@@ -91,23 +84,6 @@ public class StudentTest  {
         student.setState("MD");
         assertFalse(student.isInState());
     }
-
-///    @Test
-///    public void testCalculateGpa() {
-//        Student student = new Student("a");
-//        assertGpa(student, 0.0);
-//        student.addGrade(Student.Grade.A);
-//        assertGpa(student, 4.0);
-//        student.addGrade(Student.Grade.B);
-//        assertGpa(student, 3.5);
-//        student.addGrade(Student.Grade.C);
-//        assertGpa(student, 3.0);
-//        student.addGrade(Student.Grade.D);
-//        assertGpa(student, 2.5);
-//        student.addGrade(Student.Grade.F);
-//        assertGpa(student, 2.0);
-//    }
-
     @Test
     public void testCalculateHonorsStudentGpa(){
         assertGpa(createHonorsStudent(), 0.0);
@@ -120,22 +96,16 @@ public class StudentTest  {
     }
 @Test
     public void testSwitchResults(){
-        enum Score {fieldGoal, touchdown, extraPoint, twoPointConversion, safety};
-        int totalPoints = 0;
+        enum Score {fieldGoal, touchdown, extraPoint, twoPointConversion, safety}
+    int totalPoints = 0;
         Score score = Score.touchdown;
 
-        switch (score){
-            case fieldGoal : totalPoints += 3;
-            break;
-            case touchdown : totalPoints += 6;
-            break;
-            case extraPoint : totalPoints +=1;
-            break;
-            case twoPointConversion :
-            case safety :
-                totalPoints += 2;
-            break;
-        }
+    switch (score) {
+        case fieldGoal -> totalPoints += 3;
+        case touchdown -> totalPoints += 6;
+        case extraPoint -> totalPoints += 1;
+        case twoPointConversion, safety -> totalPoints += 2;
+    }
         assertEquals(6, totalPoints);
     }
     @Test
@@ -159,12 +129,12 @@ public class StudentTest  {
     public void testForSkip(){
         StringBuilder builder = new StringBuilder();
         String string = "123456";
-        for (int i = 0; i < string.length(); i += 2) {
+        for (int i = 0; i < string.length(); i += 2)
             builder.append(string.charAt(i));
-            assertEquals("135", builder.toString());
-        }
-    }
+        assertEquals("135", builder.toString());
 
+    }
+    @Test
     public void testFibonacci(){
         assertEquals(0, fib(0));
         assertEquals(1, fib(1));
@@ -177,7 +147,26 @@ public class StudentTest  {
         assertEquals(21, fib(8));
         assertEquals(34, fib(9));
         assertEquals(55, fib(10));
+    }
+    @Test
+    public void testCommas(){
+        String sequence =   "1,2,3,4,5";
+        assertEquals(sequence, sequenceUsingDo(1,5));
+        assertEquals(sequence, sequenceUsingFor(1,5));
+        assertEquals(sequence, sequenceUsingWhile(1,5));
 
-
+        sequence = "8";
+        assertEquals(sequence, sequenceUsingDo(8,8));
+        assertEquals(sequence, sequenceUsingFor(8,8));
+        assertEquals(sequence, sequenceUsingWhile(8,8));
+    }
+    @Test
+    public void testEndTrim(){
+        assertEquals("", endTrim(""));
+        assertEquals("  x", endTrim("  x  "));
+        assertEquals("y", endTrim("y"));
+        assertEquals("xaxa", endTrim("xaxa"));
+        assertEquals("", endTrim(" "));
+        assertEquals("xxx", endTrim("xxx      "));
     }
 }

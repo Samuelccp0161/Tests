@@ -1,6 +1,5 @@
 package sis.report;
 
-import junit.framework.*;
 import org.junit.Test;
 import sis.studentinfo.*;
 import static org.junit.Assert.assertEquals;

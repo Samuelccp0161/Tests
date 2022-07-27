@@ -9,7 +9,6 @@ public class ReportCard {
     static final String C_MESSAGE = "Hm...";
     static final String D_MESSAGE = "You're not trying!";
     static final String F_MESSAGE = "Loser!!";
-
         private Map<Student.Grade, String> messages = null;
 
         public String getMessage(Student.Grade grade){
@@ -21,7 +20,7 @@ public class ReportCard {
             return messages;
         }
         private void loadMessages(){
-            messages = new EnumMap<Student.Grade, String>(Student.Grade.class);
+            messages = new EnumMap<>(Student.Grade.class);
             messages.put(Student.Grade.A, A_MESSAGE);
             messages.put(Student.Grade.B, B_MESSAGE);
             messages.put(Student.Grade.C, C_MESSAGE);

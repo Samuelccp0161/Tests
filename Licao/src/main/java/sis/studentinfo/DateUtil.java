@@ -15,5 +15,4 @@ public class DateUtil {
         calendar.set(Calendar.DAY_OF_MONTH, date);
         return calendar.getTime();
     }
-
 }

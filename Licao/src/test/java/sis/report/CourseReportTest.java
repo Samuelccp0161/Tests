@@ -1,12 +1,14 @@
 package sis.report;
 
-import junit.framework.*;
 import java.util.*;
+
+import org.junit.Test;
 import sis.studentinfo.*;
 import static org.junit.Assert.assertEquals;
 import static sis.report.ReportConstant.NEWLINE;
 
 public class CourseReportTest {
+    @Test
     public void testReport(){
         final Date date = new Date();
         CourseReport report = new CourseReport();
@@ -17,11 +19,11 @@ public class CourseReportTest {
         report.add(CourseSession.create("ITAL","330", date));
 
         assertEquals(
-                "CZEC 200" + NEWLINE +
-                "CZEC 220" + NEWLINE +
-                "ENGL 101" + NEWLINE +
-                "ITAL 330" + NEWLINE +
-                "ITAL 410" +NEWLINE,
+                "ENGL101" + NEWLINE +
+                "CZEC200" + NEWLINE +
+                "ITAL410" + NEWLINE +
+                "CZEC220" + NEWLINE +
+                "ITAL330" + NEWLINE ,
                 report.text());
     }
 }

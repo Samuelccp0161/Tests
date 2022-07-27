@@ -1,26 +1,13 @@
 package sis.report;
-import sis.studentinfo.*;
-import junit.framework.TestCase;
-import org.junit.Before;
+
 import org.junit.Test;
 import sis.studentinfo.CourseSession;
 import sis.studentinfo.DateUtil;
 import sis.studentinfo.Student;
 import static sis.report.ReportConstant.NEWLINE;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-
 import static org.junit.Assert.assertEquals;
 
 public class RosterReportTest {
-    private CourseSession session;
-    private Date startDate;
-///    @Before
-///    public void setUp() throws Exception {
-//        session = new CourseSession("ENGL", "101", startDate);
-//    }
-
     @Test
     public void testRosterReport(){
 

@@ -9,7 +9,7 @@ import static org.junit.Assert.assertTrue;
 public class SuperClassTest {
     @Test
     public void testConstructorCalls(){
-        SuperClass superClass = new SubClass("parm");
+        SuperClass superClass = new SubClass();
         assertTrue(SuperClass.constructorWasCalled);
     }
 }

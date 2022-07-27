@@ -3,7 +3,6 @@ package sis.studentinfo;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
-
 public class BasicGradingStrategyTest {
     @Test
     public void testGetGradePoints(){

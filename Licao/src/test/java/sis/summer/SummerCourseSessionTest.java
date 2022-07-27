@@ -18,10 +18,10 @@ public class SummerCourseSessionTest extends  SessionTest{
 
     @Override
     protected Session createSession(
-        String departmente,
+        String department,
         String number,
         Date date){
-        return SummerCourseSession.create(departmente, number, date);
+        return SummerCourseSession.create(department, number, date);
     }
 
 }

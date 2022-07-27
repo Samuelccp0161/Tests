@@ -9,8 +9,7 @@ public class RosterReport {
         static final String NEWLINE = System.getProperty("line.separator");
         static final String ROSTER_REPORT_HEADER = "Student" + NEWLINE + "-" + NEWLINE;
         static final String ROSTER_REPORT_FOOTER = NEWLINE + "# students = ";
-
-        private CourseSession session;
+        private final CourseSession session;
 
         RosterReport(CourseSession session){
             this.session = session;
@@ -36,20 +35,6 @@ public class RosterReport {
         }
 
         void writeFooter(@NotNull StringBuilder buffer) {
-            buffer.append(ROSTER_REPORT_FOOTER + session.getAllStudents().size() + NEWLINE);
+            buffer.append(ROSTER_REPORT_FOOTER).append(session.getAllStudents().size()).append(NEWLINE);
         }
 }
-
-
-
-//    buffer.append(ROSTER_REPORT_HEADER);
-//
-//            for (Student student: session.getAllStudents()) {
-//                buffer.append(student.getName());
-//                buffer.append(NEWLINE);
-//            }
-//
-//            buffer.append(ROSTER_REPORT_FOOTER + session.getAllStudents().size() + NEWLINE);
-//            return buffer.toString();
-//        }
-
