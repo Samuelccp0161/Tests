@@ -97,15 +97,15 @@ public class StudentTest  {
 @Test
     public void testSwitchResults(){
         enum Score {fieldGoal, touchdown, extraPoint, twoPointConversion, safety}
-    int totalPoints = 0;
+        int totalPoints = 0;
         Score score = Score.touchdown;
 
-    switch (score) {
-        case fieldGoal -> totalPoints += 3;
-        case touchdown -> totalPoints += 6;
-        case extraPoint -> totalPoints += 1;
-        case twoPointConversion, safety -> totalPoints += 2;
-    }
+        switch (score) {
+            case fieldGoal -> totalPoints += 3;
+            case touchdown -> totalPoints += 6;
+            case extraPoint -> totalPoints += 1;
+            case twoPointConversion, safety -> totalPoints += 2;
+        }
         assertEquals(6, totalPoints);
     }
     @Test
