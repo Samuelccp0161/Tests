@@ -2,12 +2,15 @@ package sis.studentinfo;
 
 import java.util.*;
 
-abstract public class Session implements Comparable<Session> {
+abstract public class Session implements Comparable<Session>, Iterable<Student> {
     private final String department;
     private final String number;
-    private final List<Student> students = new ArrayList<>();
+    private final Vector<Student> students = new Vector<>();
     private final Date startDate;
     private int numberOfCredits;
+    public Iterator<Student> iterator(){
+        return students.iterator();
+    }
     protected Session(String department, String number, Date startDate) {
         this.department = department;
         this.number = number;
@@ -55,15 +58,13 @@ abstract public class Session implements Comparable<Session> {
         calendar.add(Calendar.DAY_OF_YEAR, numberOfDays);
         return calendar.getTime();
     }
-    public static Student createFullTimeStudent(){
-        Student student = new Student("a");
-        student.addCredits(Student.CREDITS_REQUIRED_FOR_FULL_TIME);
-        return student;
-    }
     double averageGpaForPartTimeStudents(){
         double total = 0.0;
         int count = 0;
-        for(Student student : students){
+
+        for(Enumeration<Student> it = students.elements();
+            it.hasMoreElements();){
+            Student student = it.nextElement();
             if(student.isFullTime())
                 continue;
             count++;
@@ -73,5 +74,7 @@ abstract public class Session implements Comparable<Session> {
             return 0.0;
         return total / count;
     }
+
+
 
 }

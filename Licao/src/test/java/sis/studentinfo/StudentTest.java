@@ -169,4 +169,5 @@ public class StudentTest  {
         assertEquals("", endTrim(" "));
         assertEquals("xxx", endTrim("xxx      "));
     }
+
 }

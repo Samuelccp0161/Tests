@@ -2,9 +2,13 @@ package sis.studentinfo;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.ArrayList;
 import java.util.Date;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import java.util.Iterator;
+import java.util.List;
+
+import static org.junit.Assert.*;
 import static sis.studentinfo.DateUtil.createDate;
 import static sis.studentinfo.Session.*;
 
@@ -74,5 +78,54 @@ abstract public class SessionTest {
         session.enroll(partTimer2);
         assertEquals(3.5, session.averageGpaForPartTimeStudents(), 0.05);
     }
+    public static Student createFullTimeStudent(){
+        Student student = new Student("a");
+        student.addCredits(Student.CREDITS_REQUIRED_FOR_FULL_TIME);
+        return student;
+    }
+    @Test
+    public void testLabeledBreak(){
+        List<List<String>> table = new ArrayList<List<String>>();
 
+        List<String> row1 = new ArrayList<String>();
+        row1 = new ArrayList<String>();
+        row1.add("5");
+        row1.add("2");
+        List<String> row2 = new ArrayList<String>();
+        row2.add("3");
+        row2.add("4");
+
+        table.add(row1);
+        table.add(row2);
+        assertTrue(found(table, "3"));
+        assertFalse(found(table, "8"));
+    }
+    private boolean found(List<List<String>> table, String target){
+        boolean found = false;
+        search:
+        for (List<String> row: table){
+            for (String value: row){
+                if(value.equals(target)){
+                    found = true;
+                    break search;
+                }
+            }
+        }
+        return found;
+    }
+    @Test
+    public void testIterate(){
+        enrollStudents(session);
+
+        List<Student> results = new ArrayList<Student>();
+        for (Student student: session)
+            results.add(student);
+
+        assertEquals(session.getAllStudents(), results);
+    }
+    private void enrollStudents(Session session){
+        session.enroll(new Student("1"));
+        session.enroll(new Student("2"));
+        session.enroll(new Student("3"));
+    }
 }
