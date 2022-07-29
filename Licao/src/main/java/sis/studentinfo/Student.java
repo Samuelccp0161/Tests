@@ -58,19 +58,9 @@ public class Student {
 
     private List<String> split(String name){
         List<String> results = new ArrayList<>();
-        StringBuilder word = new StringBuilder();
-        for (int index = 0; index < name.length(); index++) {
-            char ch = name.charAt(index);
-            if(!Character.isWhitespace(ch))
-                word.append(ch);
-            else
-                if (word.length() > 0){
-                    results.add(word.toString());
-                    word = new StringBuilder();
-                }
-        }
-        if (word.length() > 0)
-            results.add(word.toString());
+        StringTokenizer tokenizer = new StringTokenizer(name, " ");
+        while (tokenizer.hasMoreTokens())
+            results.add(tokenizer.nextToken());
         return results;
     }
     public static boolean isPalindrome(String string){
