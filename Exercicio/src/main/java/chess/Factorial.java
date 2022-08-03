@@ -1,6 +1,8 @@
 package chess;
 
 
+import java.util.List;
+import java.util.Vector;
 
 public class Factorial {
     public static int factorial1(int fator) {
@@ -56,16 +58,35 @@ public class Factorial {
     }
 
     public static String sequence(int n) {
-//        int valor = n
-        StringBuilder sequence = new StringBuilder();
-        for (int i = 1; i <= n ; i++) {
-            sequence.append(i);
-            sequence.append(" ");
 
-            System.out.println(n);
+        StringBuilder sequence = new StringBuilder();
+        sequence.append(1);
+        for (int i = 2; i <= n ; i++) {
+            sequence.append(" ");
+            sequence.append(i);
+            if (i % 5 == 0) {
+            }
+            else continue;
+            sequence.append("*");
         }
+
         return sequence.toString();
     }
+//    public static Vector<String> sequence1(String n) {
+//
+//        List<String> sequence1 = new Vector<String>();
+//        sequence1.add("1");
+//        for (int i = 2; i <=   ; i++) {
+//            sequence1.add(" ");
+//            sequence1.add("i");
+//            if (i % 5 == 0) {
+//            }
+//            else continue;
+//            sequence1.add("*");
+//        }
+//
+//        return ;
+//    }
 }
 
 
