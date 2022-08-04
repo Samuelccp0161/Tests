@@ -1,6 +1,7 @@
 package chess;
 
 
+import java.util.Enumeration;
 import java.util.List;
 import java.util.Vector;
 
@@ -72,21 +73,23 @@ public class Factorial {
 
         return sequence.toString();
     }
-//    public static Vector<String> sequence1(String n) {
-//
-//        List<String> sequence1 = new Vector<String>();
-//        sequence1.add("1");
-//        for (int i = 2; i <=   ; i++) {
-//            sequence1.add(" ");
-//            sequence1.add("i");
-//            if (i % 5 == 0) {
-//            }
-//            else continue;
-//            sequence1.add("*");
-//        }
-//
-//        return ;
-//    }
+    public static Vector<String> stringVersion(String sequence){
+        Vector<String> string = new Vector<String>();
+        for (String n : sequence.split(" "))
+            string.add(n);
+        return string;
+    }
+    public static String sequence1(Vector<String> n) {
+
+        Vector<String> listSequence = new Vector<String>();
+        for (Enumeration<String> it = listSequence.elements();
+        it.hasMoreElements();) {
+
+            String string = it.nextElement();
+        }
+//        if()
+    return null;
+    }
 }
 
 
