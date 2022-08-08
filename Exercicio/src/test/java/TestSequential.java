@@ -1,4 +1,4 @@
-import chess.pieces.Sequential;
+import chess.Sequential;
 import org.junit.Test;
 import java.util.Vector;
 import static org.junit.Assert.assertEquals;
@@ -26,7 +26,7 @@ public class TestSequential {
     @Test
     public void SequenceTest2(){
         String sequence = Sequential.sequence(6);
-        Vector<String> sequence01 = Sequential.subStringVector(sequence);
+        Vector sequence01 = Sequential.subStringVector(sequence);
 
         assertEquals(sequence, Sequential.vectorToString(sequence01));
 

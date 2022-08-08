@@ -75,6 +75,7 @@ public class Board {
         allRanks.get(6).set(6, Piece.createBlackPawn());
         allRanks.get(6).set(7, Piece.createBlackPawn());
 
+
         allRanks.get(7).set(0, Piece.createBlackRook());
         allRanks.get(7).set(1, Piece.createBlackKnight());
         allRanks.get(7).set(2, Piece.createBlackBishop());

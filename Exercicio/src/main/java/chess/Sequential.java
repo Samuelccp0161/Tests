@@ -1,4 +1,6 @@
-package chess.pieces;
+package chess;
+
+import chess.pieces.King;
 
 import java.util.Enumeration;
 import java.util.Vector;
@@ -19,17 +21,17 @@ public class Sequential {
 
         return sequence.toString();
     }
-    public static Vector<String> subStringVector(String sequence){
-        Vector<String> stringVector = new Vector<String>();
+    public static Vector subStringVector(String sequence){
+        Vector stringVector = new Vector<>();
         for (String n : sequence.split(" "))
             stringVector.add(n);
         return stringVector;
     }
-    public static String vectorToString(Vector<String> n) {
+    public static String vectorToString(Vector n) {
 
         StringBuilder builder = new StringBuilder();
-        for (Enumeration<String> it = n.elements(); it.hasMoreElements(); ) {
-            String string = it.nextElement();
+        for (Enumeration it = n.elements(); it.hasMoreElements(); ) {
+            String string = (String) it.nextElement();
             builder.append(string);
             builder.append(" ");
         }

@@ -4,6 +4,8 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
+//import static chess.pieces.King.assertContains;
+import static chess.pieces.King.assertContains;
 import static org.junit.Assert.*;
 
 public class TestKing extends TestPiece {
@@ -27,8 +29,9 @@ public class TestKing extends TestPiece {
     public void testKingMoves(){
         ArrayList<String> value;
         King king = Piece.createBlackKing();
-        value = king.possibleMoves("d4");
+        value = king.possibleMoves("d3");
         System.out.println(value);
+        assertContains(king.possibleMoves("d3"),"c4", "d4", "e4", "c3", "e3", "c2", "d2", "e2");
         assertTrue(value.contains("c3"));
         assertTrue(value.contains("c4"));
         assertTrue(value.contains("c5"));

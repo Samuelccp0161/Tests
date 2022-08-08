@@ -1,6 +1,10 @@
 package chess.pieces;
 
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 public class TestPiece {
@@ -53,6 +57,12 @@ public class TestPiece {
         assertEquals(-1, pieceQueen.compareTo(piecePawn));
         assertEquals(1, piecePawn.compareTo(pieceQueen));
         System.out.println(piecePawn.compareTo(pieceQueen));
+    }
+    protected void assertContains(List<String> position, String... strings) {
+
+        for (String mm :  strings)
+
 
     }
+
 }

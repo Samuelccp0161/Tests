@@ -60,6 +60,7 @@ public class GameTest {
     public void pushPiece(){
         game.push("c4", Piece.createBlackKing());
         assertEquals(game.getPieces("c4").getClass(), King.class);
+
     }
     @Test
     public void powerPieces(){
