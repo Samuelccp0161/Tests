@@ -111,4 +111,11 @@ public class BoardTest {
         assertEquals(1, board.countPiecesInColumn(0, 'B'));
         assertEquals(5, board.countPiecesInColumn(0, 'P'));
    }
+
+    @Test
+    public void testIterable() {
+        for (Piece p: board) {
+            System.out.println(p.getRepresentation());
+        }
+    }
 }

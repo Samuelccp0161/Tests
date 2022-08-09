@@ -4,11 +4,10 @@ import chess.pieces.Piece;
 import util.StringUtil;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 
-
-public class Board {
-
-    private final ArrayList<ArrayList<Piece>> allRanks;
+public class Board implements Iterable<Piece> {
+    private final Piece [][] allRanks;
     private final ArrayList<Piece> pieceWhite = new ArrayList<>();
     private final ArrayList<Piece> pieceBlack = new ArrayList<>();
     public void setOrdWhite(){
@@ -28,62 +27,57 @@ public class Board {
     }
 
     public Board() {
-
-        this.allRanks = new ArrayList<>();
-        for (int i = 0; i < 8; i++) {
-            allRanks.add(new ArrayList<>());
-        }
+        this.allRanks = new Piece[8][8];
 
         for (int i = 0; i < 8; i++) {
-            allRanks.get(0).add(Piece.noColor());
-            allRanks.get(1).add(Piece.noColor());
-            allRanks.get(2).add(Piece.noColor());
-            allRanks.get(3).add(Piece.noColor());
-            allRanks.get(4).add(Piece.noColor());
-            allRanks.get(5).add(Piece.noColor());
-            allRanks.get(6).add(Piece.noColor());
-            allRanks.get(7).add(Piece.noColor());
+            allRanks[i][0] = Piece.noColor();
+            allRanks[i][1] = Piece.noColor();
+            allRanks[i][2] = Piece.noColor();
+            allRanks[i][3] = Piece.noColor();
+            allRanks[i][4] = Piece.noColor();
+            allRanks[i][5] = Piece.noColor();
+            allRanks[i][6] = Piece.noColor();
+            allRanks[i][7] = Piece.noColor();
         }
-
     }
     public void initialize() {
 
-        allRanks.get(0).set(0, Piece.createWhiteRook());
-        allRanks.get(0).set(1, Piece.createWhiteKnight());
-        allRanks.get(0).set(2, Piece.createWhiteBishop());
-        allRanks.get(0).set(3, Piece.createWhiteQueen());
-        allRanks.get(0).set(4, Piece.createWhiteKing());
-        allRanks.get(0).set(5, Piece.createWhiteBishop());
-        allRanks.get(0).set(6, Piece.createWhiteKnight());
-        allRanks.get(0).set(7, Piece.createWhiteRook());
+        allRanks[0][0] =  Piece.createWhiteRook();
+        allRanks[0][1] =  Piece.createWhiteKnight();
+        allRanks[0][2] = Piece.createWhiteBishop();
+        allRanks[0][3] = Piece.createWhiteQueen();
+        allRanks[0][4] = Piece.createWhiteKing();
+        allRanks[0][5] = Piece.createWhiteBishop();
+        allRanks[0][6] = Piece.createWhiteKnight();
+        allRanks[0][7] = Piece.createWhiteRook();
 
-        allRanks.get(1).set(0, Piece.createWhitePawn());
-        allRanks.get(1).set(1, Piece.createWhitePawn());
-        allRanks.get(1).set(2, Piece.createWhitePawn());
-        allRanks.get(1).set(3, Piece.createWhitePawn());
-        allRanks.get(1).set(4, Piece.createWhitePawn());
-        allRanks.get(1).set(5, Piece.createWhitePawn());
-        allRanks.get(1).set(6, Piece.createWhitePawn());
-        allRanks.get(1).set(7, Piece.createWhitePawn());
+        allRanks[1][0] = Piece.createWhitePawn();
+        allRanks[1][1] = Piece.createWhitePawn();
+        allRanks[1][2] = Piece.createWhitePawn();
+        allRanks[1][3] = Piece.createWhitePawn();
+        allRanks[1][4] = Piece.createWhitePawn();
+        allRanks[1][5] = Piece.createWhitePawn();
+        allRanks[1][6] = Piece.createWhitePawn();
+        allRanks[1][7] = Piece.createWhitePawn();
 
-        allRanks.get(6).set(0, Piece.createBlackPawn());
-        allRanks.get(6).set(1, Piece.createBlackPawn());
-        allRanks.get(6).set(2, Piece.createBlackPawn());
-        allRanks.get(6).set(3, Piece.createBlackPawn());
-        allRanks.get(6).set(4, Piece.createBlackPawn());
-        allRanks.get(6).set(5, Piece.createBlackPawn());
-        allRanks.get(6).set(6, Piece.createBlackPawn());
-        allRanks.get(6).set(7, Piece.createBlackPawn());
+        allRanks[6][0] = Piece.createBlackPawn();
+        allRanks[6][1] = Piece.createBlackPawn();
+        allRanks[6][2] = Piece.createBlackPawn();
+        allRanks[6][3] = Piece.createBlackPawn();
+        allRanks[6][4] = Piece.createBlackPawn();
+        allRanks[6][5] = Piece.createBlackPawn();
+        allRanks[6][6] = Piece.createBlackPawn();
+        allRanks[6][7] = Piece.createBlackPawn();
 
 
-        allRanks.get(7).set(0, Piece.createBlackRook());
-        allRanks.get(7).set(1, Piece.createBlackKnight());
-        allRanks.get(7).set(2, Piece.createBlackBishop());
-        allRanks.get(7).set(3, Piece.createBlackQueen());
-        allRanks.get(7).set(4, Piece.createBlackKing());
-        allRanks.get(7).set(5, Piece.createBlackBishop());
-        allRanks.get(7).set(6, Piece.createBlackKnight());
-        allRanks.get(7).set(7, Piece.createBlackRook());
+        allRanks[7][0] = Piece.createBlackRook();
+        allRanks[7][1] = Piece.createBlackKnight();
+        allRanks[7][2] = Piece.createBlackBishop();
+        allRanks[7][3] = Piece.createBlackQueen();
+        allRanks[7][4] = Piece.createBlackKing();
+        allRanks[7][5] = Piece.createBlackBishop();
+        allRanks[7][6] = Piece.createBlackKnight();
+        allRanks[7][7] = Piece.createBlackRook();
         pieceWhite.clear();
         pieceBlack.clear();
         pieceLists();
@@ -102,16 +96,16 @@ public class Board {
         return buffer.toString();
     }
     public void printRank(StringBuilder buffer, int index) {
-        for (int i = 0; i < allRanks.get(index).size(); i++) {
-            buffer.append(allRanks.get(index).get(i).getRepresentation());
+        for (int i = 0; i < allRanks[index].length; i++) {
+            buffer.append(allRanks[index][i].getRepresentation());
 
         }
     }
     public int piecesCount(char representation) {
         int count = 0;
         for (int i = 0; i <= 7; i++) {
-            for (int j = 0; j < allRanks.size(); j++) {
-                if (allRanks.get(i).get(j).getRepresentation() == representation) {
+            for (int j = 0; j < allRanks.length; j++) {
+                if (allRanks[i][j].getRepresentation() == representation) {
                     count++;
                 }
             }
@@ -125,7 +119,7 @@ public class Board {
         file -= 'a';
          rank -= '1';
 
-        return allRanks.get(rank).get(file);
+        return allRanks[rank][file];
     }
     public void push(String position, Piece piece) {
         char file = position.charAt(0);
@@ -134,7 +128,7 @@ public class Board {
         file -= 'a';
         rank -= '1';
 
-        allRanks.get(rank).set(file, piece);
+        allRanks[rank][file] = piece;
         if (piece.isWhite()){
             pieceWhite.add(piece);
             setOrdWhite();
@@ -145,12 +139,12 @@ public class Board {
     }
     private void pieceLists() {
         for (int i = 0; i <= 7; i++) {
-            for (int j = 0; j < allRanks.size(); j++) {
-                if(allRanks.get(i).get(j).isWhite()){
-                    pieceWhite.add(allRanks.get(i).get(j));
+            for (int j = 0; j < allRanks.length; j++) {
+                if(allRanks[i][j].isWhite()){
+                    pieceWhite.add(allRanks[i][j]);
                 }
-                else if (allRanks.get(i).get(j).isBlack()) {
-                    pieceBlack.add(allRanks.get(i).get(j));
+                else if (allRanks[i][j].isBlack()) {
+                    pieceBlack.add(allRanks[i][j]);
                 }
             }
         }
@@ -172,9 +166,14 @@ public class Board {
     public int countPiecesInColumn(int column, char representation) {
         int count = 0;
         for (int j = 0; j < 8; j++) { // Para cada peça na coluna i
-            if (allRanks.get(j).get(column).getRepresentation() == representation)
+            if (allRanks[j][column].getRepresentation() == representation)
                 count++;
         } return count;
+    }
+
+    @Override
+    public Iterator<Piece> iterator() {
+        return null;
     }
 }
 
