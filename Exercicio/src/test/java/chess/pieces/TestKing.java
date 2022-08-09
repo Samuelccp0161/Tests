@@ -5,7 +5,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 //import static chess.pieces.King.assertContains;
-import static chess.pieces.King.assertContains;
+//import static chess.pieces.King.assertContains;
 import static org.junit.Assert.*;
 
 public class TestKing extends TestPiece {
@@ -27,36 +27,10 @@ public class TestKing extends TestPiece {
     }
     @Test
     public void testKingMoves(){
-        ArrayList<String> value;
         King king = Piece.createBlackKing();
-        value = king.possibleMoves("d3");
-        System.out.println(value);
-        assertContains(king.possibleMoves("d3"),"c4", "d4", "e4", "c3", "e3", "c2", "d2", "e2");
-        assertTrue(value.contains("c3"));
-        assertTrue(value.contains("c4"));
-        assertTrue(value.contains("c5"));
-//      ----------------------------------
-        assertTrue(value.contains("d3"));
-        assertTrue(value.contains("d5"));
-//      ----------------------------------
-        assertTrue(value.contains("e5"));
-        assertTrue(value.contains("e4"));
-        assertTrue(value.contains("e3"));
-        assertEquals(8,value.size() );
-//      ----------------------------------
-        value = king.possibleMoves("a1");
-        assertTrue(value.contains("a2"));
-        assertTrue(value.contains("b1"));
-        assertTrue(value.contains("b2"));
-        System.out.println(value);
-        assertEquals(3, value.size());
-//      ----------------------------------
-        value = king.possibleMoves("a8");
-        assertTrue(value.contains("a7"));
-        assertTrue(value.contains("b7"));
-        assertTrue(value.contains("b8"));
-        System.out.println(value);
-        assertEquals(3, value.size());
+        assertContains(king.possibleMoves("a1"), "a2", "b2", "b1" );
+        assertContains(king.possibleMoves("b5"), "a5", "b6", "b4", "c5", "a4", "a6", "c6", "c4");
+        System.out.println(king.possibleMoves("b5"));
     }
 
 }

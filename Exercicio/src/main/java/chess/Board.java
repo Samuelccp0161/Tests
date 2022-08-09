@@ -123,7 +123,7 @@ public class Board {
         char rank = position.charAt(1);
 
         file -= 'a';
-        rank -= '1';
+         rank -= '1';
 
         return allRanks.get(rank).get(file);
     }
