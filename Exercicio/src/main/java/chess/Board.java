@@ -1,10 +1,10 @@
 package chess;
 
+import chess.pieces.NoPiece;
 import chess.pieces.Piece;
 import util.StringUtil;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
+
+import java.util.*;
 
 public class Board implements Iterable<Piece> {
     private final Piece [][] allRanks;
@@ -170,10 +170,22 @@ public class Board implements Iterable<Piece> {
                 count++;
         } return count;
     }
-
     @Override
     public Iterator<Piece> iterator() {
-        return null;
+        return gg().iterator();
     }
+    public List<Piece> gg(){
+        List<Piece> pieceInBoard = new ArrayList<Piece>();
+        for (Piece[] rank : allRanks)
+            for (int i = 0; i < allRanks.length; i++) {
+                if (rank[i].getRepresentation() != NoPiece.NO_PIECE_REPRESENTATION){
+                    pieceInBoard.add(rank[i]);
+
+                }
+            }
+
+        return pieceInBoard;
+    }
+
 }
 

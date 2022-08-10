@@ -1,10 +1,13 @@
 package chess;
 
 import chess.pieces.King;
+import chess.pieces.NoPiece;
 import chess.pieces.Piece;
 import org.junit.Before;
 import org.junit.Test;
 import util.StringUtil;
+
+import java.util.Iterator;
 
 import static org.junit.Assert.*;
 
@@ -114,8 +117,28 @@ public class BoardTest {
 
     @Test
     public void testIterable() {
+        board.push("a1", Piece.createWhiteKnight());
+        board.push("b5", Piece.createBlackPawn());
+        board.push("h3", Piece.createBlackBishop());
+
+        Iterator<Piece> it = board.iterator();
+        assertEquals('n', it.next().getRepresentation());
+        assertEquals('B', it.next().getRepresentation());
+        assertEquals('P', it.next().getRepresentation());
+    }
+    @Test
+    public void testListPieces(){
+        board.push("a1", Piece.createBlackPawn());
+        board.push("f4", Piece.createBlackBishop());
+        board.push("a7", Piece.createWhiteKnight());
+        board.push("a5", NoPiece.noColor());
         for (Piece p: board) {
             System.out.println(p.getRepresentation());
         }
+        assertEquals('P', board.gg().get(0).getRepresentation());
+        assertEquals('B', board.gg().get(1).getRepresentation());
+        assertEquals('n', board.gg().get(2).getRepresentation());
+
     }
+
 }
