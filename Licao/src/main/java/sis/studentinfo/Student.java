@@ -56,11 +56,10 @@ public class Student {
         return results;
     }
 
-    private List<String> split(String name){
-        List<String> results = new ArrayList<>();
-        StringTokenizer tokenizer = new StringTokenizer(name, " ");
-        tokenizer.hasMoreTokens();
-            results.add(tokenizer.nextToken());
+    private List<String> split(String fullName){
+        List<String> results = new ArrayList<String>();
+        fullName.split(" ");
+            results.add(fullName);
         return results;
     }
     public static boolean isPalindrome(String string){
