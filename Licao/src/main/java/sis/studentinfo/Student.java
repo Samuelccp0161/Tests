@@ -57,9 +57,7 @@ public class Student {
     }
 
     private List<String> split(String fullName){
-        List<String> results = new ArrayList<String>();
-        fullName.split(" ");
-            results.add(fullName);
+        List<String> results = new ArrayList<>(List.of(fullName.split(" ")));
         return results;
     }
     public static boolean isPalindrome(String string){
