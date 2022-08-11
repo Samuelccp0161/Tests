@@ -59,7 +59,7 @@ public class Student {
     private List<String> split(String name){
         List<String> results = new ArrayList<>();
         StringTokenizer tokenizer = new StringTokenizer(name, " ");
-        while (tokenizer.hasMoreTokens())
+        tokenizer.hasMoreTokens();
             results.add(tokenizer.nextToken());
         return results;
     }
@@ -80,10 +80,10 @@ public class Student {
         return fib(x - 1) + fib(x - 2);
     }
     public Student(String fullName){
-    this.Name = fullName;
-    credits = 0;
-    List<String> nameParts = split(fullName);
-    setName(nameParts);
+        this.Name = fullName;
+        credits = 0;
+        List<String> nameParts = split(fullName);
+        setName(nameParts);
     }
     private void setName(List<String> nameParts){
 

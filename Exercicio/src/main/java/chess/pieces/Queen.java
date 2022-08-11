@@ -1,7 +1,6 @@
 package chess.pieces;
 
 import chess.Board;
-
 import java.util.ArrayList;
 
 public class Queen extends Piece{

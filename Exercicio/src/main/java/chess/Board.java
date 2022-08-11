@@ -103,13 +103,11 @@ public class Board implements Iterable<Piece> {
     }
     public int piecesCount(char representation) {
         int count = 0;
-        for (int i = 0; i <= 7; i++) {
-            for (int j = 0; j < allRanks.length; j++) {
-                if (allRanks[i][j].getRepresentation() == representation) {
+        for (Piece p : this) {
+                if (p.getRepresentation() == representation) {
                     count++;
                 }
             }
-        }
         return count;
     }
     public Piece getPiece(String position) {
@@ -138,17 +136,16 @@ public class Board implements Iterable<Piece> {
         }
     }
     private void pieceLists() {
-        for (int i = 0; i <= 7; i++) {
-            for (int j = 0; j < allRanks.length; j++) {
-                if(allRanks[i][j].isWhite()){
-                    pieceWhite.add(allRanks[i][j]);
+        for (Piece p : this) {
+                if(p.isWhite()){
+                    pieceWhite.add(p);
                 }
-                else if (allRanks[i][j].isBlack()) {
-                    pieceBlack.add(allRanks[i][j]);
+                else if (p.isBlack()) {
+                    pieceBlack.add(p);
                 }
             }
         }
-    }
+
     public ArrayList<Piece> getPieceWhiteList(){
         return pieceWhite;
     }
@@ -188,4 +185,3 @@ public class Board implements Iterable<Piece> {
     }
 
 }
-

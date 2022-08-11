@@ -5,14 +5,11 @@ import java.util.ArrayList;
 public class Piece implements Comparable<Piece>{
     private final double power;
     private final char representation;
-
     @Override
     public int compareTo(Piece piece){
         return Double.compare(piece.getPower(),getPower());
     }
-
     protected enum Colors {WHITE, BLACK, NO_COLOR}
-
     public double getPower(){
         return power;
     }
