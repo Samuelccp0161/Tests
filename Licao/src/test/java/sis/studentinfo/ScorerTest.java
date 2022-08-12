@@ -2,8 +2,7 @@ package sis.studentinfo;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 public class ScorerTest {
 
@@ -21,5 +20,11 @@ public class ScorerTest {
         }
         catch (NumberFormatException success){
         }
+    }
+    @Test
+    public void testIsValid(){
+        Scorer scorer = new Scorer();
+        assertTrue(scorer.isValid("75"));
+        assertFalse(scorer.isValid("bd"));
     }
 }

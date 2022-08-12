@@ -1,5 +1,6 @@
 package sis.studentinfo;
 
+import java.net.*;
 import java.util.*;
 
 abstract public class Session implements Comparable<Session>, Iterable<Student> {
@@ -8,6 +9,8 @@ abstract public class Session implements Comparable<Session>, Iterable<Student> 
     private final Vector<Student> students = new Vector<>();
     private final Date startDate;
     private int numberOfCredits;
+    private URL url;
+
     public Iterator<Student> iterator(){
         return students.iterator();
     }
@@ -74,7 +77,22 @@ abstract public class Session implements Comparable<Session>, Iterable<Student> 
             return 0.0;
         return total / count;
     }
-
+    public void setUrl(String urlString) throws SessionException{
+        try {
+            this.url = new URL(urlString);
+        }
+        catch (MalformedURLException e){
+            log(e);
+            throw new SessionException(e);
+        }
+    }
+    private void log(Exception e){
+        // logging code. The second half of this lesson contains more
+        // info on logging. For now, this method is empty.
+    }
+    public URL getUrl(){
+        return url;
+    }
 
 
 }
