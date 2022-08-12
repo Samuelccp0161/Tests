@@ -4,7 +4,6 @@ import chess.pieces.TestPiece;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 //import util.StringUtil;
-
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
 
