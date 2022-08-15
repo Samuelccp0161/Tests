@@ -14,6 +14,7 @@ public class Student {
     static final String IN_STATE = "CO";
     private String state = "";
     private GradingStrategy gradingStrategy = new BasicGradingStrategy();
+    static final String TOO_MANY_NAME_PARTS_MSG = "Student name '%s' contains more than %d parts";
 
     void setGradingStrategy(GradingStrategy gradingStrategy){
         this.gradingStrategy = gradingStrategy;
@@ -81,8 +82,7 @@ public class Student {
     List<String> nameParts = split(fullName);
     final int maximumNumberOfNameParts = 3;
     if (nameParts.size() > maximumNumberOfNameParts){
-        String message = "Student name '" + fullName + "' contains more than "
-                + maximumNumberOfNameParts + " parts";
+        String message = String.format(Student.TOO_MANY_NAME_PARTS_MSG, fullName, MAX_NAME_PARTS);
         throw new StudentNameFormatExeption(message);
 
     }

@@ -176,8 +176,7 @@ public class StudentTest  {
             fail("expected exception from 4-part name");
         }
         catch (StudentNameFormatExeption expectedException){
-            assertEquals("Student name 'a b c d' contains more than 3 parts",
-                    expectedException.getMessage());
+            assertEquals(String.format("Student name '%s' contains more than %d parts", Student.MAX_NAME_PARTS),expectedException.getMessage());
         }
     }
 }

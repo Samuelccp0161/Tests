@@ -17,6 +17,8 @@ import sis.summer.SummerCourseSessionTest;
         HonorsGradingStrategyTest.class,
         SummerCourseSessionTest.class,
         SuperClassTest.class,
+        ScorerTest.class,
+        PerformanceTest.class,
 })
 public class AllTests {
 }
