@@ -55,12 +55,8 @@ public class Student {
             results.add(word.toString());
         return results;
     }
-
-    private List<String> split(String name){
-        List<String> results = new ArrayList<>();
-        StringTokenizer tokenizer = new StringTokenizer(name, " ");
-        while (tokenizer.hasMoreTokens())
-            results.add(tokenizer.nextToken());
+    private List<String> split(String fullName){
+        List<String> results = new ArrayList<>(List.of(fullName.split(" ")));
         return results;
     }
     public static boolean isPalindrome(String string){
@@ -83,6 +79,13 @@ public class Student {
     this.Name = fullName;
     credits = 0;
     List<String> nameParts = split(fullName);
+    final int maximumNumberOfNameParts = 3;
+    if (nameParts.size() > maximumNumberOfNameParts){
+        String message = "Student name '" + fullName + "' contains more than "
+                + maximumNumberOfNameParts + " parts";
+        throw new StudentNameFormatExeption(message);
+
+    }
     setName(nameParts);
     }
     private void setName(List<String> nameParts){

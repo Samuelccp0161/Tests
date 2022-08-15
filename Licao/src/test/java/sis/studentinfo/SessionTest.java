@@ -3,6 +3,7 @@ package sis.studentinfo;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -127,5 +128,22 @@ abstract public class SessionTest {
         session.enroll(new Student("1"));
         session.enroll(new Student("2"));
         session.enroll(new Student("3"));
+    }
+    @Test
+    public void testSessionUrl() throws SessionException {
+        final String url = "http://course.langrsoft.com/cmsc300";
+        session.setUrl(url);
+        assertEquals(url, session.getUrl().toString());
+    }
+    @Test
+    public void testInvalidSessionUrl(){
+        final String url = "httsp://course.langrsoft.com/cmsc300";
+        try {
+            session.setUrl(url);
+        }
+        catch (SessionException expectedException){
+            Throwable cause = expectedException.getCause();
+            assertEquals(MalformedURLException.class, cause.getClass());
+        }
     }
 }
