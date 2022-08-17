@@ -1,6 +1,10 @@
 package sis.studentinfo;
 
 import org.junit.Test;
+
+import java.util.logging.Handler;
+import java.util.logging.Logger;
+
 import static org.junit.Assert.*;
 import static sis.studentinfo.Student.*;
 
@@ -171,12 +175,31 @@ public class StudentTest  {
     }
     @Test
     public void testBadlyFormattedName(){
+        Handler handler = new HandlerTest();
+        Student.logger.addHandler(handler);
+
+        logger.addHandler(handler);
+        final String studentName = "a b c d";
         try {
             new Student("a b c d");
             fail("expected exception from 4-part name");
         }
         catch (StudentNameFormatExeption expectedException){
-            assertEquals(String.format("Student name '%s' contains more than %d parts", Student.MAX_NAME_PARTS),expectedException.getMessage());
+            String message = String.format(TOO_MANY_NAME_PARTS_MSG,studentName, Student.MAX_NAME_PARTS);
+            assertEquals(message, expectedException.getMessage());
+            assertEquals(message,((HandlerTest) handler).getMessage());
         }
+    }
+    private boolean wasLogged(String message, HandlerTest handler){
+        return message.equals(handler.getMessage());
+    }
+    @Test
+    public void testLoggingHierarchy(){
+        Logger logger = Logger.getLogger("sis.studentinfo.Student");
+        assertTrue(logger == Logger.getLogger("sis.studentinfo.Student"));
+
+        Logger parent = Logger.getLogger("sis.studentinfo");
+        assertEquals(parent, logger.getParent());
+        assertEquals(Logger.getLogger("sis"), parent.getParent());
     }
 }

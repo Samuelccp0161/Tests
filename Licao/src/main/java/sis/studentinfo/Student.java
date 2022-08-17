@@ -1,6 +1,7 @@
 package sis.studentinfo;
 
 import java.util.*;
+import java.util.logging.Logger;
 
 public class Student {
 
@@ -13,6 +14,7 @@ public class Student {
     static final int CREDITS_REQUIRED_FOR_FULL_TIME = 12;
     static final String IN_STATE = "CO";
     private String state = "";
+    static final int MAX_NAME_PARTS = 3;
     private GradingStrategy gradingStrategy = new BasicGradingStrategy();
     static final String TOO_MANY_NAME_PARTS_MSG = "Student name '%s' contains more than %d parts";
 
@@ -83,10 +85,16 @@ public class Student {
     final int maximumNumberOfNameParts = 3;
     if (nameParts.size() > maximumNumberOfNameParts){
         String message = String.format(Student.TOO_MANY_NAME_PARTS_MSG, fullName, MAX_NAME_PARTS);
+        Student.logger.info(message);
         throw new StudentNameFormatExeption(message);
 
     }
     setName(nameParts);
+    }
+    final static Logger logger = Logger.getLogger(Student.class.getName());
+    private void log(String message){
+        Logger logger = Logger.getLogger(getClass().getName());
+        logger.info(message);
     }
     private void setName(List<String> nameParts){
 
@@ -133,12 +141,14 @@ public class Student {
          return state.equals(Student.IN_STATE);
     }
     double getGpa(){
+        Student.logger.fine("begin getGpa " + System.currentTimeMillis());
         if (grades.isEmpty())
             return 0.0;
         double total = 0.0;
 
         for (Grade grade: grades)
             total += gradingStrategy.getGradePointsFor(grade);
+        Student.logger.fine("end getGpa " + System.currentTimeMillis());
         return total / grades.size();
     }
     public static String sequenceUsingDo(int start, int stop){
