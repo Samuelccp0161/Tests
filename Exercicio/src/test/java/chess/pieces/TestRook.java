@@ -1,7 +1,6 @@
 package chess.pieces;
 
 import org.junit.Test;
-
 import static org.junit.Assert.*;
 
 public class TestRook {
@@ -21,5 +20,4 @@ public class TestRook {
             assertEquals(5.0,rookBlack.getPower(), 0.05);
             assertEquals(Rook.class,rookBlack.getClass());
         }
-
     }

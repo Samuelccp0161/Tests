@@ -1,11 +1,7 @@
 package chess.pieces;
 
-import chess.Board;
 import org.junit.Test;
-
-import java.util.ArrayList;
 import java.util.List;
-
 import static org.junit.Assert.*;
 
 public class TestPiece {
@@ -39,7 +35,6 @@ public class TestPiece {
         assertEquals('.', blank.getRepresentation());
         assertEquals(NoPiece.class, blank.getClass());
     }
-
     private void verifyCreation(Piece whitePiece, Piece blackPiece, Class<?> klass, char representation) {
         assertTrue(whitePiece.isWhite());
         assertFalse(whitePiece.isBlack());

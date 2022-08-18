@@ -1,21 +1,19 @@
 package chess.pieces;
 
 import org.junit.Test;
-
 import static org.junit.Assert.*;
-import static org.junit.Assert.assertEquals;
 
 public class TestPawn extends TestPiece{
     @Test
     public void testCreatePawn(){
-        Pawn pawnWhite = Piece.createWhitePawn();
+        Piece pawnWhite = Piece.createWhitePawn();
         assertEquals('p', pawnWhite.getRepresentation());
         assertTrue(pawnWhite.isWhite());
         assertFalse(pawnWhite.isBlack());
         assertEquals(1.0,pawnWhite.getPower(), 0.05);
         assertEquals(Pawn.class,pawnWhite.getClass());
 
-        Pawn pawnBlack = Piece.createBlackPawn();
+        Piece pawnBlack = Piece.createBlackPawn();
         assertEquals('P', pawnBlack.getRepresentation());
         assertTrue(pawnBlack.isBlack());
         assertFalse(pawnBlack.isWhite());

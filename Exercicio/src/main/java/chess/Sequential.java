@@ -1,13 +1,10 @@
 package chess;
 
-import chess.pieces.King;
-
 import java.util.Enumeration;
 import java.util.Vector;
 
 public class Sequential {
     public static String sequence(int n) {
-
         StringBuilder sequence = new StringBuilder();
         sequence.append(1);
         for (int i = 2; i <= n ; i++) {

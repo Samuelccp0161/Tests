@@ -9,16 +9,13 @@ import static org.junit.Assert.*;
 
 public class GameTest {
     private Game game;
-
     @Before
     public void setUp(){
         game = new Game();
     }
-
     @Test
     public void testCreate(){
-        assertEquals(64, game.piecesCount('.'));
-        assertEquals(0, game.getNumbOfPieces());
+         assertEquals(0, game.getNumbOfPieces());
 //      ----------------------------------
         assertEquals(StringUtil.appendNewLine("........") +
                         StringUtil.appendNewLine("........") +

@@ -1,20 +1,19 @@
 package chess.pieces;
 
 import org.junit.Test;
-
 import static org.junit.Assert.*;
 
 public class TestBishop {
     @Test
     public void testBishop(){
-            Bishop bishopWhite = Piece.createWhiteBishop();
+            Piece bishopWhite = Piece.createWhiteBishop();
             assertEquals('b', bishopWhite.getRepresentation());
             assertTrue(bishopWhite.isWhite());
             assertFalse(bishopWhite.isBlack());
             assertEquals(3.0,bishopWhite.getPower(), 0.05);
             assertEquals(Bishop.class,bishopWhite.getClass());
 
-            Bishop bishopBlack = Piece.createBlackBishop();
+            Piece bishopBlack = Piece.createBlackBishop();
             assertEquals('B', bishopBlack.getRepresentation());
             assertTrue(bishopBlack.isBlack());
             assertFalse(bishopBlack.isWhite());

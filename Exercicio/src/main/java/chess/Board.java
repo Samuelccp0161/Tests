@@ -3,13 +3,24 @@ package chess;
 import chess.pieces.NoPiece;
 import chess.pieces.Piece;
 import util.StringUtil;
-
 import java.util.*;
 
 public class Board implements Iterable<Piece> {
     private final Piece [][] allRanks;
     private final ArrayList<Piece> pieceWhite = new ArrayList<>();
     private final ArrayList<Piece> pieceBlack = new ArrayList<>();
+    public ArrayList<Piece> getPieceWhiteList(){
+        return pieceWhite;
+    }
+    public ArrayList<Piece> getPieceBlackList(){
+        return pieceBlack;
+    }
+    public int getNumbOfPiecesWhite(){
+        return pieceWhite.size();
+    }
+    public int getNumbOfPiecesBlack(){
+        return pieceBlack.size();
+    }
     public void setOrdWhite(){
         Collections.sort(pieceWhite);
     }
@@ -19,13 +30,6 @@ public class Board implements Iterable<Piece> {
     public int getNumbOfPieces() {
         return pieceWhite.size() + pieceBlack.size();
     }
-    public int getNumbOfPiecesWhite(){
-        return pieceWhite.size();
-    }
-    public int getNumbOfPiecesBlack(){
-        return pieceBlack.size();
-    }
-
     public Board() {
         this.allRanks = new Piece[8][8];
 
@@ -83,7 +87,6 @@ public class Board implements Iterable<Piece> {
         pieceLists();
         setOrdWhite();
         setOrdBlack();
-
     }
     public String printBoard() {
 
@@ -145,13 +148,6 @@ public class Board implements Iterable<Piece> {
                 }
             }
         }
-
-    public ArrayList<Piece> getPieceWhiteList(){
-        return pieceWhite;
-    }
-    public ArrayList<Piece> getPieceBlackList(){
-        return pieceBlack;
-    }
     public static boolean isValidPosition(String position){
         char column = position.charAt(0);
         char line = position.charAt(1);
@@ -183,5 +179,4 @@ public class Board implements Iterable<Piece> {
 
         return pieceInBoard;
     }
-
 }

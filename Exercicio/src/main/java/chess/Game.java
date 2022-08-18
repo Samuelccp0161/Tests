@@ -7,31 +7,30 @@ public class Game {
     public Game(){
         this.board = new Board();
     }
-    public int piecesCount(char representation) {
-        return board.piecesCount(representation);
-    }
-    public int getNumbOfPieces(){
-        return board.getNumbOfPieces();
-    }
-    public int getNumbOfPiecesWhite(){
-        return board.getNumbOfPiecesWhite();
-    }
-    public int getNumbOfPiecesBlack(){
-        return board.getNumbOfPiecesBlack();
-    }
-    public void push(String position, Piece piece){
-        board.push(position, piece);
-    }
     public void initialize(){
         board.initialize();
     }
     public String printBoard(){
         return board.printBoard();
     }
+    public int getNumbOfPieces(){
+        return board.getNumbOfPieces();
+    }
+    public int getNumbOfPiecesBlack(){
+        return board.getNumbOfPiecesBlack();
+    }
+    public int getNumbOfPiecesWhite(){
+        return board.getNumbOfPiecesWhite();
+    }
     public Piece getPieces(String position){
         return board.getPiece(position);
     }
-
+    public void push(String position, Piece piece){
+        board.push(position, piece);
+    }
+    public int piecesCount(char representation) {
+        return board.piecesCount(representation);
+    }
     public double powerBlack() {
         double powerd;
 
@@ -42,7 +41,6 @@ public class Game {
         powerd += powerPawn('P');
         return powerd;
     }
-
     public double powerWhite() {
         double powers;
 
@@ -64,5 +62,4 @@ public class Game {
         }
         return power;
     }
-
 }

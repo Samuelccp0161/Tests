@@ -1,9 +1,5 @@
 package chess;
 
-
-import java.util.Enumeration;
-import java.util.Vector;
-
 public class Factorial {
     public static int factorial1(int fator) {
         int result = 1;
@@ -16,7 +12,6 @@ public class Factorial {
         }
         return result;
     }
-
     public static int factorial2(int fator) {
         int result = 1;
         int valor = fator;
@@ -28,7 +23,6 @@ public class Factorial {
         }
         return result;
     }
-
     public static int factorial3(int fator) {
         int result = 1;
         int valor = fator;
@@ -40,7 +34,6 @@ public class Factorial {
         while (valor > 1);
         return result;
     }
-
     public static int factorial4(int fator) {
         int result = 1;
         int valor = fator;

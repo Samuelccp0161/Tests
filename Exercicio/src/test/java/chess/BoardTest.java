@@ -6,21 +6,17 @@ import chess.pieces.Piece;
 import org.junit.Before;
 import org.junit.Test;
 import util.StringUtil;
-
 import java.util.Iterator;
-
 import static org.junit.Assert.*;
 
 public class BoardTest {
 
     private Board board;
-
     @Before
     public void setUp() {
         board = new Board();
     }
-
-   @Test
+    @Test
     public void testCreate() {
         board.initialize();
         assertEquals(2, board.piecesCount('R'));
@@ -46,28 +42,26 @@ public class BoardTest {
         System.out.println(board.printBoard());
 
    }
-   @Test
-   public void testSearchPiece(){
+    @Test
+    public void testNewBoard(){
+        assertEquals(
+                StringUtil.appendNewLine("........") +
+                        StringUtil.appendNewLine("........") +
+                        StringUtil.appendNewLine("........") +
+                        StringUtil.appendNewLine("........") +
+                        StringUtil.appendNewLine("........") +
+                        StringUtil.appendNewLine("........") +
+                        StringUtil.appendNewLine("........") +
+                        StringUtil.appendNewLine("........"),
+                board.printBoard());
+        System.out.println(board.printBoard());
+    }
+    @Test
+    public void testSearchPiece(){
        board.initialize();
        assertEquals('P', board.getPiece("c7").getRepresentation());
        System.out.println(board.getPiece("c7"));
    }
-
-   @Test
-    public void testNewBoard(){
-        assertEquals(
-               StringUtil.appendNewLine("........") +
-                       StringUtil.appendNewLine("........") +
-                       StringUtil.appendNewLine("........") +
-                       StringUtil.appendNewLine("........") +
-                       StringUtil.appendNewLine("........") +
-                       StringUtil.appendNewLine("........") +
-                       StringUtil.appendNewLine("........") +
-                       StringUtil.appendNewLine("........"),
-               board.printBoard());
-       System.out.println(board.printBoard());
-   }
-
     @Test
     public void pushPiece() {
         assertEquals(0, board.getNumbOfPieces());
@@ -75,8 +69,7 @@ public class BoardTest {
         assertEquals(board.getPiece("c4").getClass(), King.class);
         assertEquals(1, board.getNumbOfPieces());
     }
-
-   @Test
+    @Test
     public void pieceListColorsTest(){
         assertEquals(0,board.getPieceBlackList().size());
         assertEquals(0,board.getPieceWhiteList().size());
@@ -93,6 +86,7 @@ public class BoardTest {
         assertEquals('q', board.getPieceWhiteList().get(0).getRepresentation());
         assertEquals('r', board.getPieceWhiteList().get(1).getRepresentation());
         assertEquals('p', board.getPieceWhiteList().get(2).getRepresentation());
+       System.out.println(board.getPieceWhiteList());
 
         for (Piece p : board.getPieceBlackList())
            System.out.println(p.getRepresentation());
@@ -100,13 +94,14 @@ public class BoardTest {
         assertEquals('R', board.getPieceBlackList().get(1).getRepresentation());
         assertEquals('P', board.getPieceBlackList().get(2).getRepresentation());
    }
-   @Test
+    @Test
     public void testPiecesInColor(){
         assertEquals(0, board.countPiecesInColumn(0,'P'));
         board.push("a1", Piece.createBlackPawn());
         assertEquals(1, board.countPiecesInColumn(0,'P'));
         board.push("a2", Piece.createBlackPawn());
         assertEquals(2, board.countPiecesInColumn(0,'P'));
+
         board.push("a3", Piece.createBlackPawn());
         board.push("a4", Piece.createBlackPawn());
         board.push("a5", Piece.createBlackPawn());
@@ -114,7 +109,6 @@ public class BoardTest {
         assertEquals(1, board.countPiecesInColumn(0, 'B'));
         assertEquals(5, board.countPiecesInColumn(0, 'P'));
    }
-
     @Test
     public void testIterable() {
         board.push("a1", Piece.createWhiteKnight());

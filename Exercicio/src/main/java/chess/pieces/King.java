@@ -1,12 +1,11 @@
 package chess.pieces;
 
 import chess.Board;
-
 import java.util.ArrayList;
 
 public class King extends Piece{
     protected King(Colors color ) {
-        super(color, KING_REPRESENTATION, 0);
+        super(color, 'k', 0);
     }
     private static ArrayList<String> kingMoves(String position) {
         ArrayList<String> list = new ArrayList<>();
