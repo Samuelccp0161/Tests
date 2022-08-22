@@ -9,12 +9,14 @@ public class BlowsUpTest {
             blowsUp();
             fail();
         }
-        catch (RuntimeException success){
+        catch (SimpleException success){
             assertEquals("Somebody should catch this!", success.getMessage());
+            success.printStackTrace();
         }
     }
     public void blowsUp(){
-        throw new RuntimeException("Somebody should catch this!");
+        throw new SimpleException("Somebody should catch this!");
+
     }
     @Test
     public void rethrowsTest(){
@@ -23,9 +25,9 @@ public class BlowsUpTest {
             fail();
         }
         catch (RuntimeException exception){
-//            success.getCause().getMessage();
+//            exception.getCause().getMessage();
             assertEquals("Somebody should catch this!", exception.getCause().getMessage());
-//            exception.printStackTrace();
+            exception.printStackTrace();
         }
     }
     public void rethrows(){
@@ -33,7 +35,20 @@ public class BlowsUpTest {
             blowsUp();
         }
         catch (RuntimeException exception){
-
+            exception.getStackTrace();
+            throw new RuntimeException(exception);
         }
+    }
+    @Test
+    public void testWithProblems() {
+        try {
+            doSomething();
+            fail("no exception");
+        }
+        catch (Exception success) {
+        }
+    }
+    public void doSomething() {
+        throw new Exception("blah");
     }
 }
