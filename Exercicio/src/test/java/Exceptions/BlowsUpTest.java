@@ -51,6 +51,9 @@ public class BlowsUpTest {
             fail("no exception");
         }
         catch (Exception success) {
+            success.printStackTrace();
+            logReverse(success);
+            success.printStackTrace();
             logger.log(Level.INFO, "Não usa isso!!!",success);
         }
     }
@@ -61,9 +64,19 @@ public class BlowsUpTest {
         Logger logger = Logger.getLogger(getClass().getName());
         logger.info(message);
     }
-    public void logReverse(){
-        StackTraceElement[] traceElements;
-//        traceElements
+    public void logReverse(Exception message){
+        StackTraceElement[] traceElements = message.getStackTrace();
+        StackTraceElement auxiliar;
+        for (int i = 0; i <= traceElements.length/2; i++) {
+            auxiliar = traceElements[i];
+            traceElements[i] = traceElements[traceElements.length -1 -i];
+            traceElements[traceElements.length-1-i] = auxiliar;
+        }
+
+        //auxiliar = D
+        //HGFDSA
+
+        message.setStackTrace(traceElements);
 
 //        traceElements = parei aqui por que nao sei o que fazer a partir daqui.
     }
