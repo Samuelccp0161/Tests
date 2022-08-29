@@ -2,9 +2,7 @@ package Exceptions;
 
 import org.junit.Assert;
 import org.junit.Test;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
+import java.util.logging.*;
 import static org.junit.Assert.*;
 
 public class BlowsUpTest {
@@ -77,7 +75,21 @@ public class BlowsUpTest {
         //HGFDSA
 
         message.setStackTrace(traceElements);
-
 //        traceElements = parei aqui por que nao sei o que fazer a partir daqui.
+    }
+    @Test
+    public void loggGuardian(){
+        Logger logger = Logger.getLogger(getClass().getName());
+        logger.setLevel(Level.ALL);
+        logger.setUseParentHandlers(false);
+        HandlerTest handler = new HandlerTest();
+        logger.addHandler(handler);
+        assertEquals(0, handler.getCount(Level.INFO.getName()));
+        logger.info("INFO: SAI DAQUI!");
+        assertEquals(1, handler.getCount(Level.INFO.getName()));
+        logger.finer("dgysv");
+        assertEquals(1, handler.getCount(Level.FINER.getName()));
+        logger.info("sdfs");
+        assertEquals(2, handler.getCount(Level.INFO.getName()));
     }
 }
