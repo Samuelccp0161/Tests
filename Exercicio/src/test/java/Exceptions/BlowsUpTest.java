@@ -6,6 +6,8 @@ import java.util.logging.*;
 import static org.junit.Assert.*;
 
 public class BlowsUpTest {
+    private int ;
+
     @Test
     public void blowsUpTest(){
         try{
@@ -83,13 +85,23 @@ public class BlowsUpTest {
         logger.setLevel(Level.ALL);
         logger.setUseParentHandlers(false);
         HandlerTest handler = new HandlerTest();
+        Format format = new Format();
+        format.format();
+//        handler.setFilter(new MyFilter());
         logger.addHandler(handler);
-        assertEquals(0, handler.getCount(Level.INFO.getName()));
         logger.info("INFO: SAI DAQUI!");
         assertEquals(1, handler.getCount(Level.INFO.getName()));
-        logger.finer("dgysv");
-        assertEquals(1, handler.getCount(Level.FINER.getName()));
-        logger.info("sdfs");
-        assertEquals(2, handler.getCount(Level.INFO.getName()));
+        String message = String.format(Level.INFO.getName(), handler.getMessage());
+        log(message);
+        System.out.println(message);
     }
+//    public void customLog(){
+//        Logger logger = Logger.getLogger(getClass().getName());
+//        logger.setLevel(Level.ALL);
+//        HandlerTest handler = new HandlerTest();
+//        logger.addHandler(handler);
+//        assertEquals();
+//    }
+// parei aqui por conta que eu não sei o que fazer aqui em cima por conta que eu fiz o farmat, não sei se está correto.
+
 }

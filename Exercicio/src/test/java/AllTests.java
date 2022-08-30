@@ -1,5 +1,6 @@
-package chess;
-
+import Exceptions.BlowsUpTest;
+import Exceptions.HandlerTest;
+import chess.*;
 import chess.pieces.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
@@ -18,7 +19,9 @@ import org.junit.runners.Suite;
         TestPawn.class,
         TestRook.class,
         TestFactorial.class,
-        TestSequential.class
+        TestSequential.class,
+        BlowsUpTest.class,
+
 })
 
 public class AllTests {
