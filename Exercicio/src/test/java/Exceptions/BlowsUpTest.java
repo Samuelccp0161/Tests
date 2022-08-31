@@ -83,10 +83,15 @@ public class BlowsUpTest {
     }
     @Test
     public void loggGuardian(){
+
+        // falta eu usar o string builder com o contador que eu fiz no exercicio anterior,
+        // mas porem agora eu tenho que modificalo para que funcione com o stringbuilder.
         Logger logger = Logger.getLogger(getClass().getName());
         logger.setLevel(Level.ALL);
         logger.setUseParentHandlers(false);
         HandlerTest handler = new HandlerTest();
+        StringBuilder builder = new StringBuilder();
+//        builder.append(Level.ALL);
         Format format = new Format();
 //        LogRecord record = new LogRecord(Level.INFO, ": SAI DAQUI!");
 //        handler.setFilter(new MyFilter());
@@ -97,7 +102,7 @@ public class BlowsUpTest {
         assertEquals(1, handler.getCount(Level.INFO.getName()));
         logger.severe(": SAI DAQUI!");
         format.format(handler.logRecord());
-        assertEquals(Level.SEVERE + ": SAI DAQUI!", format.format(handler.logRecord()));
+        assertEquals(Level.SEVERE + ": SAI DAQUI!",format.format(handler.logRecord()) );
         String message = String.format(Level.INFO.getName(), handler.getMessage());
         log(message);
 
