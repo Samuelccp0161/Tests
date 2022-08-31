@@ -7,6 +7,6 @@ public class Format extends Formatter {
 
     @Override
     public String format(LogRecord record) {
-        return record.getLoggerName();
+        return record.getLevel().getName() + record.getMessage();
     }
 }

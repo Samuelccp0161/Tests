@@ -7,7 +7,6 @@ import java.util.logging.*;
 public class HandlerTest extends Handler {
     private final Map<String, Integer> mapTest = new HashMap<>();
     private LogRecord record;
-
     @Override
     public void flush() {}
     @Override
@@ -20,12 +19,14 @@ public class HandlerTest extends Handler {
     String getMessage(){
         return record.getMessage();
     }
-
     public int getCount(String level){
         if (mapTest.get(level) == null) {
             return 0;
         }
-
         return mapTest.get(level);
+    }
+    public LogRecord logRecord(){
+        return record;
+
     }
 }

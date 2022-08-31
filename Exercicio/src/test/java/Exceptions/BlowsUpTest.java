@@ -2,11 +2,13 @@ package Exceptions;
 
 import org.junit.Assert;
 import org.junit.Test;
+
+import javax.swing.plaf.synth.SynthOptionPaneUI;
 import java.util.logging.*;
 import static org.junit.Assert.*;
 
 public class BlowsUpTest {
-    private int ;
+//    private int ;
 
     @Test
     public void blowsUpTest(){
@@ -86,14 +88,19 @@ public class BlowsUpTest {
         logger.setUseParentHandlers(false);
         HandlerTest handler = new HandlerTest();
         Format format = new Format();
-        format.format();
+//        LogRecord record = new LogRecord(Level.INFO, ": SAI DAQUI!");
 //        handler.setFilter(new MyFilter());
         logger.addHandler(handler);
-        logger.info("INFO: SAI DAQUI!");
+        handler.setFormatter(format);
+        logger.info(": SAI DAQUI!");
+        assertEquals(Level.INFO + ": SAI DAQUI!", format.format(handler.logRecord()));
         assertEquals(1, handler.getCount(Level.INFO.getName()));
+        logger.severe(": SAI DAQUI!");
+        format.format(handler.logRecord());
+        assertEquals(Level.SEVERE + ": SAI DAQUI!", format.format(handler.logRecord()));
         String message = String.format(Level.INFO.getName(), handler.getMessage());
         log(message);
-        System.out.println(message);
+
     }
 //    public void customLog(){
 //        Logger logger = Logger.getLogger(getClass().getName());
