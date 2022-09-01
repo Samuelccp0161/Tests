@@ -1,9 +1,8 @@
 import Exceptions.BlowsUpTest;
-import Exceptions.HandlerTest;
 import chess.*;
 import chess.pieces.*;
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.junit.runner.*;
+import org.junit.runners.*;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({

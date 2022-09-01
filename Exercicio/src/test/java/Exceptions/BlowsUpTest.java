@@ -2,8 +2,6 @@ package Exceptions;
 
 import org.junit.Assert;
 import org.junit.Test;
-
-import javax.swing.plaf.synth.SynthOptionPaneUI;
 import java.util.logging.*;
 import static org.junit.Assert.*;
 
@@ -23,7 +21,6 @@ public class BlowsUpTest {
     }
     public void blowsUp(){
         throw new SimpleException("Somebody should catch this!");
-
     }
     @Test
     public void rethrowsTest(){
@@ -65,6 +62,7 @@ public class BlowsUpTest {
     private void log(String message){
         Logger logger = Logger.getLogger(getClass().getName());
         logger.info(message);
+
     }
     public void logReverse(Exception message){
         StackTraceElement[] traceElements = message.getStackTrace();
@@ -90,30 +88,27 @@ public class BlowsUpTest {
         logger.setLevel(Level.ALL);
         logger.setUseParentHandlers(false);
         HandlerTest handler = new HandlerTest();
-        StringBuilder builder = new StringBuilder();
-//        builder.append(Level.ALL);
+//        StringBuilder builder = new StringBuilder();
+//
         Format format = new Format();
-//        LogRecord record = new LogRecord(Level.INFO, ": SAI DAQUI!");
+///        LogRecord record = new LogRecord(Level.INFO, ": SAI DAQUI!");
 //        handler.setFilter(new MyFilter());
         logger.addHandler(handler);
         handler.setFormatter(format);
         logger.info(": SAI DAQUI!");
-        assertEquals(Level.INFO + ": SAI DAQUI!", format.format(handler.logRecord()));
+        assertEquals(Level.INFO + ": SAI DAQUI!\n", handler.guardianStrelar());
         assertEquals(1, handler.getCount(Level.INFO.getName()));
         logger.severe(": SAI DAQUI!");
+
         format.format(handler.logRecord());
-        assertEquals(Level.SEVERE + ": SAI DAQUI!",format.format(handler.logRecord()) );
+        assertEquals( Level.INFO + ": SAI DAQUI!\n" + Level.SEVERE + ": SAI DAQUI!\n",handler.guardianStrelar());
+        logger.finer(": SAI DAQUI!");
+        assertEquals( Level.INFO + ": SAI DAQUI!\n" + Level.SEVERE + ": SAI DAQUI!\n" + Level.FINER +": SAI DAQUI!\n",handler.guardianStrelar());
+
         String message = String.format(Level.INFO.getName(), handler.getMessage());
         log(message);
 
     }
-//    public void customLog(){
-//        Logger logger = Logger.getLogger(getClass().getName());
-//        logger.setLevel(Level.ALL);
-//        HandlerTest handler = new HandlerTest();
-//        logger.addHandler(handler);
-//        assertEquals();
-//    }
-// parei aqui por conta que eu não sei o que fazer aqui em cima por conta que eu fiz o farmat, não sei se está correto.
+
 
 }
