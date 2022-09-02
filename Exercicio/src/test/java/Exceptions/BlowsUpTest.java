@@ -80,7 +80,7 @@ public class BlowsUpTest {
 //        traceElements = parei aqui por que nao sei o que fazer a partir daqui.
     }
     @Test
-    public void loggGuardian(){
+    public void loggGuardianTest(){
 
         // falta eu usar o string builder com o contador que eu fiz no exercicio anterior,
         // mas porem agora eu tenho que modificalo para que funcione com o stringbuilder.
@@ -108,6 +108,28 @@ public class BlowsUpTest {
         String message = String.format(Level.INFO.getName(), handler.getMessage());
         log(message);
 
+    }
+    @Test
+    public void warningTest(){
+        Logger logger = Logger.getLogger(getClass().getName());
+        logger.setLevel(Level.ALL);
+        logger.setUseParentHandlers(false);
+        HandlerTest handler = new HandlerTest();
+        Format format = new Format(handler);
+        logger.addHandler(handler);
+        handler.setFormatter(format);
+        logger.info(": SAI DAQUI!");
+        assertEquals(Level.INFO + ": SAI DAQUI!(INFO total = " + 1+")\n", handler.guardianStrelar());
+
+        logger.info(": SAI DAQUI!");
+        assertEquals(Level.INFO + ": SAI DAQUI!(INFO total = " + 1+")\n" + Level.INFO + ": SAI DAQUI!(INFO total = " + 2+")\n", handler.guardianStrelar());
+
+        logger.finer(": SAI DAQUI!");
+        assertEquals(Level.INFO + ": SAI DAQUI!(INFO total = " + 1+")\n" +
+                Level.INFO + ": SAI DAQUI!(INFO total = " + 2+")\n" +
+                Level.FINER + ": SAI DAQUI!(FINER total = " + 2+")\n",
+                handler.guardianStrelar()
+        );
     }
 
 
