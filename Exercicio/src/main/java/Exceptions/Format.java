@@ -1,20 +1,20 @@
 package Exceptions;
 
 import java.util.logging.Formatter;
-import java.util.logging.Handler;
 import java.util.logging.LogRecord;
 
 public class Format extends Formatter {
-    private Handler handler ;
-    HandlerTest handlerTest = new HandlerTest();
+    private HandlerTest handler ;
     public Format() {}
-    public Format(Handler handler) {
+    public Format(HandlerTest handler) {
         this.handler = handler;
     }
     @Override
     public String format(LogRecord record) {
-        if (handler == null)
+        if (handler == null) {
             return record.getLevel().getName() + record.getMessage();
-        return record.getLevel().getName() + record.getMessage() + handlerTest.getCount(record.getLevel().getName());
+        }
+        return record.getLevel().getName() + record.getMessage() +
+                "("+ record.getLevel() + " total = " +  handler.getCount(record.getLevel().getName()) +")";
     }
  }

@@ -6,8 +6,6 @@ import java.util.logging.*;
 import static org.junit.Assert.*;
 
 public class BlowsUpTest {
-//    private int ;
-
     @Test
     public void blowsUpTest(){
         try{
@@ -72,64 +70,51 @@ public class BlowsUpTest {
             traceElements[i] = traceElements[traceElements.length -1 -i];
             traceElements[traceElements.length-1-i] = auxiliar;
         }
-
-        //auxiliar = D
-        //HGFDSA
-
         message.setStackTrace(traceElements);
-//        traceElements = parei aqui por que nao sei o que fazer a partir daqui.
     }
     @Test
     public void loggGuardianTest(){
-
-        // falta eu usar o string builder com o contador que eu fiz no exercicio anterior,
-        // mas porem agora eu tenho que modificalo para que funcione com o stringbuilder.
         Logger logger = Logger.getLogger(getClass().getName());
         logger.setLevel(Level.ALL);
         logger.setUseParentHandlers(false);
+
         HandlerTest handler = new HandlerTest();
-//        StringBuilder builder = new StringBuilder();
-//
         Format format = new Format();
-///        LogRecord record = new LogRecord(Level.INFO, ": SAI DAQUI!");
-//        handler.setFilter(new MyFilter());
         logger.addHandler(handler);
         handler.setFormatter(format);
+
         logger.info(": SAI DAQUI!");
-        assertEquals(Level.INFO + ": SAI DAQUI!\n", handler.guardianStrelar());
-        assertEquals(1, handler.getCount(Level.INFO.getName()));
         logger.severe(": SAI DAQUI!");
-
-        format.format(handler.logRecord());
-        assertEquals( Level.INFO + ": SAI DAQUI!\n" + Level.SEVERE + ": SAI DAQUI!\n",handler.guardianStrelar());
         logger.finer(": SAI DAQUI!");
-        assertEquals( Level.INFO + ": SAI DAQUI!\n" + Level.SEVERE + ": SAI DAQUI!\n" + Level.FINER +": SAI DAQUI!\n",handler.guardianStrelar());
+        logger.info(": GET OUT!");
 
-        String message = String.format(Level.INFO.getName(), handler.getMessage());
-        log(message);
+        String expected = Level.INFO + ": SAI DAQUI!\n";
+        expected += Level.SEVERE + ": SAI DAQUI!\n";
+        expected += Level.FINER + ": SAI DAQUI!\n";
+        expected += Level.INFO + ": GET OUT!\n";
 
+        assertEquals(expected, handler.guardianStrelar());
     }
     @Test
     public void warningTest(){
         Logger logger = Logger.getLogger(getClass().getName());
         logger.setLevel(Level.ALL);
         logger.setUseParentHandlers(false);
+
         HandlerTest handler = new HandlerTest();
         Format format = new Format(handler);
         logger.addHandler(handler);
         handler.setFormatter(format);
-        logger.info(": SAI DAQUI!");
-        assertEquals(Level.INFO + ": SAI DAQUI!(INFO total = " + 1+")\n", handler.guardianStrelar());
 
         logger.info(": SAI DAQUI!");
-        assertEquals(Level.INFO + ": SAI DAQUI!(INFO total = " + 1+")\n" + Level.INFO + ": SAI DAQUI!(INFO total = " + 2+")\n", handler.guardianStrelar());
-
+        logger.info(": SE!");
         logger.finer(": SAI DAQUI!");
-        assertEquals(Level.INFO + ": SAI DAQUI!(INFO total = " + 1+")\n" +
-                Level.INFO + ": SAI DAQUI!(INFO total = " + 2+")\n" +
-                Level.FINER + ": SAI DAQUI!(FINER total = " + 2+")\n",
-                handler.guardianStrelar()
-        );
+
+        String expected = Level.INFO + ": SAI DAQUI!(INFO total = " + 1+")\n";
+        expected += Level.INFO + ": SE!(INFO total = " + 2+")\n";
+        expected += Level.FINER + ": SAI DAQUI!(FINER total = " + 1+")\n";
+
+        assertEquals(expected, handler.guardianStrelar());
     }
 
 
