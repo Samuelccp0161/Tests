@@ -190,4 +190,8 @@ public class Student {
                 break;
         return source.substring(0, i + 1);
     }
+    private String id;
+    public String getId(){
+        return id;
+    }
 }
