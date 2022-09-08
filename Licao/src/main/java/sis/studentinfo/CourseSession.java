@@ -17,10 +17,10 @@ public class CourseSession extends Session  {
 
     public static Session create(Course course, Date startDate) {
         incrementCount();
-        return new CourseSession(course.getDepartment(), course.getNumber(), startDate);
+        return new CourseSession(course, startDate);
     }
-    public CourseSession(String department, String number, Date startDate){
-       super(department, number, startDate);
+    protected CourseSession(Course course, Date startDate){
+       super(course, startDate);
     }
     protected int getSessionLength(){
         return 16; }

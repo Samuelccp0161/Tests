@@ -13,13 +13,10 @@ public class SummerCourseSession extends Session {
         return 8;
     }
     public static Session create(Course course, Date startDate){
-        return new SummerCourseSession(course.getDepartment(), course.getNumber(), startDate);
+        return new SummerCourseSession(course, startDate);
     }
-    private SummerCourseSession(
-            String department,
-            String number,
-            Date startDate){
-        super(department, number, startDate);
+    private SummerCourseSession(Course course, Date startDate){
+        super(course, startDate);
     }
     public Date getEndDate(){
         GregorianCalendar calendar = new GregorianCalendar();

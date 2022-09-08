@@ -5,8 +5,7 @@ import java.net.URL;
 import java.util.*;
 
 abstract public class Session implements Comparable<Session>, Iterable<Student> {
-    private final String department;
-    private final String number;
+    private Course course;
     private final Vector<Student> students = new Vector<>();
     private final Date startDate;
     private int numberOfCredits;
@@ -14,9 +13,8 @@ abstract public class Session implements Comparable<Session>, Iterable<Student> 
     public Iterator<Student> iterator(){
         return students.iterator();
     }
-    protected Session(String department, String number, Date startDate) {
-        this.department = department;
-        this.number = number;
+    protected Session(Course course, Date startDate) {
+        this.course = course;
         this.startDate = startDate;
     }
     public int compareTo(Session that) {
@@ -28,11 +26,12 @@ abstract public class Session implements Comparable<Session>, Iterable<Student> 
     }
     void setNumberOfCredits(int numberOfCredits) {
         this.numberOfCredits = numberOfCredits;
-    }public String getDepartment() {
-        return department;
+    }
+    public String getDepartment() {
+        return course.getDepartment();
     }
     public String getNumber() {
-        return number;
+        return course.getNumber();
     }
     int getNumberOfStudents() {
         return students.size();
