@@ -12,15 +12,15 @@ public class CourseSessionTest extends SessionTest {
     @Test
     public void testComparable(){
         final Date date = new Date();
-        CourseSession sessionA = CourseSession.create("CMSC", "101", date);
-        CourseSession sessionB = CourseSession.create("ENGL", "101", date);
+        Session sessionA = CourseSession.create(new Course("CMSC", "101"), date);
+        Session sessionB = CourseSession.create(new Course("ENGL", "101"), date);
         assertTrue(sessionA.compareTo(sessionB) < 0);
         assertTrue(sessionB.compareTo(sessionA) > 0);
 
-        CourseSession sessionC = CourseSession.create("CMSC", "101", date);
+        Session sessionC = CourseSession.create(new Course("CMSC", "101"), date);
         assertEquals(0, sessionA.compareTo(sessionC));
 
-        CourseSession sessionD = CourseSession.create("CMSC", "210", date);
+        Session sessionD = CourseSession.create(new Course("CMSC", "210"), date);
         assertTrue(sessionA.compareTo(sessionD) < 0);
         assertTrue(sessionB.compareTo(sessionC) > 0);
     }
@@ -34,21 +34,23 @@ public class CourseSessionTest extends SessionTest {
     @Test
     public void testCourseDates(){
         Date startDate = DateUtil.createDate(2003, 1, 6);
-        Session session = createSession("ENGL", "200", startDate);
+        Session session = createSession(createCourse(), startDate);
         Date sixteenWeeksOut = createDate(2003,4,25);
         assertEquals(sixteenWeeksOut, session.getEndDate());
     }
     @Test
     public void testCount(){
         CourseSession.resetCount();
-        createSession("", "", new Date());
+        createSession(createCourse(), new Date());
         assertEquals(1, CourseSession.getCount());
-        createSession("", "", new Date());
+        createSession(createCourse(), new Date());
         assertEquals(2, CourseSession.getCount());
     }
-
+    private Course createCourse(){
+        return new Course("ENGL", "101");
+    }
     @Override
-    protected Session createSession(String department, String number, Date startDate) {
-        return CourseSession.create(department, number, startDate);
+    protected Session createSession(Course course, Date date) {
+        return CourseSession.create(course, date);
     }
 }

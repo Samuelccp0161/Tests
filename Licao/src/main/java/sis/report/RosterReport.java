@@ -2,6 +2,7 @@ package sis.report;
 
 import org.jetbrains.annotations.NotNull;
 import sis.studentinfo.CourseSession;
+import sis.studentinfo.Session;
 import sis.studentinfo.Student;
 
 public class RosterReport {
@@ -9,9 +10,9 @@ public class RosterReport {
         static final String NEWLINE = System.getProperty("line.separator");
         static final String ROSTER_REPORT_HEADER = "Student" + NEWLINE + "-" + NEWLINE;
         static final String ROSTER_REPORT_FOOTER = NEWLINE + "# students = ";
-        private final CourseSession session;
+        private final Session session;
 
-        RosterReport(CourseSession session){
+        RosterReport(Session session){
             this.session = session;
         }
 

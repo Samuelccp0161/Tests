@@ -20,12 +20,12 @@ abstract public class SessionTest {
     @Before
     public void setUp(){
         startDate = createDate(2003,1,6);
-        session = createSession("ENGL","101", startDate);
+        session = createSession(new Course("ENGL", "101"), startDate);
         session.setNumberOfCredits(CREDITS);
     }
 
     abstract protected Session createSession(
-            String department, String number, Date startDate);
+            Course course, Date startDate);
 
     @Test
     public void testCreate(){
@@ -54,14 +54,14 @@ abstract public class SessionTest {
     @Test
     public void testComparable(){
         final Date date = new Date();
-        Session sessionA = createSession("CMSC", "101", date);
-        Session sessionB = createSession("ENGL", "101", date);
+        Session sessionA = createSession(new Course("CMSC", "101"), date);
+        Session sessionB = createSession(new Course("ENGL", "101"), date);
         assertTrue(sessionA.compareTo(sessionB) < 0);
         assertTrue(sessionB.compareTo(sessionA) > 0);
 }
     @Test
     public void testSessionLength() {
-        Session session = createSession("","", startDate);
+        Session session = createSession(new Course("", ""), startDate);
         assertTrue(session.getSessionLength() > 0);
     }
     @Test
