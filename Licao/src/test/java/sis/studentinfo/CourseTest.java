@@ -40,10 +40,10 @@ public class CourseTest {
         List<Course> list = new ArrayList<Course>();
         list.add(courseA);
         assertTrue(list.contains(courseAPrime));
-        //or
-//        Map<Course, String> map = new HashMap<Course, String>();
-//        map.put(courseA, "");
-//        assertTrue(map.containsKey(courseAPrime));
+//        or
+        Map<Course, String> map = new HashMap<Course, String>();
+        map.put(courseA, "");
+        assertTrue(map.containsKey(courseAPrime));
 
     }
     @Test
@@ -51,8 +51,22 @@ public class CourseTest {
         Course courseA = new Course("NURS","201");
         Course courseAPrime = new Course("NURS", "201");
 
-        assertEquals(courseA.hashCode(), courseAPrime.hashCode()); //Tem que ver o porque desse teste não estar passando. Muito provavelmente eu deveria ta comparando um com o outro.
+        assertEquals(courseA.hashCode(), courseAPrime.hashCode());
         //consistency
         assertEquals(courseA.hashCode(), courseA.hashCode());
+    }
+    @Test
+    public void testHashCodePerformance(){
+        final int count = 10000;
+        long start = System.currentTimeMillis();
+        Map<Course, String> map = new HashMap<>();
+        for (int i = 0; i < count; i++) {
+            Course course = new Course("C" + i, ""+ i);
+            map.put(course, "");
+        }
+        long stop = System.currentTimeMillis();
+        long elapsed = stop - start;
+        final long arbitraryThreshold = 200;
+        assertTrue("elapsed time = " + elapsed, elapsed < arbitraryThreshold);
     }
 }
