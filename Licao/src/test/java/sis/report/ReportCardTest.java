@@ -1,5 +1,6 @@
 package sis.report;
 
+import org.junit.Before;
 import org.junit.Test;
 import sis.studentinfo.*;
 
@@ -11,7 +12,8 @@ import static org.junit.Assert.assertTrue;
 
 public class ReportCardTest {
     private ReportCard card;
-    protected void setUp(){
+    @Before
+    public void setUp(){
         card = new ReportCard();
     }
     @Test
@@ -22,7 +24,6 @@ public class ReportCardTest {
         assertEquals(ReportCard.D_MESSAGE, card.getMessage(Student.Grade.D));
         assertEquals(ReportCard.F_MESSAGE, card.getMessage(Student.Grade.F));
     }
-/*
     @Test
     public void testKeys(){
         Set<Student.Grade> expectedGrades = new HashSet<Student.Grade>();
@@ -67,12 +68,6 @@ public class ReportCardTest {
         assertEquals(expectedEntries,entries);
 
     }
- */
-// comentei esses testes por conta que tava dando problema inicialmente em getMessages(),
-// por conta que ele era privado então decide colocar ele como publico e deu outro problema.
-// Que tá falando que o card ta null java.lang.NullPointerException: Cannot invoke "sis.report.ReportCard.getMessages()" because "this.card" is null
-
-
     @Test
     public void testToString(){
         Course course = new Course("ENGL","301");

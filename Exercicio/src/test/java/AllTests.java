@@ -1,4 +1,5 @@
 import Exceptions.BlowsUpTest;
+import Exercise_9.WordCountTest;
 import chess.*;
 import chess.pieces.*;
 import org.junit.runner.*;
@@ -20,6 +21,8 @@ import org.junit.runners.*;
         TestFactorial.class,
         TestSequential.class,
         BlowsUpTest.class,
+        WordCountTest.class,
+
 
 })
 
