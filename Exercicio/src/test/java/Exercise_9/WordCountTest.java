@@ -1,6 +1,8 @@
 package Exercise_9;
 
 import org.junit.Test;
+import java.util.HashSet;
+import java.util.Set;
 
 import static org.junit.Assert.*;
 
@@ -13,21 +15,30 @@ public class WordCountTest {
         WordCount word = new WordCount(create);
         assertEquals(2, word.getCount("create"));
     }
-/*    @Test
+    @Test
     public void testName(){
-        String one = "Samuel";
-        one += " David";
-        String two = "func";
+        Name one = new Name("samuel");
+        Name two = new Name("samuel");
+        Name three = new Name("diff");
 
-        assertEquals("Samuel David", one);
+        //reflexivity
+        assertEquals(one, two);
+        assertNotEquals(one, three);
+        //symmetry
+        assertEquals(two, one);
+        //consistency
+        assertEquals(one, two);
+    }
+    @Test
+    public void testFoo(){
+        Name foo = new Name("Foo");
+        Set<Name> nasde = new HashSet<>();
 
-        assertTrue(one.equals(two));
-        assertFalse(one == two);
+        nasde.add(foo);
 
+        assertTrue(nasde.contains(new Name("Foo")));
+        assertTrue(nasde.contains(foo));
 
     }
-    preciso mudar o código de lugar
-    preciso ajeitar o código na classe Equals, preciso deixar o método funcional
-    preciso também mudar o nome da classe.
- */
+
 }
