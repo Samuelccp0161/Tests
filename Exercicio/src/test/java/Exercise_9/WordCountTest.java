@@ -3,11 +3,9 @@ package Exercise_9;
 import org.junit.Test;
 import java.util.HashSet;
 import java.util.Set;
-
 import static org.junit.Assert.*;
 
 public class WordCountTest {
-
     @Test
     public void testLiteralString(){
 
@@ -40,5 +38,4 @@ public class WordCountTest {
         assertTrue(nasde.contains(foo));
 
     }
-
 }

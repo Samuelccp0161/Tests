@@ -1,15 +1,11 @@
 package sis.studentinfo;
 
 import org.junit.Test;
-
-import java.util.ArrayList;
 import java.util.Arrays;
-
 import static org.junit.Assert.*;
 
 public class PerformanceTest {
     private static double tolerance = 0.005;
-
     @Test
     public void testAverage(){
         Performance performance = new Performance();

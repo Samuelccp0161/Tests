@@ -23,7 +23,6 @@ import org.junit.runners.*;
         BlowsUpTest.class,
         WordCountTest.class,
 
-
 })
 
 public class AllTests {

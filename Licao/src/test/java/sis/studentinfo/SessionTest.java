@@ -2,16 +2,12 @@ package sis.studentinfo;
 
 import org.junit.Before;
 import org.junit.Test;
-
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
-
 import static org.junit.Assert.*;
 import static sis.studentinfo.DateUtil.createDate;
-import static sis.studentinfo.Session.*;
 
 abstract public class SessionTest {
     protected Session session;
@@ -23,10 +19,8 @@ abstract public class SessionTest {
         session = createSession(new Course("ENGL", "101"), startDate);
         session.setNumberOfCredits(CREDITS);
     }
-
     abstract protected Session createSession(
             Course course, Date startDate);
-
     @Test
     public void testCreate(){
         assertEquals("ENGL", session.getDepartment());

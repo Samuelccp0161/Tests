@@ -10,7 +10,6 @@ import java.util.Iterator;
 import static org.junit.Assert.*;
 
 public class BoardTest {
-
     private Board board;
     @Before
     public void setUp() {
@@ -134,5 +133,4 @@ public class BoardTest {
         assertEquals('n', board.gg().get(2).getRepresentation());
 
     }
-
 }

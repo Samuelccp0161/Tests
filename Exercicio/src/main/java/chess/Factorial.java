@@ -49,5 +49,4 @@ public class Factorial {
         }
         return result;
     }
-
 }

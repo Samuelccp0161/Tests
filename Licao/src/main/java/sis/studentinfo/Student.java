@@ -4,9 +4,9 @@ import java.util.*;
 import java.util.logging.Logger;
 
 public class Student {
-
     private final ArrayList<Grade> grades = new ArrayList<>();
     private final String Name;
+    private String id;
     private String firstName =  "";
     private String lastName;
     private String middleName = "";
@@ -17,7 +17,6 @@ public class Student {
     static final int MAX_NAME_PARTS = 3;
     private GradingStrategy gradingStrategy = new BasicGradingStrategy();
     static final String TOO_MANY_NAME_PARTS_MSG = "Student name '%s' contains more than %d parts";
-
     void setGradingStrategy(GradingStrategy gradingStrategy){
         this.gradingStrategy = gradingStrategy;
     }
@@ -190,7 +189,6 @@ public class Student {
                 break;
         return source.substring(0, i + 1);
     }
-    private String id;
     public String getId(){
         return id;
     }

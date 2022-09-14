@@ -1,7 +1,6 @@
 package chess.pieces;
 
 import org.junit.Test;
-
 import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 
@@ -22,5 +21,4 @@ public class TestKnight extends TestPiece{
         assertEquals(2.5,knightBlack.getPower(), 0.05);
         assertEquals(Knight.class,knightBlack.getClass());
     }
-
 }

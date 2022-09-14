@@ -1,15 +1,12 @@
 package sis.studentinfo;
 
 import org.junit.Test;
-
 import java.util.logging.Handler;
 import java.util.logging.Logger;
-
 import static org.junit.Assert.*;
 import static sis.studentinfo.Student.*;
 
 public class StudentTest  {
-
     private static final double GRADE_TOLERANCE = 0.5;
     private void assertGpa(Student student, double expectedGpa){
         assertEquals(expectedGpa, student.getGpa(), GRADE_TOLERANCE);
@@ -96,7 +93,6 @@ public class StudentTest  {
         assertGpa(createHonorsStudent(Student.Grade.C), 3.0);
         assertGpa(createHonorsStudent(Student.Grade.D), 2.0);
         assertGpa(createHonorsStudent(Student.Grade.F), 0.0);
-
     }
 @Test
     public void testSwitchResults(){
@@ -136,7 +132,6 @@ public class StudentTest  {
         for (int i = 0; i < string.length(); i += 2)
             builder.append(string.charAt(i));
         assertEquals("135", builder.toString());
-
     }
     @Test
     public void testFibonacci(){

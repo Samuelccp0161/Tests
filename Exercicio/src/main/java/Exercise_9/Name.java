@@ -1,8 +1,6 @@
 package Exercise_9;
 
-
 public class Name {
-
     String string;
     public Name(String str){
         this.string = str;
@@ -18,9 +16,6 @@ public class Name {
     }
     @Override
     public int hashCode(){
-        final int hashMultiplier = 41;
-        int result = 7;
-        result = result * hashMultiplier;
-        return result;
+        return string.hashCode();
     }
 }

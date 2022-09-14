@@ -4,7 +4,6 @@ import org.junit.Test;
 import sis.studentinfo.DateUtil;
 import sis.studentinfo.*;
 import java.util.Date;
-
 import static org.junit.Assert.assertEquals;
 
 public class SummerCourseSessionTest extends  SessionTest{
@@ -15,10 +14,8 @@ public class SummerCourseSessionTest extends  SessionTest{
         Date eightWeeksOut = DateUtil.createDate(2003,8,1);
         assertEquals(eightWeeksOut, session.getEndDate());
     }
-
     @Override
     protected Session createSession(Course course, Date date){
         return SummerCourseSession.create(course, date);
     }
-
 }

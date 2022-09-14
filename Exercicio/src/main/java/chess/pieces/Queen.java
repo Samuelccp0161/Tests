@@ -4,7 +4,6 @@ import chess.Board;
 import java.util.ArrayList;
 
 public class Queen extends Piece{
-
     public Queen(Colors color) {
         super(color,'q',9.0);
     }
@@ -40,5 +39,11 @@ public class Queen extends Piece{
                 newListQueen.add(positionQueen); // adicionar posição valida dentro da lista.
 
         return newListQueen;
+    }
+    @Override
+    public ArrayList<String> possibleMoves(String position){
+        ArrayList<String> moves;
+        moves = queenMoves(position);
+        return moves;
     }
 }

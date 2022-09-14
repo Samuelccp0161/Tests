@@ -3,24 +3,6 @@ package chess.pieces;
 import java.util.ArrayList;
 
 public class Piece implements Comparable<Piece>{
-
-    private final char representation;
-    private double power;
-    public double getPower(){
-        return power;
-    }
-    private final Colors color;
-    protected enum Colors {WHITE, BLACK, NO_COLOR}
-    @Override
-    public int compareTo(Piece piece){
-        return Double.compare(piece.getPower(),getPower());
-    }
-    protected Piece(Colors color, char representation, double power) {
-        this.color = color;
-        this.representation = representation;
-        this.power = power;
-    }
-    
     public static final char PAWN_REPRESENTATION = 'p';
     public static final char ROOK_REPRESENTATION = 'r';
     public static final char KNIGHT_REPRESENTATION = 'n';
@@ -28,19 +10,23 @@ public class Piece implements Comparable<Piece>{
     public static final char QUEEN_REPRESENTATION = 'q';
     public static final char KING_REPRESENTATION = 'k';
     public static final char NO_PIECE_REPRESENTATION = '.';
-
-
+    protected enum Colors {WHITE, BLACK, NO_COLOR}
+    private final char representation;
+    private final Colors color;
+    private double power;
+    public double getPower(){
+        return power;
+    }
+    protected Piece(Colors color, char representation, double power) {
+        this.color = color;
+        this.representation = representation;
+        this.power = power;
+    }
     public static NoPiece noColor() {
         return new NoPiece(Colors.NO_COLOR);
     }
     public static Pawn createWhitePawn(){
         return new Pawn(Colors.WHITE);
-    }
-    public static Queen createWhiteQueene(){
-        return new Queen(Colors.WHITE);
-    }
-    public static Queen createBlackQueene(){
-        return new Queen(Colors.BLACK);
     }
     public static Pawn createBlackPawn() {
         return new Pawn(Colors.BLACK);
@@ -76,7 +62,11 @@ public class Piece implements Comparable<Piece>{
         return new King(Colors.BLACK);
     }
     public static NoPiece noPiece() {
-            return new NoPiece(Colors.NO_COLOR);
+        return new NoPiece(Colors.NO_COLOR);
+    }
+    @Override
+    public int compareTo(Piece piece){
+        return Double.compare(piece.getPower(),getPower());
     }
     public boolean isWhite(){
         return color == Colors.WHITE;

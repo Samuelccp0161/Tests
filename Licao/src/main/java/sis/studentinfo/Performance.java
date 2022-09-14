@@ -8,7 +8,6 @@ public class Performance {
     public int get(int testNumber){
         return tests[testNumber];
     }
-
     public double average(){
         double total = 0.0;
         for(int i =0; i < tests.length; i++)
@@ -21,6 +20,4 @@ public class Performance {
     public void setScore(int... tests){
         this.tests = tests;
     }
-
-
 }

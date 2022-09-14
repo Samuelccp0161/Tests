@@ -15,8 +15,7 @@ public class Entry {
             return false;
         Entry that = (Entry)object;
         return
-                this.grade == that.grade &&
-                        this.message.equals(that.message);
+            this.grade == that.grade && this.message.equals(that.message);
     }
     @Override
     public int hashCode() {

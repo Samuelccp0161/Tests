@@ -60,7 +60,6 @@ public class BlowsUpTest {
     private void log(String message){
         Logger logger = Logger.getLogger(getClass().getName());
         logger.info(message);
-
     }
     public void logReverse(Exception message){
         StackTraceElement[] traceElements = message.getStackTrace();
@@ -73,7 +72,7 @@ public class BlowsUpTest {
         message.setStackTrace(traceElements);
     }
     @Test
-    public void loggGuardianTest(){
+    public void printLevelsTest(){
         Logger logger = Logger.getLogger(getClass().getName());
         logger.setLevel(Level.ALL);
         logger.setUseParentHandlers(false);
@@ -93,7 +92,8 @@ public class BlowsUpTest {
         expected += Level.FINER + ": SAI DAQUI!\n";
         expected += Level.INFO + ": GET OUT!\n";
 
-        assertEquals(expected, handler.guardianStrelar());
+        assertEquals(expected, handler.printLevels());
+        System.out.println(handler.printLevels());
     }
     @Test
     public void warningTest(){
@@ -114,8 +114,7 @@ public class BlowsUpTest {
         expected += Level.INFO + ": SE!(INFO total = " + 2+")\n";
         expected += Level.FINER + ": SAI DAQUI!(FINER total = " + 1+")\n";
 
-        assertEquals(expected, handler.guardianStrelar());
+        assertEquals(expected, handler.printLevels());
+        System.out.println(handler.printLevels());
     }
-
-
 }

@@ -5,7 +5,21 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 public class TestPiece {
-
+    private void verifyCreation(Piece whitePiece, Piece blackPiece, Class<?> klass, char representation) {
+        assertTrue(whitePiece.isWhite());
+        assertFalse(whitePiece.isBlack());
+        assertEquals(klass, whitePiece.getClass());
+        assertEquals(representation, whitePiece.getRepresentation());
+        assertTrue(blackPiece.isBlack());
+        assertFalse(blackPiece.isWhite());
+        assertEquals(klass, blackPiece.getClass());
+        assertEquals(Character.toUpperCase(representation),
+                blackPiece.getRepresentation());
+    }
+    protected void assertContains(List<String> position, String... strings) {
+        for (String positions :  strings)
+            assertTrue(position.contains(positions));
+    }
     @Test
     public void testCreate() {
 
@@ -35,17 +49,6 @@ public class TestPiece {
         assertEquals('.', blank.getRepresentation());
         assertEquals(NoPiece.class, blank.getClass());
     }
-    private void verifyCreation(Piece whitePiece, Piece blackPiece, Class<?> klass, char representation) {
-        assertTrue(whitePiece.isWhite());
-        assertFalse(whitePiece.isBlack());
-        assertEquals(klass, whitePiece.getClass());
-        assertEquals(representation, whitePiece.getRepresentation());
-        assertTrue(blackPiece.isBlack());
-        assertFalse(blackPiece.isWhite());
-        assertEquals(klass, blackPiece.getClass());
-        assertEquals(Character.toUpperCase(representation),
-            blackPiece.getRepresentation());
-    }
     @Test
     public void compareTo(){
         Piece pieceQueen = Piece.createBlackQueen();
@@ -54,9 +57,4 @@ public class TestPiece {
         assertEquals(1, piecePawn.compareTo(pieceQueen));
         System.out.println(piecePawn.compareTo(pieceQueen));
     }
-    protected void assertContains(List<String> position, String... strings) {
-        for (String mm :  strings)
-            assertTrue(position.contains(mm));
-    }
-
 }

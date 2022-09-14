@@ -5,7 +5,8 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class CourseSession extends Session  {
-        public int compareTo(CourseSession that) {
+    private static int count;
+    public int compareTo(CourseSession that) {
         int compare =
             this.getDepartment().compareTo(that.getDepartment());
         if (compare == 0)
@@ -13,8 +14,6 @@ public class CourseSession extends Session  {
             this.getNumber().compareTo(that.getNumber());
         return compare;
     }
-     private static int count;
-
     public static Session create(Course course, Date startDate) {
         incrementCount();
         return new CourseSession(course, startDate);
@@ -43,7 +42,5 @@ public class CourseSession extends Session  {
     static void resetCount(){
         count = 0;
     }
-
-
 }
 

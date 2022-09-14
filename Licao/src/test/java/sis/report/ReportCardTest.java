@@ -3,12 +3,8 @@ package sis.report;
 import org.junit.Before;
 import org.junit.Test;
 import sis.studentinfo.*;
-
-import java.security.KeyStore;
 import java.util.*;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class ReportCardTest {
     private ReportCard card;
@@ -26,14 +22,9 @@ public class ReportCardTest {
     }
     @Test
     public void testKeys(){
-        Set<Student.Grade> expectedGrades = new HashSet<Student.Grade>();
-            EnumSet.allOf(Student.Grade.class);
-
-        Set<Student.Grade> grades = new HashSet<Student.Grade>();
-            EnumSet.noneOf(Student.Grade.class);
-
-        for (Student.Grade grade: card.getMessages().keySet())
-            grades.add(grade);
+        Set<Student.Grade> expectedGrades = EnumSet.allOf(Student.Grade.class);
+        Set<Student.Grade> grades = EnumSet.noneOf(Student.Grade.class);
+        for (Student.Grade grade: card.getMessages().keySet())grades.add(grade);
         assertEquals(expectedGrades, grades);
     }
 @Test
@@ -49,11 +40,10 @@ public class ReportCardTest {
         for (String message: messages)
             assertTrue(expectedMessages.contains(message));
         assertEquals(expectedMessages.size(), messages.size());
-
     }
     @Test
     public void testEntries(){
-        Set<Entry> entries = new HashSet<Entry>();
+        Set<Entry> entries = new HashSet<>();
 
         for (Map.Entry<Student.Grade, String> entry: card.getMessages().entrySet())
             entries.add(new Entry(entry.getKey(), entry.getValue()));
@@ -66,12 +56,10 @@ public class ReportCardTest {
         expectedEntries.add(new Entry(Student.Grade.F, ReportCard.F_MESSAGE));
 
         assertEquals(expectedEntries,entries);
-
     }
     @Test
     public void testToString(){
         Course course = new Course("ENGL","301");
         assertEquals("ENGL 301", course.toString());
-
     }
 }

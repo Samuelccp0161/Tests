@@ -20,5 +20,4 @@ public class TestPawn extends TestPiece{
         assertEquals(1.0,pawnBlack.getPower(), 0.05);
         assertEquals(Pawn.class,pawnBlack.getClass());
     }
-
 }
