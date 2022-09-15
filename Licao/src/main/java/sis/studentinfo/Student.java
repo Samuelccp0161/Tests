@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 public class Student {
     private final ArrayList<Grade> grades = new ArrayList<>();
     private final String Name;
+    private int settings = 0x0;
     private String id;
     private String firstName =  "";
     private String lastName;
@@ -191,5 +192,28 @@ public class Student {
     }
     public String getId(){
         return id;
+    }
+    public enum Flag {
+        ON_CAMPUS(1),
+        TAX_EXEMPT(2),
+        MINOR(4),
+        TROUBLEMAKER(8);
+        private int mask;Flag(int mask) {
+            this.mask = mask;
+        }
+    }
+    public void set(Flag... flags) {
+        for (Flag flag: flags)
+            settings |= flag.mask;
+    }
+    public void unset(Flag... flags) {
+        for (Flag flag: flags)
+            settings &= ~flag.mask;
+    }
+    public boolean isOn(Flag flag) {
+        return (settings & flag.mask) == flag.mask;
+    }
+    public boolean isOff(Flag flag) {
+        return !isOn(flag);
     }
 }
