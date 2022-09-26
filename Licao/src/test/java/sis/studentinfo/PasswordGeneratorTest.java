@@ -15,3 +15,14 @@ public class PasswordGeneratorTest {
     }
 
 }
+
+/*
+BigDecimal a = new BigDecimal("1")
+BigDecimal b = new BigDecimal("2")
+
+BigDecimal c = a.add(b)
+
+a == 1
+b == 2
+c == 3
+ */
