@@ -5,8 +5,7 @@ import org.junit.Test;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.*;
 
 public class TestNumberOne {
     @Test
@@ -51,6 +50,27 @@ public class TestNumberOne {
     }
     @Test
     public void testQuestFive(){
-        // terminei na quinta questão, pestar mais atenção nas horas das atividades.
+        assertEquals(57005, Integer.decode("0xDEAD").intValue());
+    }
+    @Test
+    public void testQuestSix(){
+        final float tolerance = 0.5f;
+        final float x = 1f;
+
+        assertFalse(Double.NaN > 0.0);
+        assertFalse(Double.NaN < 1.0);
+        assertFalse(Double.NaN == 1.0);
+
+        assertEquals(Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY * 100, tolerance);
+        assertEquals(Float.NEGATIVE_INFINITY,Float.POSITIVE_INFINITY * -1, tolerance);
+        assertEquals(Float.POSITIVE_INFINITY, x / 0f, tolerance);
+        assertEquals(Float.NEGATIVE_INFINITY, x / -0f, tolerance);
+        assertTrue(Float.isNaN(x % 0f));
+    }
+    @Test
+    public void testQuestSeven(){
+//        float ff = 15;
+//        Float.;
+//        assertNotEquals(ff, fe);
     }
 }
