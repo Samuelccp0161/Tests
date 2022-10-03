@@ -4,6 +4,8 @@ import org.junit.Test;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -69,8 +71,28 @@ public class TestNumberOne {
     }
     @Test
     public void testQuestSeven(){
-//        float ff = 15;
-//        Float.;
-//        assertNotEquals(ff, fe);
+        Float p = Float.valueOf(8);
+        Float p6 = Float.valueOf("8.0");
+        assertTrue(p != p6);
+        float p1 = 8f;
+        float p2 = 8.0f;
+        assertTrue(p1 == p2);
     }
+    @Test
+    public void testQuestEight(){
+        List<Integer> base = new ArrayList<>();
+        for (int i = 0; i < 10; i++)
+            base.add(i);
+        assertEquals(10, base.size());
+        assertEquals(3, division(3));
+    }
+    private int division(int valor){
+        List<Integer> base = new ArrayList<>();
+        for (int i = 0; i < 10; i++)
+            if (i % 3 == 1)
+                base.add(i);
+        return valor;
+    }
+
+
 }
