@@ -80,19 +80,52 @@ public class TestNumberOne {
     }
     @Test
     public void testQuestEight(){
-        List<Integer> base = new ArrayList<>();
-        for (int i = 0; i < 10; i++)
-            base.add(i);
-        assertEquals(10, base.size());
-        assertEquals(3, division(3));
+        List<Integer> expected = new ArrayList<>();
+        expected.add(3);
+        expected.add(6);
+        expected.add(9);
+
+        List<Integer> actual = division(1, 2, 3, 4, 5, 6, 7, 8, 9);
+        assertEquals(expected, actual);
+
+        expected.add(15);
+        actual = division(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 15);
+        assertEquals(expected, actual);
     }
-    private int division(int valor){
+    private List<Integer> division(int... valor){
         List<Integer> base = new ArrayList<>();
-        for (int i = 0; i < 10; i++)
-            if (i % 3 == 1)
-                base.add(i);
-        return valor;
+        for (int j : valor)
+            if ((j % 3) == 0)
+                base.add(j);
+        return base;
+    }
+    @Test
+    public void testQuestEightPartTwo(){
+        List<Integer> expected = new ArrayList<>();
+        expected.add(3);
+        expected.add(6);
+        expected.add(9);
+
+        List<Integer> actual = divisionPartTwo(1, 2, 3, 4, 5, 6, 7, 8, 9);
+        assertEquals(expected, actual);
+
+        expected.add(15);
+        actual = divisionPartTwo(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 15);
+        assertEquals(expected, actual);
+    }
+    public List<Integer> divisionPartTwo(int... valor){
+        List<Integer> baseTwo = new ArrayList<>();
+        for (int i = 0; i < valor.length; i++) {
+            if (getRestoPor3(valor[i]) == 0)
+                baseTwo.add(valor[i]);
+        }
+        return baseTwo;
     }
 
-
+    public int getRestoPor3(int n) {
+        int resultado_divisao = n / 3;
+        int finala = resultado_divisao * 3 - n;
+        System.out.printf("n: %d, final: %d%n", n, finala);
+        return finala;
+    }
 }
