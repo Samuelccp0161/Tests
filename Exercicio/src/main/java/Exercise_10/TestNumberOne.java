@@ -6,6 +6,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import static org.junit.Assert.*;
 
@@ -109,8 +110,8 @@ public class TestNumberOne {
         List<Integer> actual = divisionPartTwo(1, 2, 3, 4, 5, 6, 7, 8, 9);
         assertEquals(expected, actual);
 
-        expected.add(15);
-        actual = divisionPartTwo(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 15);
+        expected.add(255);
+        actual = divisionPartTwo(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 255);
         assertEquals(expected, actual);
     }
     public List<Integer> divisionPartTwo(int... valor){
@@ -128,4 +129,85 @@ public class TestNumberOne {
         System.out.printf("n: %d, final: %d%n", n, finala);
         return finala;
     }
+    @Test
+    public void testQuestTen(){
+        float x = (int)1.9;
+        System.out.print(x);
+        assertEquals(2, x, 0.02);
+    }
+    @Test
+    public void testQuestEleven(){
+        double x = Math.rint(1.9);
+        double x1 = Math.rint(2.5);
+        System.out.println(x);
+        assertEquals(2, x, 0.05);
+        assertEquals(2, x1, 0.02);
+    }
+    @Test
+    public void testQuestFourteen(){
+        int x, y;
+
+        x = 5; y = 10;
+        assertEquals(42, x * 5 + y++ * 7 / 4); // 5 * 5 + 10 * 7 / 4 = 25 + 10 * 7 / 4 = 25 + 70 /4 = 42,5
+
+        x = 5; y = 10;
+        assertEquals(300, ++x * 5 * y++); // (5+1) * 5 * (10) = 300
+
+        x = 5; y = 10;
+        assertEquals(275,x++ * 5 * ++y); // 5 * 5 * (10+1) = 11 * 25 = 275
+
+        x = 5; y = 10;
+        assertEquals(51, ++x + 5 * 7 + y++); // (5 + 1) + 5 * 7 + 10 = 770
+
+        x = 5; y = 10;
+        assertEquals(true, x * 7 == 35 || y++ == 0); // 5 * 7 == verdadeiro e falso
+
+        x = 5; y = 10;
+        assertEquals(66, ++x * ++y); // (5 + 1) * (10 + 1) = 11 * 6 = 66
+
+        x = 5; y = 10;
+        assertEquals(50, x++ * y++);
+
+        x = 5; y = 10;
+        assertEquals(true, x * 2 == y || ++y == 10); // true
+    }
+    @Test
+    public void testQuestFifteen(){
+        int x = 17 << 1;
+        System.out.println(x);
+    }
+    @Test
+    public void testQuestSixteen(){
+        float x = ~1;
+        assertEquals(-2.0, x,0.0);
+        System.out.println(x);
+    }
+    @Test
+    public void testQuestSeventeen(){
+        int x = 12 >> 2;
+        int x1 = -12 >> 2;
+        assertEquals(3, x);
+        assertEquals(-3, x1);
+
+        int y= 12 >>> 2;
+        int y1 = -12 >>> 2;
+        assertEquals(3, y);
+        assertEquals(1073741821, y1);
+    }
+    @Test
+    public void testQuestEightTen(){
+        for (int i = 0; i <= 50; i++) {
+            int x = random(1, 50);
+            assertTrue(x <= 50);
+            assertTrue(x >= 1);
+        }
+
+    }
+    public int random(int inic, int finala){
+        int aleat = (int) (Math.random() * finala + inic);
+        return aleat;
+    }
+//    public void testQuestNineTeen(){
+//
+//    }
 }
