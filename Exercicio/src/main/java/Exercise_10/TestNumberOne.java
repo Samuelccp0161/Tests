@@ -201,13 +201,76 @@ public class TestNumberOne {
             assertTrue(x <= 50);
             assertTrue(x >= 1);
         }
-
     }
     public int random(int inic, int finala){
         int aleat = (int) (Math.random() * finala + inic);
         return aleat;
     }
-//    public void testQuestNineTeen(){
+    @Test
+    public void testQuestNineTeeen(){
+        List<Integer> numbers = new ArrayList<>();
+
+        for (int i = 1; i <= 100; i++) {
+            numbers.add(i);
+        }
+
+        int i = random(0,99);
+        int j = random(0,99);
+        int f = numbers.get(i);
+        int g = numbers.get(j);
+        assertEquals(100, numbers.size());
+
+        troca(numbers, i, j);
+
+        assertEquals(100, numbers.size());
+
+        assertEquals(f, (int) numbers.get(i));
+        assertEquals(g, (int) numbers.get(j));
+
+
+
+        System.out.println(numbers);
+        System.out.println(numbers.size());
+        }
+
+    @Test
+    public void testQuestNineTeen() {
+        int x = random(1, 100);
+        int y = random(1, 100);
+
+
+        List<Integer> numbers = new ArrayList<>();
+        numbers.add(x);
+        numbers.add(y);
+
+        final int i = 0;
+        final int j = 1;
+
+        troca(numbers, i, j);
+
+
+        assertEquals(y, (int) numbers.get(i));
+        assertEquals(x, (int) numbers.get(j));
+
+    }
+
+
+    public void troca(List<Integer> numbers, int i, int j) {
+
+//        int a = 2;
+//        int b = 3;
 //
-//    }
+//        int valor = a;
+//        a = b;
+//        b = valor;
+
+//        int w = numbers.get(i);
+        int x = numbers.set(i, numbers.get(j));
+        numbers.set(j, x);
+
+
+    }
+
+
+
 }
