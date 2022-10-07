@@ -284,7 +284,8 @@ public class TestNumberOne {
         char s = 's';
         int x = s >> 1;
         int valor = 0;
-        System.out.println(x);
+        System.out.println(Integer.toBinaryString(s));
+//        Byte.MIN_VALUE
     }
 
 
