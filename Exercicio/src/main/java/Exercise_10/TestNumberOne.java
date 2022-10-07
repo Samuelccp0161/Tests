@@ -1,9 +1,7 @@
 package Exercise_10;
 
 import org.junit.Test;
-
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -122,7 +120,6 @@ public class TestNumberOne {
         }
         return baseTwo;
     }
-
     public int getRestoPor3(int n) {
         int resultado_divisao = n / 3;
         int finala = resultado_divisao * 3 - n;
@@ -227,8 +224,6 @@ public class TestNumberOne {
         assertEquals(f, (int) numbers.get(i));
         assertEquals(g, (int) numbers.get(j));
 
-
-
         System.out.println(numbers);
         System.out.println(numbers.size());
         }
@@ -237,7 +232,6 @@ public class TestNumberOne {
     public void testQuestNineTeen() {
         int x = random(1, 100);
         int y = random(1, 100);
-
 
         List<Integer> numbers = new ArrayList<>();
         numbers.add(x);
@@ -248,29 +242,50 @@ public class TestNumberOne {
 
         troca(numbers, i, j);
 
-
         assertEquals(y, (int) numbers.get(i));
         assertEquals(x, (int) numbers.get(j));
-
     }
-
-
     public void troca(List<Integer> numbers, int i, int j) {
-
-//        int a = 2;
-//        int b = 3;
-//
-//        int valor = a;
-//        a = b;
-//        b = valor;
-
-//        int w = numbers.get(i);
         int x = numbers.set(i, numbers.get(j));
         numbers.set(j, x);
-
-
     }
+    @Test
+    public void testQuestSTwenty(){
+        final long seed = 1;
+// random com seed
+        Random newm = new Random(seed);
+        List<Double> number = new ArrayList<>();
+            number.add(newm.nextDouble());
+//random com seed
+        Random test1 = new Random(seed);
+        List<Double> number1 = new ArrayList<>();
+            number1.add(test1.nextDouble());
+// randrom sem seed
+        Random test2 = new Random();
+        List<Double> number2 = new ArrayList<>();
+        number2.add(test2.nextDouble());
 
+        assertNotEquals(test2, test1);
+        assertEquals(number, number1);
+    }
+    @Test
+    public void testQuestTwentyOne(){
+        int x = 5;
+        int y = 10;
+
+        x ^= y;
+        y ^= x;
+        x ^= y;
+        assertEquals(5, y);
+        assertEquals(10, x);
+    }
+    @Test
+    public void testQuestTwentyTwo(){
+        char s = 's';
+        int x = s >> 1;
+        int valor = 0;
+        System.out.println(x);
+    }
 
 
 }
