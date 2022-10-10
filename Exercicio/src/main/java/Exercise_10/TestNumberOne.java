@@ -281,12 +281,51 @@ public class TestNumberOne {
     }
     @Test
     public void testQuestTwentyTwo(){
-        char s = 's';
-        int x = s >> 1;
-        int valor = 0;
-        System.out.println(Integer.toBinaryString(s));
-//        Byte.MIN_VALUE
+        byte a = 1;
+        int valorByte = 1;
+        for(int i = 0; i < 256; i++) {
+            a <<= 1;
+            if (a == 0)
+                break;
+            valorByte++;
+        }
+        char s = 1;
+        int valorChar = 1;
+        for(int i = 0; i < 256; i++) {
+            s <<= 1;
+            if (s == 0)
+                break;
+            valorChar++;
+        }
+        short d = 1;
+        int valorShort = 1;
+        for(int i = 0; i < 256; i++) {
+            d <<= 1;
+            if (d == 0)
+                break;
+            valorShort++;
+        }
+        int f = 1;
+        int valorInt = 1;
+        for(int i = 0; i < 256; i++) {
+            f <<= 1;
+            if (f == 0)
+                break;
+            valorInt++;
+        }
+        long g = 1;
+        int valorLong = 1;
+        for(int i = 0; i < 256; i++) {
+            g <<= 1;
+            if (g == 0)
+                break;
+            valorLong++;
+        }
+
+        assertEquals(Byte.SIZE, valorByte);
+        assertEquals(Character.SIZE, valorChar);
+        assertEquals(Short.SIZE, valorShort);
+        assertEquals(Integer.SIZE, valorInt);
+        assertEquals(Long.SIZE, valorLong);
     }
-
-
 }
