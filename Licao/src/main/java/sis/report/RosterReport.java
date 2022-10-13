@@ -1,34 +1,44 @@
 package sis.report;
 
-import org.jetbrains.annotations.NotNull;
 import sis.studentinfo.Session;
 import sis.studentinfo.Student;
+import java.io.*;
+
 
 public class RosterReport {
-    static final String NEWLINE = System.getProperty("line.separator");
-    static final String ROSTER_REPORT_HEADER = "Student" + NEWLINE + "-" + NEWLINE;
-    static final String ROSTER_REPORT_FOOTER = NEWLINE + "# students = ";
+//    static final String NEWLINE = System.getProperty("line.separator");
+    static final String ROSTER_REPORT_HEADER = "Student%n-%n";
+    static final String ROSTER_REPORT_FOOTER = "%n# students = %d%n";
     private final Session session;
+    private Writer writer;
     RosterReport(Session session){
         this.session = session;
     }
-    String getReport(){
-        StringBuilder buffer = new StringBuilder();
-        writeHeader(buffer);
-        writeBody(buffer);
-        writeFooter(buffer);
-        return buffer.toString();
+    void writeReport(Writer writer) throws IOException{
+        this.writer = writer;
+        writeHeader();
+        writeBody();
+        writeFooter();
     }
-    void writeHeader(StringBuilder buffer) {
-        buffer.append(ROSTER_REPORT_HEADER);
+    private void writeHeader() throws IOException {
+        writer.write(String.format(ROSTER_REPORT_HEADER));
     }
-    void writeBody(StringBuilder buffer) {
+    void writeBody() throws IOException{
         for (Student student: session.getAllStudents()){
-            buffer.append(student.getName());
-            buffer.append(NEWLINE);
+            writer.write(String.format(student.getName() + "%n"));
         }
     }
-    void writeFooter(@NotNull StringBuilder buffer) {
-        buffer.append(ROSTER_REPORT_FOOTER).append(session.getAllStudents().size()).append(NEWLINE);
+    void writeFooter() throws IOException {
+        writer.write(String.format(ROSTER_REPORT_FOOTER, session.getAllStudents().size()));
     }
+    void writeReport(String filename) throws IOException{
+        Writer bufferedWriter = new BufferedWriter(new FileWriter(filename));
+        try {
+            writeReport(bufferedWriter);
+        }
+        finally {
+            bufferedWriter.close();
+        }
+    }
+
 }
