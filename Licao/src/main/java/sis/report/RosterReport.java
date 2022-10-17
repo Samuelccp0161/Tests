@@ -6,7 +6,6 @@ import java.io.*;
 
 
 public class RosterReport {
-//    static final String NEWLINE = System.getProperty("line.separator");
     static final String ROSTER_REPORT_HEADER = "Student%n-%n";
     static final String ROSTER_REPORT_FOOTER = "%n# students = %d%n";
     private final Session session;

@@ -92,4 +92,7 @@ abstract public class Session implements Comparable<Session>, Iterable<Student> 
         //logging code. The second half of this lesson contains more than
         // info on logging. For now, this method is empty.
     }
+    public int getNumberOfCredits(){
+        return numberOfCredits;
+    }
 }
