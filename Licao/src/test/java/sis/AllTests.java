@@ -1,8 +1,8 @@
 package sis;
+
 import sis.SuperClassTest.SuperClassTest;
 import sis.report.RosterReportTest;
 import sis.studentinfo.*;
-
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import sis.summer.SummerCourseSessionTest;
@@ -19,6 +19,7 @@ import sis.summer.SummerCourseSessionTest;
         SuperClassTest.class,
         ScorerTest.class,
         PerformanceTest.class,
+
 })
 public class AllTests {
 }

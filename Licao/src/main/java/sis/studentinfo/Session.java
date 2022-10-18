@@ -1,12 +1,18 @@
 package sis.studentinfo;
 
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.*;
 
-abstract public class Session implements Comparable<Session>, Iterable<Student> {
+abstract public class Session implements Comparable<Session>, Iterable<Student>, java.io.Serializable {
     private Course course;
-    private final Vector<Student> students = new Vector<>();
+    public static final long serialVersionUID = 1L;
+    private String name;
+    private transient List<Student> students = new Vector<>();
     private final Date startDate;
     private int numberOfCredits;
     private URL url;
@@ -64,7 +70,7 @@ abstract public class Session implements Comparable<Session>, Iterable<Student> 
         double total = 0.0;
         int count = 0;
 
-        for(Enumeration<Student> it = students.elements();
+        for(Enumeration<Student> it = students.elements()  // erro aqui
             it.hasMoreElements();){
             Student student = it.nextElement();
             if(student.isFullTime())
@@ -94,5 +100,20 @@ abstract public class Session implements Comparable<Session>, Iterable<Student> 
     }
     public int getNumberOfCredits(){
         return numberOfCredits;
+    }
+    private void writeObject(ObjectOutputStream output) throws IOException {
+        output.defaultWriteObject();
+        output.writeInt(students.size());
+        for (Student student : students)
+            output.writeObject(student.getLastName());
+    }
+    private void readObject(ObjectInputStream input) throws Exception{
+        input.defaultReadObject();
+        students = new ArrayList<>();
+        int size = input.readInt();
+        for (int i = 0; i< size; i++){
+            String lastName = (String)input.readObject();
+            students.add(Student.findByLastName(lastName));
+        }
     }
 }

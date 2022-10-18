@@ -35,7 +35,6 @@ public class StudentUITest {
             System.setOut(consoleOut);
         }
     }
-
     private String line(String input){
         return String.format("%s%n", input);
     }
