@@ -70,13 +70,12 @@ abstract public class Session implements Comparable<Session>, Iterable<Student>,
         double total = 0.0;
         int count = 0;
 
-        for(Enumeration<Student> it = students.elements()  // erro aqui
-            it.hasMoreElements();){
-            Student student = it.nextElement();
-            if(student.isFullTime())
+        for (Student student : students) {
+            if (student.isFullTime()) {
                 continue;
-            count++;
+            }
             total += student.getGpa();
+            count++;
         }
         if (count == 0)
             return 0.0;
