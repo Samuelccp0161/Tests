@@ -1,5 +1,7 @@
 package sis.db;
 
+import sis.util.IOUtil;
+
 import java.io.*;
 import java.util.Date;
 import java.util.Random;
@@ -9,15 +11,23 @@ public class DataFile {
     public static final String DATA_EXT = ".db";
     public static final String KEY_EXT = ".idx";
     private String dataFilename;
-    private String KeyFilename;
-    private RandomAccess db;
-    private KeyFile Keys;
+    private String keyFilename;
+    private RandomAccessFile db;
+    private KeyFile keys;
 
     public static DataFile create(String filebase) throws IOException{
         return new DataFile(filebase, true);
     }
     public static DataFile open(String filebase) throws IOException{
         return new DataFile(filebase, false);
+    }
+    private DataFile(String filebase, boolean deleteFiles) throws IOException{
+        dataFilename = filebase + DATA_EXT;
+        keyFilename = filebase + KEY_EXT;
+
+        if (deleteFiles)
+            deleteFiles();
+        openFiles();
     }
     public void add(String key, Object object) throws IOException{
         long position = db.length();
@@ -34,7 +44,7 @@ public class DataFile {
         long position = keys.getPosition(id);
         db.seek(position);
 
-        int length = keys.getLenght(id);
+        int length = keys.getLength(id);
         return read(length);
     }
     public int size(){
@@ -71,7 +81,7 @@ public class DataFile {
     }
     private byte[] getBytes(Object object) throws IOException{
         ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
-        ObjectInputStream outputStream = new ObjectInputStream(byteStream);
+        ObjectOutputStream outputStream = new ObjectOutputStream(byteStream);
         outputStream.writeObject(object);
         outputStream.flush();
         return  byteStream.toByteArray();

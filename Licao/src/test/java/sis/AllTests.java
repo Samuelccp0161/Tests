@@ -6,6 +6,7 @@ import sis.studentinfo.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import sis.summer.SummerCourseSessionTest;
+import sis.util.DateUtilTest;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses( {

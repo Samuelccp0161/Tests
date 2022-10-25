@@ -29,4 +29,12 @@ public class StudentDirectoryTest {
         assertEquals(id, student.getId());
         assertEquals(i, student.getCredits());
     }
+
+    void verifyStudentLookup(StudentDirectory directory, int i) throws IOException{
+        String id = "" + i;
+        Student student = dir.findById(id);
+        assertEquals(id, student.getLastName());
+        assertEquals(id, student.getId());
+        assertEquals(i, student.getCredits());
+    }
 }

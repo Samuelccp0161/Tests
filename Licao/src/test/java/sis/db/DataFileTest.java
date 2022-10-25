@@ -11,7 +11,7 @@ public class DataFileTest {
     private static final String ID1 = "12345";
     private static final String ID2 = "23456";
     private static final String FILEBASE = "DataFileTest";
-    private DataFIle db;
+    private DataFile db;
     private TestData testData1;
     private TestData testData2;
 
@@ -28,7 +28,7 @@ public class DataFileTest {
     }
     public void testAdd() throws IOException{
         db.add(ID1, testData1);
-        assertEquals(1, db.size());expected
+        assertEquals(1, db.size());
 
         db.add(ID2, testData2);
         assertEquals(2, db.size());

@@ -1,6 +1,8 @@
-package sis.studentinfo;
+package sis.util;
 
 import org.junit.Test;
+import sis.studentinfo.DateUtil;
+
 import static  org.junit.Assert.assertEquals;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
