@@ -1,11 +1,12 @@
 package Exercise_11;
 
+import Exceptions.BlowsUpTest;
 import org.junit.After;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-
 import java.io.*;
+
+import static org.junit.Assert.*;
 
 public class TestFileText {
 
@@ -62,17 +63,26 @@ public class TestFileText {
         }
 
     }
-
     @Test
     public void testTimeBuffered() throws Exception {
+
         File file = new File("fofofca.txt");
         writeFile("a", "fofofca.txt");
+
         BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
-        bufferedWriter.write("a");
-        for (int i = 0; i <= file.length(); i++) {
-            bufferedWriter.write("1");
-            bufferedWriter.flush();
-            file.delete();
+        Writer writer = new FileWriter("fofofca.txt");
+
+        for (int i = 0; i <= 3000; i++){
+            escrever(bufferedWriter);
+            escrever(writer);
         }
+
+        assertNotEquals(bufferedWriter, writer);
+    }
+    private String escrever(Writer writer) throws IOException {
+        for (int i = 0; i <= 10; i++ ){
+            writer.write("a");
+        }
+        return writer.toString();
     }
 }
