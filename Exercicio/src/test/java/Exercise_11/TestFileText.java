@@ -74,10 +74,8 @@ public class TestFileText {
         for (int i = 1; i <= 1000000; i *= 10){
             escrever(bufferedWriter, i); // tempo 1
             escrever(writer, i);  // tempo 2
-
-
             // comparar tempo 1 com o tempo 2
-
+//seila
         }
         assertNotEquals(bufferedWriter, writer);
     }
