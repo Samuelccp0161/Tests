@@ -1,6 +1,5 @@
 package Exercise_11;
 
-import Exceptions.BlowsUpTest;
 import org.junit.After;
 import org.junit.Test;
 
@@ -72,17 +71,24 @@ public class TestFileText {
         BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
         Writer writer = new FileWriter("fofofca.txt");
 
-        for (int i = 0; i <= 3000; i++){
-            escrever(bufferedWriter);
-            escrever(writer);
-        }
+        for (int i = 1; i <= 1000000; i *= 10){
+            escrever(bufferedWriter, i); // tempo 1
+            escrever(writer, i);  // tempo 2
 
+
+            // comparar tempo 1 com o tempo 2
+
+        }
         assertNotEquals(bufferedWriter, writer);
     }
-    private String escrever(Writer writer) throws IOException {
-        for (int i = 0; i <= 10; i++ ){
-            writer.write("a");
+    private long escrever(Writer writer, int quantidade) throws IOException {
+        final long start = System.currentTimeMillis();
+        for (int i = 0; i < quantidade; i++ ){
+            writer.write('i');
         }
-        return writer.toString();
+        writer.flush();
+        final long end = System.currentTimeMillis();
+        System.out.println(end - start);
+        return end - start; // deveria retornar o tempo que levou para escrever tudo
     }
 }
