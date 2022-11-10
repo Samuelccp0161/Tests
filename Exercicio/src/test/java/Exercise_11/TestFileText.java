@@ -1,19 +1,26 @@
 package Exercise_11;
 
-import org.junit.After;
-import org.junit.Test;
-
+import org.junit.*;
 import java.io.*;
-
 import static org.junit.Assert.*;
 
 public class TestFileText {
 
-    @After
-    public void tearDown() throws Exception {
-
+    @Test
+    public void testFileText() throws IOException {
+        String filename = "text.txt";
+        String text = "1. Create a test to write the text of this exercise to the file system. The test should read the\n" +
+                "fiteFile(String ile back in and make assertions about the content. Ensure that you can run the test\n" +
+                "multiple times and have it pass. Finally, make sure that there are no leftover files when the\n" +
+                "test finishes, even if an exception is thrown.";
+        try {
+            writeFile(text, filename);
+            assertEquals(text, read(filename));
+        } finally {
+            File file = new File(filename);
+            file.delete();
+        }
     }
-
     public void writeFile(String text, String filename) throws IOException {
         FileWriter writer = null;
         try {
@@ -25,7 +32,6 @@ public class TestFileText {
                 writer.close();
         }
     }
-
     public String read(String filename) throws IOException {
         BufferedReader reader = null;
         StringBuilder builder = new StringBuilder();
@@ -42,25 +48,7 @@ public class TestFileText {
         } finally {
             if (reader != null)
                 reader.close();
-
         }
-    }
-
-    @Test
-    public void testFileText() throws IOException {
-        String filename = "text.txt";
-        String text = "1. Create a test to write the text of this exercise to the file system. The test should read the\n" +
-                "fiteFile(String ile back in and make assertions about the content. Ensure that you can run the test\n" +
-                "multiple times and have it pass. Finally, make sure that there are no leftover files when the\n" +
-                "test finishes, even if an exception is thrown.";
-        try {
-            writeFile(text, filename);
-            assertEquals(text, read(filename));
-        } finally {
-            File file = new File(filename);
-            file.delete();
-        }
-
     }
     @Test
     public void testTimeBuffered() throws Exception {
@@ -70,14 +58,24 @@ public class TestFileText {
 
         BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
         Writer writer = new FileWriter("fofofca.txt");
+        long timeBuffered = 0;
+        long timeWriter = 0;
 
-        for (int i = 1; i <= 1000000; i *= 10){
-            escrever(bufferedWriter, i); // tempo 1
-            escrever(writer, i);  // tempo 2
-            // comparar tempo 1 com o tempo 2
-        //seila
+        for (int i = 1000; i <= 1000000; i *= 10){
+            try {
+                timeBuffered = escrever(bufferedWriter, i);
+                timeWriter = escrever(writer, i);
+                if (timeBuffered * 5 <= timeWriter) {
+                    System.out.println("i: " + i);
+                    break;
+                }
+            }finally {
+                file.delete();
+            }
         }
-        assertNotEquals(bufferedWriter, writer);
+
+        assertTrue(timeBuffered * 5 <= timeWriter);
+        System.out.println("buf: " + timeBuffered + ", wrt: " + timeWriter);
     }
     private long escrever(Writer writer, int quantidade) throws IOException {
         final long start = System.currentTimeMillis();
@@ -86,7 +84,6 @@ public class TestFileText {
         }
         writer.flush();
         final long end = System.currentTimeMillis();
-        System.out.println(end - start);
-        return end - start; // deveria retornar o tempo que levou para escrever tudo
+        return end - start;
     }
 }
