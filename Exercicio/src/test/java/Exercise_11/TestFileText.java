@@ -75,7 +75,7 @@ public class TestFileText {
             escrever(bufferedWriter, i); // tempo 1
             escrever(writer, i);  // tempo 2
             // comparar tempo 1 com o tempo 2
-//seila
+        //seila
         }
         assertNotEquals(bufferedWriter, writer);
     }
