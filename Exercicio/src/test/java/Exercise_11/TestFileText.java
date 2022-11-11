@@ -58,6 +58,7 @@ public class TestFileText {
 
         BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
         Writer writer = new FileWriter("fofofca.txt");
+
         long timeBuffered = 0;
         long timeWriter = 0;
 
@@ -85,5 +86,14 @@ public class TestFileText {
         writer.flush();
         final long end = System.currentTimeMillis();
         return end - start;
+    }
+    @Test
+    public void testMyFile(){
+        File filename = new File("file.txt");
+        MyFile myFile = new MyFile(filenxame);
+
+        MyFile.writer("ps");
+
+        assertEquals("ps", myFile.mobilidade());
     }
 }
