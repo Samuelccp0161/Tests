@@ -41,7 +41,6 @@ public class MyFile {
             writer.write("\n" + lines.get(i));
             writer.flush();
         }
-
     }
 
 

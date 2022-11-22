@@ -60,4 +60,17 @@ public class MyFileTest {
             file.delete();
         }
     }
+    @Test
+    public void readTestLines(){
+//        String fileName = "filename.txt";
+//        MyFile myFile = new MyFile(fileName);
+//        List<String> lines = new ArrayList<>();
+//        lines.add("haha");
+//        lines.add("oi");
+//        lines.add("hi");
+//        try {
+//            myFile.readLines(fileName);
+//            assertEquals("haha\noi\nhi",myFile.readLines());
+//        }
+    }
 }

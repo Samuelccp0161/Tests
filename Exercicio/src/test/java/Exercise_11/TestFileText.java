@@ -101,8 +101,5 @@ public class TestFileText {
             File file = new File(fileName);
             file.delete();
         }
-
-
-
     }
 }
