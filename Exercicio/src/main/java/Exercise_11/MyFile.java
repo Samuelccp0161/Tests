@@ -1,6 +1,7 @@
 package Exercise_11;
 
 import java.io.*;
+import java.util.Collections;
 import java.util.List;
 
 public class MyFile {
@@ -33,6 +34,18 @@ public class MyFile {
     }
 
 
-    public void writer(List<String> lines) {
+    public void writer(List<String> lines) throws IOException {
+        Writer writer = new FileWriter(file);
+        writer.write(lines.get(0));
+        for (int i = 1; i < lines.size(); i++) {
+            writer.write("\n" + lines.get(i));
+            writer.flush();
+        }
+
+    }
+
+
+    public List<String> readLines() {
+        return null;
     }
 }

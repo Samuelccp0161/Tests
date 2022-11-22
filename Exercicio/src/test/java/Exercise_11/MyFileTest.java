@@ -49,9 +49,10 @@ public class MyFileTest {
         List<String> lines = new ArrayList<>();
         lines.add("haha");
         lines.add("oi");
+        lines.add("hi");
         try {
             myFile.writer(lines);
-            assertEquals("haha" + "\n" + "oi", read(fileName));
+            assertEquals("haha\noi\nhi", read(fileName));
         } catch (IOException e) {
             throw new RuntimeException(e);
         } finally {
