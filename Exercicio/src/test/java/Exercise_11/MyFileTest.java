@@ -2,10 +2,7 @@ package Exercise_11;
 
 import org.junit.Test;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +16,10 @@ public class MyFileTest {
         try {
             myFile.writer("haha\noi");
             assertEquals("haha\noi", read(fileName));
-        }finally {
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        finally {
             File file = new File(fileName);
             file.delete();
         }
@@ -43,7 +43,7 @@ public class MyFileTest {
         }
     }
     @Test
-    public void testWriterLines(){
+    public void testWriterLines() {
         String fileName = "filename.txt";
         MyFile myFile = new MyFile(fileName);
         List<String> lines = new ArrayList<>();
@@ -51,26 +51,35 @@ public class MyFileTest {
         lines.add("oi");
         lines.add("hi");
         try {
-            myFile.writer(lines);
+            myFile.writerLines(lines);
             assertEquals("haha\noi\nhi", read(fileName));
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         } finally {
             File file = new File(fileName);
             file.delete();
         }
     }
     @Test
-    public void readTestLines(){
-//        String fileName = "filename.txt";
-//        MyFile myFile = new MyFile(fileName);
-//        List<String> lines = new ArrayList<>();
-//        lines.add("haha");
-//        lines.add("oi");
-//        lines.add("hi");
-//        try {
-//            myFile.readLines(fileName);
-//            assertEquals("haha\noi\nhi",myFile.readLines());
-//        }
+    public void readTestLines() throws IOException {
+        String fileName = "filename.txt";
+        MyFile myFile = new MyFile(fileName);
+        List<String> lines = new ArrayList<>();
+        lines.add("haha");
+        lines.add("oi");
+        lines.add("hi");
+        try {
+            myFile.writerLines(lines);
+            assertEquals(lines, myFile.readLines());
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        finally {
+            File file = new File(fileName);
+            file.delete();
+        }
     }
+    //ele quer que eu jogue uma exceção se o arquivo ja existir (writer)
+    //ele quer que eu jogue uma exceção se o arquio não existir (read)
+
 }
