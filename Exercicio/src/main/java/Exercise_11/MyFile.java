@@ -9,9 +9,29 @@ public class MyFile {
     public MyFile(String filename){
         this.file = new File(filename);
     }
+    public String writer(String talvez) throws FileExistException, IOException {
+        Writer writer = null;
+
+        if (file.exists())
+            throw new FileExistException("Arquivo já existe");
+        try {
+            writer = new FileWriter(file);
+            writer.write(talvez);
+            writer.flush();
+
+            return talvez;
+        }
+        finally {
+            if (writer != null)
+                writer.close();
+        }
+    }
     public String read() throws IOException {
         BufferedReader reader = null;
         StringBuilder builder = new StringBuilder();
+
+        if (!file.exists())
+            throw new FileNotExistException("Arquivo não existe");
         try {
             reader = new BufferedReader(new FileReader(file));
             while (true) {
@@ -27,22 +47,10 @@ public class MyFile {
                 reader.close();
         }
     }
-    public String writer(String talvez) throws IOException {
-        Writer writer = null;
-        try {
-            writer = new FileWriter(file);
-            writer.write(talvez);
-            writer.flush();
-
-            return talvez;
-        }
-        finally {
-            if (writer != null)
-                writer.close();
-        }
-    }
     public void writerLines(List<String> lines) throws IOException {
         Writer writer = null;
+        if (file.exists())
+            throw new FileExistException("Arquivo já existe");
         try {
             writer = new FileWriter(file);
             writer.write(lines.get(0));
@@ -64,12 +72,6 @@ public class MyFile {
             while (line != null){
                 lines.add(line);
                 line = reader.readLine();
-//            int indexOfLastElement = lines.size() - 1;
-//
-//            if (lines.get(indexOfLastElement) == null ){
-//                lines.remove(indexOfLastElement);
-//                break;
-//            }
             }
             return lines;
         }finally {

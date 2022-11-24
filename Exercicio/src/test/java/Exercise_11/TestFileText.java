@@ -87,19 +87,5 @@ public class TestFileText {
         final long end = System.currentTimeMillis();
         return end - start;
     }
-    @Test
-    public void testMyFile() throws IOException {
-        String fileName = "filename.txt";
-        MyFile myFile = new MyFile(fileName);
-        try {
-            myFile.writer("ps");
-            assertEquals("ps", myFile.read());
 
-            myFile.writer("haha" + "\n" + "oi");
-            assertEquals("haha" + "\n" + "oi",myFile.read());
-        } finally {
-            File file = new File(fileName);
-            file.delete();
-        }
-    }
 }

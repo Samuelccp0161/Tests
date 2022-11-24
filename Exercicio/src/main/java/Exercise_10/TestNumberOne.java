@@ -128,9 +128,9 @@ public class TestNumberOne {
     }
     @Test
     public void testQuestTen(){
-        float x = (int)1.9;
+        float x = 1.9f;
         System.out.print(x);
-        assertEquals(2, x, 0.02);
+        assertEquals(2, x, 0.11f);
     }
     @Test
     public void testQuestEleven(){
@@ -221,8 +221,8 @@ public class TestNumberOne {
 
         assertEquals(100, numbers.size());
 
-        assertEquals(f, (int) numbers.get(i));
-        assertEquals(g, (int) numbers.get(j));
+        assertEquals(f, (int) numbers.get(j));
+        assertEquals(g, (int) numbers.get(i));
 
         System.out.println(numbers);
         System.out.println(numbers.size());
