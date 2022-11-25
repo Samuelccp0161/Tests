@@ -40,7 +40,7 @@ public class MyFileTest {
     @Test
     public void testWriter() throws IOException, FileExistException {
         MyFile myFile = new MyFile(filename);
-        myFile.writer("haha\noi");
+        myFile.write("haha\noi");
         assertEquals("haha\noi", read(filename));
 
     }
@@ -48,7 +48,7 @@ public class MyFileTest {
     public void testRead() throws IOException {
         MyFile myFile = new MyFile(filename);
 
-        myFile.writer("haha" + "\n" + "oi");
+        myFile.write("haha" + "\n" + "oi");
         assertEquals("haha" + "\n" + "oi",myFile.read());
     }
     @Test
@@ -59,7 +59,7 @@ public class MyFileTest {
         lines.add("oi");
         lines.add("hi");
 
-        myFile.writerLines(lines);
+        myFile.writeLines(lines);
         assertEquals("haha\noi\nhi", read(filename));
     }
     @Test
@@ -70,15 +70,15 @@ public class MyFileTest {
         lines.add("oi");
         lines.add("hi");
 
-        myFile.writerLines(lines);
+        myFile.writeLines(lines);
         assertEquals(lines, myFile.readLines());
     }
     @Test
     public void testWriterException() throws IOException{
         MyFile myFile = new MyFile(filename);
-        myFile.writer("haha\noi");
+        myFile.write("haha\noi");
         try {
-            myFile.writer("haha\noi");
+            myFile.write("haha\noi");
             fail();
         } catch (FileExistException exception) {
         }
@@ -99,9 +99,10 @@ public class MyFileTest {
         lines.add("haha");
         lines.add("oi");
         lines.add("hi");
-        myFile.writerLines(lines);
+        myFile.writeLines(lines);
         try {
             assertEquals("haha\noi\nhi", read(filename));
+            System.out.println(read(filename));
         }catch (FileExistException exception){
         }
     }
@@ -112,17 +113,35 @@ public class MyFileTest {
         lines.add("haha");
         lines.add("oi");
         lines.add("hi");
-        myFile.writerLines(lines);
+        myFile.writeLines(lines);
         try {
             assertEquals(lines, myFile.readLines());
         }catch (FileNotExistException exception){
         }
     }
     @Test
-    public void testOverwrite(){
+    public void testOverwrite() throws IOException {
         MyFile myFile = new MyFile(filename);
 
+        myFile.write("asd\nfgh");
+        myFile.overwrite("ssd\nyuou");
 
+        assertEquals("ssd\nyuou", myFile.read());
+    }
+    @Test
+    public void testOverwriteLines() throws IOException {
+        MyFile myFile = new MyFile(filename);
+        List<String> lines = new ArrayList<>();
+
+        lines.add("Alexandre");
+        lines.add("Jesus");
+        myFile.writeLines(lines);
+
+        lines.add("Samuel");
+        lines.add("Cabral");
+        myFile.overwriteLines(lines);
+
+        assertEquals(lines, myFile.readLines());
 
     }
     //eu tenho que fazer um método para que ele escreva mesmo ja existindo um arquivo (writer);

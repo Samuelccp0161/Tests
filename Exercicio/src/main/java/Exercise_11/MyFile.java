@@ -9,7 +9,7 @@ public class MyFile {
     public MyFile(String filename){
         this.file = new File(filename);
     }
-    public String writer(String talvez) throws FileExistException, IOException {
+    public void write(String talvez) throws FileExistException, IOException {
         Writer writer = null;
 
         if (file.exists())
@@ -18,8 +18,6 @@ public class MyFile {
             writer = new FileWriter(file);
             writer.write(talvez);
             writer.flush();
-
-            return talvez;
         }
         finally {
             if (writer != null)
@@ -47,7 +45,7 @@ public class MyFile {
                 reader.close();
         }
     }
-    public void writerLines(List<String> lines) throws IOException {
+    public void writeLines(List<String> lines) throws IOException {
         Writer writer = null;
         if (file.exists())
             throw new FileExistException("Arquivo já existe");
@@ -77,6 +75,32 @@ public class MyFile {
         }finally {
             if (reader != null)
                 reader.close();
+        }
+    }
+    public void overwrite(String overwrite) throws IOException {
+        Writer writer = null;
+        try {
+            writer = new FileWriter(file);
+            writer.write(overwrite);
+            writer.flush();
+        }
+        finally {
+            if (writer != null)
+                writer.close();
+        }
+    }
+    public void overwriteLines(List<String> overwriteLines) throws IOException {
+        Writer writer = null;
+        try {
+            writer = new FileWriter(file);
+            writer.write(overwriteLines.get(0));
+            for (int i = 1; i < overwriteLines.size(); i++) {
+                writer.write("\n" + overwriteLines.get(i));
+                writer.flush();
+            }
+        }finally {
+            if (writer != null)
+                writer.close();
         }
     }
 }
