@@ -144,7 +144,6 @@ public class MyFileTest {
         assertEquals(lines, myFile.readLines());
 
     }
-    //eu tenho que fazer um método para que ele escreva mesmo ja existindo um arquivo (writer);
-    //eu tenho que fazer um método para que ele escreva uma lista mesmo ja existindo um arquivo (writer);
+
 
 }
