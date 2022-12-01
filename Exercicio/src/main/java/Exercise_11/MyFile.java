@@ -9,14 +9,14 @@ public class MyFile {
     public MyFile(String filename){
         this.file = new File(filename);
     }
-    public void write(String talvez) throws FileExistException, IOException {
+    public void write(String text) throws FileExistException, IOException {
         Writer writer = null;
 
         if (file.exists())
             throw new FileExistException("Arquivo já existe");
         try {
             writer = new FileWriter(file);
-            writer.write(talvez);
+            writer.write(text);
             writer.flush();
         }
         finally {
@@ -77,11 +77,11 @@ public class MyFile {
                 reader.close();
         }
     }
-    public void overwrite(String overwrite) throws IOException {
+    public void overwrite(String text) throws IOException {
         Writer writer = null;
         try {
             writer = new FileWriter(file);
-            writer.write(overwrite);
+            writer.write(text);
             writer.flush();
         }
         finally {
@@ -89,13 +89,13 @@ public class MyFile {
                 writer.close();
         }
     }
-    public void overwriteLines(List<String> overwriteLines) throws IOException {
+    public void overwriteLines(List<String> lines) throws IOException {
         Writer writer = null;
         try {
             writer = new FileWriter(file);
-            writer.write(overwriteLines.get(0));
-            for (int i = 1; i < overwriteLines.size(); i++) {
-                writer.write("\n" + overwriteLines.get(i));
+            writer.write(lines.get(0));
+            for (int i = 1; i < lines.size(); i++) {
+                writer.write("\n" + lines.get(i));
                 writer.flush();
             }
         }finally {

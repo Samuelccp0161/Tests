@@ -18,8 +18,9 @@ public class TestDir {
     @After
     public void deleteFiles() {
         File file = new File(filename);
-        if (file.exists())
+        if (file.exists()) {
             assertTrue(file.delete());
+        }
     }
 
     @Test
@@ -53,16 +54,53 @@ public class TestDir {
     }
 
     @Test
+    public void testListFilesOneFile() throws IOException {
+        final String filename1 = filename + "/file";
+        try {
+            Dir dir = new Dir(filename);
+            dir.ensureExists();
+
+            MyFile file = new MyFile(filename1);
+            file.write("123456");
+
+            List<MyFile> files = dir.listFiles();
+//        System.out.println(files.get(0).read());
+
+            assertEquals(1, files.size());
+            assertEquals(file.read(), files.get(0).read());
+        } finally {
+            final File file = new File(filename1);
+            if (file.exists())
+                assertTrue(file.delete());
+
+        }
+    }
+
+    @Test
     public void testListFiles() throws IOException {
-        Dir dir = new Dir(filename);
-        dir.ensureExists();
+//        final String[] filenames = {filename + "/file1", filename + "/file2", filename + "/file3"};
+        final String[] filenames = {filename + "/file1"};
+        try {
+            Dir dir = new Dir(filename);
+            dir.ensureExists();
 
-        MyFile file = new MyFile(filename + "/file");
-        file.write("123456");
+            for (String path : filenames) {
+                MyFile file = new MyFile(path);
+                file.write(path);
+            }
 
-        List<MyFile> files = dir.listFiles();
+            List<MyFile> files = dir.listFiles();
 
-        assertEquals(1, files.size());
-        assertEquals(file.read(), files.get(0).read());
+            assertEquals(filenames.length, files.size());
+            for (int i = 0; i < files.size(); i++) {
+                assertEquals(filenames[i], files.get(0).read());
+            }
+        } finally {
+            for (String filename : filenames) {
+                final File file = new File(filename);
+                if (file.exists())
+                    assertTrue(file.delete());
+            }
+        }
     }
 }
