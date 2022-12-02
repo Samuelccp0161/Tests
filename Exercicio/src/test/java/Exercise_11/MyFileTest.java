@@ -145,5 +145,13 @@ public class MyFileTest {
 
     }
 
+    @Test
+    public void testDelete() throws IOException {
+        MyFile myFile = new MyFile(filename);
+        myFile.write("12345");
 
+        myFile.delete();
+
+        assertFalse(new File(filename).exists());
+    }
 }

@@ -103,4 +103,8 @@ public class MyFile {
                 writer.close();
         }
     }
+    public void delete(){
+        if (file.exists())
+            file.delete();
+    }
 }

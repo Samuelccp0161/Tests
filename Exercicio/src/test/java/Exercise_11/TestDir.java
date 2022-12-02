@@ -14,6 +14,7 @@ import static org.junit.Assert.*;
 
 public class TestDir {
     final String filename = "filename";
+    File file;
 
     @After
     public void deleteFiles() {
@@ -78,11 +79,12 @@ public class TestDir {
 
     @Test
     public void testListFiles() throws IOException {
-//        final String[] filenames = {filename + "/file1", filename + "/file2", filename + "/file3"};
-        final String[] filenames = {filename + "/file1"};
+        final String[] filenames = {filename + "/file1", filename + "/file2", filename + "/file3"};
         try {
             Dir dir = new Dir(filename);
             dir.ensureExists();
+
+            assertEquals(0, dir.listFiles().size());
 
             for (String path : filenames) {
                 MyFile file = new MyFile(path);
@@ -93,11 +95,36 @@ public class TestDir {
 
             assertEquals(filenames.length, files.size());
             for (int i = 0; i < files.size(); i++) {
-                assertEquals(filenames[i], files.get(0).read());
+                assertEquals(filenames[i], files.get(i).read());
             }
         } finally {
             for (String filename : filenames) {
-                final File file = new File(filename);
+                File file = new File(filename);
+                if (file.exists())
+                    assertTrue(file.delete());
+            }
+
+        }
+    }
+
+    @Test
+    public void testDelete() throws IOException {
+        final String[] filenames = {filename + "/file1", filename + "/file2", filename + "/file3"};
+        try {
+            Dir dir = new Dir(filename);
+            dir.ensureExists();
+
+            for (String path : filenames) {
+                MyFile file = new MyFile(path);
+                file.write(path);
+            }
+
+            dir.delete();
+
+            assertFalse(new File(filename).exists());
+        } finally {
+            for (String filename : filenames) {
+                File file = new File(filename);
                 if (file.exists())
                     assertTrue(file.delete());
             }
