@@ -13,6 +13,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.*;
 
 public class TestDir {
+
     final String filename = "filename";
     File file;
 
@@ -123,11 +124,9 @@ public class TestDir {
 
             assertFalse(new File(filename).exists());
         } finally {
-            for (String filename : filenames) {
-                File file = new File(filename);
-                if (file.exists())
-                    assertTrue(file.delete());
+
+
             }
         }
     }
-}
+

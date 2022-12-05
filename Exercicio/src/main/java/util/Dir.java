@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class Dir {
@@ -35,10 +36,17 @@ public class Dir {
         return listFiles;
     }
     public void delete(){
-        File file = new File("filename");
-        if (file.exists())
-            assertTrue(file.delete());
-    }
+            if (directory.isDirectory()) {
+                File[] files = directory.listFiles();
+                for (File file : files) {
+                    file.delete();
+                }
+            }
+            directory.delete();
+        }
+
+
+
 }
 
 
