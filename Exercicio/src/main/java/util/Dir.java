@@ -35,9 +35,13 @@ public class Dir {
         return listFiles;
     }
     public void delete(){
-        File file = new File("filename");
-        if (file.exists())
-            assertTrue(file.delete());
+        if (directory.isDirectory()) {
+            File[] files = directory.listFiles();
+            for (File file : files) {
+                file.delete();
+            }
+        }
+        directory.delete();
     }
 }
 
