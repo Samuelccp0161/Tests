@@ -22,7 +22,6 @@ public class TestDir {
     public void setUp() throws Exception {
         dir = new Dir(filename);
     }
-
     @After
     public void deleteFiles() {
         dir.delete();
@@ -105,36 +104,5 @@ public class TestDir {
 
         assertFalse(new File(filename).exists());
     }
-    @Test
-    public void testByteArray() throws IOException{
-        try {
-            blowup();
-        } catch (Exception e) {
-            StackTraceElement[] stackTrace = e.getStackTrace();
-            ByteArrayOutputStream capturedTrace = getTrace(e);
 
-            String st = capturedTrace.toString();
-
-            for (var trace : stackTrace) {
-                System.out.println(trace);
-                assertTrue(st.contains(trace.toString()));
-            }
-
-        }
-    }
-
-    private ByteArrayOutputStream getTrace(Exception e) throws IOException {
-        StackTraceElement[] stack;
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        for (StackTraceElement s : stack)
-            e.getCause().toString().getBytes();
-//            outputStream.write(s.toString().getBytes());
-            return  ;
-        }
-
-    private void blowup() {
-//        Exception e1 = new NullPointerException("ops");
-//        throw new SimpleException(e1);
-        throw new NullPointerException();
-    }
 }
