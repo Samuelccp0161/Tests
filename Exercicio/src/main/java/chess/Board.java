@@ -3,9 +3,11 @@ package chess;
 import chess.pieces.NoPiece;
 import chess.pieces.Piece;
 import util.StringUtil;
+
+import java.io.Serializable;
 import java.util.*;
 
-public class Board implements Iterable<Piece> {
+public class Board implements Iterable<Piece>, Serializable {
     private final Piece [][] allRanks;
     private final ArrayList<Piece> pieceWhite = new ArrayList<>();
     private final ArrayList<Piece> pieceBlack = new ArrayList<>();
