@@ -2,8 +2,12 @@ package chess;
 
 import chess.pieces.Piece;
 
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Game {
-    private final Board board;
+    private Board board;
     public Game(){
         this.board = new Board();
     }
@@ -61,5 +65,24 @@ public class Game {
             else power += count * Piece.createBlackPawn().getPower();
         }
         return power;
+    }
+    public void saveSerialized(String filename) throws IOException{
+        ObjectOutputStream outputStream = null;
+        try {
+            outputStream = new ObjectOutputStream(new FileOutputStream(filename));
+            outputStream.writeObject(board);
+        } finally {
+            outputStream.close();
+        }
+    }
+    public void loadSerialized(String filename) throws IOException, ClassNotFoundException{
+        ObjectInputStream inputStream = null;
+        try {
+            inputStream = new ObjectInputStream(new FileInputStream(filename));
+            board = (Board) inputStream.readObject();
+
+        }finally {
+            inputStream.close();
+        }
     }
 }

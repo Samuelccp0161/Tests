@@ -1,8 +1,9 @@
 package chess.pieces;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Piece implements Comparable<Piece>{
+public class Piece implements Comparable<Piece>, Serializable {
     public static final char PAWN_REPRESENTATION = 'p';
     public static final char ROOK_REPRESENTATION = 'r';
     public static final char KNIGHT_REPRESENTATION = 'n';

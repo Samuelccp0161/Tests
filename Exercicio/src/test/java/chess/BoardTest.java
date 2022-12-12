@@ -6,6 +6,8 @@ import chess.pieces.Piece;
 import org.junit.Before;
 import org.junit.Test;
 import util.StringUtil;
+
+import java.io.File;
 import java.util.Iterator;
 import static org.junit.Assert.*;
 

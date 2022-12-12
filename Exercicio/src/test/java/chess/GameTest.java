@@ -5,6 +5,13 @@ import chess.pieces.Piece;
 import org.junit.Before;
 import org.junit.Test;
 import util.StringUtil;
+
+import javax.imageio.IIOException;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.Serializable;
+
 import static org.junit.Assert.*;
 
 public class GameTest {
@@ -74,5 +81,30 @@ public class GameTest {
 //      ----------------------------------
         System.out.println(game.powerPawn('p'));
         System.out.println(game.powerBlack());
+    }
+
+    @Test
+    public void testSaveBoardSerialized() throws IOException, ClassNotFoundException {
+        try {
+            String filename = "savefile";
+
+            game.push("a2", Piece.createBlackBishop());
+            game.push("a4", Piece.createWhiteKing());
+            game.push("b2", Piece.createWhiteBishop());
+
+            game.saveSerialized(filename);
+
+            Game game1 = new Game();
+
+            game1.loadSerialized(filename);
+
+            assertEquals(game.printBoard(), game1.printBoard());
+        }finally {
+            File file = new File("savefile");
+
+            if (file.exists())
+                assertTrue(file.delete());
+        }
+
     }
 }
