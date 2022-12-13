@@ -13,10 +13,7 @@ public class MyFileTest {
     final String filename = "filename.txt";
     @After
     public void tearDown() throws Exception {
-        File file = new File(filename);
 
-        if (file.exists())
-            assertTrue(file.delete());
     }
     private String read(String filename) throws IOException {
         BufferedReader reader = null;

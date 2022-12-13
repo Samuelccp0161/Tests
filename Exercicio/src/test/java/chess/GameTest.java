@@ -107,4 +107,29 @@ public class GameTest {
         }
 
     }
+
+    @Test
+    public void testSaveBoardTextual() throws IOException, ClassNotFoundException {
+        try {
+            String filename = "savefile";
+
+            game.push("a2", Piece.createBlackBishop());
+            game.push("a4", Piece.createWhiteKing());
+            game.push("b2", Piece.createWhiteBishop());
+
+            game.saveTextual(filename);
+
+            Game game1 = new Game();
+
+            game1.loadTextual(filename);
+
+            assertEquals(game.printBoard(), game1.printBoard());
+        }finally {
+            File file = new File("savefile");
+
+            if (file.exists())
+                assertTrue(file.delete());
+        }
+
+    }
 }

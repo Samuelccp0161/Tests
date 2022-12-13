@@ -85,4 +85,21 @@ public class Game {
             inputStream.close();
         }
     }
+//    File file = new File("filename");
+    public void saveTextual(String filename) throws IOException {
+        OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(filename));
+        writer.write(board.printBoard());
+        writer.flush();
+    }
+    public void loadTextual(String filename) throws IOException {
+        InputStreamReader reader = new InputStreamReader(new FileInputStream(filename));
+        if(filename.equals(".")){
+            return;
+        }
+
+        //eu tenho que transformar o character do file em uma peça.
+
+        reader.read();
+//        reader.read();
+    }
 }
