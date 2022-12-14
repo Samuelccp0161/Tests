@@ -6,11 +6,8 @@ import org.junit.Before;
 import org.junit.Test;
 import util.StringUtil;
 
-import javax.imageio.IIOException;
-
 import java.io.File;
 import java.io.IOException;
-import java.io.Serializable;
 
 import static org.junit.Assert.*;
 
@@ -113,9 +110,9 @@ public class GameTest {
         try {
             String filename = "savefile";
 
-            game.push("a2", Piece.createBlackBishop());
-            game.push("a4", Piece.createWhiteKing());
-            game.push("b2", Piece.createWhiteBishop());
+            game.push("a1", Piece.createBlackPawn());
+//            game.push("a4", Piece.createWhiteKing());
+//            game.push("b2", Piece.createWhiteBishop());
 
             game.saveTextual(filename);
 
@@ -130,6 +127,18 @@ public class GameTest {
             if (file.exists())
                 assertTrue(file.delete());
         }
+    }
+    @Test
+    public void testStringToPiece(){
+        String pawnBlack = "P";
+        String queenWhite = "q";
+        String bishopBlack = "B";
+        String rookWhite = "r";
+
+        assertEquals(Piece.createBlackPawn().getRepresentation(), game.stringToPiece(pawnBlack).getRepresentation());
+        assertEquals(Piece.createWhiteQueen().getRepresentation(), game.stringToPiece(queenWhite).getRepresentation());
+        assertEquals(Piece.createBlackBishop().getRepresentation(), game.stringToPiece(bishopBlack).getRepresentation());
+        assertEquals(Piece.createWhiteRook().getRepresentation(), game.stringToPiece(rookWhite).getRepresentation());
 
     }
 }
