@@ -3,8 +3,6 @@ package chess;
 import chess.pieces.Piece;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Game {
     private Board board;
@@ -92,14 +90,31 @@ public class Game {
         writer.flush();
     }
     public void loadTextual(String filename) throws IOException {
-        InputStreamReader reader = new InputStreamReader(new FileInputStream(filename));
-        if(filename.equals(".")){
-            return;
+        BufferedReader reader = new BufferedReader(new FileReader(filename));
+//        for(int i = 0; i < ; i++){}
+        board.push("a1", Piece.createBlackPawn());
+        for (int i = 0; i < 8; i++) {
+            System.out.printf(reader.readLine() + "\n");
         }
 
-        //eu tenho que transformar o character do file em uma peça.
+    }
+    public Piece stringToPiece(String i){
+        return switch (i){
+            case "P" -> Piece.createBlackPawn();
+            case "R" -> Piece.createBlackRook();
+            case "K" -> Piece.createBlackKing();
+            case "Q" -> Piece.createBlackQueen();
+            case "N" -> Piece.createBlackKnight();
+            case "B" -> Piece.createBlackBishop();
 
-        reader.read();
-//        reader.read();
+            case "p" -> Piece.createWhitePawn();
+            case "r" -> Piece.createWhiteRook();
+            case "k" -> Piece.createWhiteKing();
+            case "q" -> Piece.createWhiteQueen();
+            case "n" -> Piece.createWhiteKnight();
+            case "b" -> Piece.createWhiteBishop();
+
+            default -> Piece.noPiece();
+        };
     }
 }

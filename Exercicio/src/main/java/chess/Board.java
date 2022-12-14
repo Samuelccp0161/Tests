@@ -167,9 +167,9 @@ public class Board implements Iterable<Piece>, Serializable {
     }
     @Override
     public Iterator<Piece> iterator() {
-        return gg().iterator();
+        return listPieces().iterator();
     }
-    public List<Piece> gg(){
+    public List<Piece> listPieces(){
         List<Piece> pieceInBoard = new ArrayList<Piece>();
         for (Piece[] rank : allRanks)
             for (int i = 0; i < allRanks.length; i++) {

@@ -7,7 +7,6 @@ import org.junit.Before;
 import org.junit.Test;
 import util.StringUtil;
 
-import java.io.File;
 import java.util.Iterator;
 import static org.junit.Assert.*;
 
@@ -130,9 +129,9 @@ public class BoardTest {
         for (Piece p: board) {
             System.out.println(p.getRepresentation());
         }
-        assertEquals('P', board.gg().get(0).getRepresentation());
-        assertEquals('B', board.gg().get(1).getRepresentation());
-        assertEquals('n', board.gg().get(2).getRepresentation());
+        assertEquals('P', board.listPieces().get(0).getRepresentation());
+        assertEquals('B', board.listPieces().get(1).getRepresentation());
+        assertEquals('n', board.listPieces().get(2).getRepresentation());
 
     }
 }
