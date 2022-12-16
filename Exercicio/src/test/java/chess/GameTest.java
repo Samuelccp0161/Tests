@@ -111,7 +111,7 @@ public class GameTest {
             String filename = "savefile";
 
             game.push("a1", Piece.createBlackPawn());
-//            game.push("a4", Piece.createWhiteKing());
+            game.push("a4", Piece.createWhiteKing());
 //            game.push("b2", Piece.createWhiteBishop());
 
             game.saveTextual(filename);
@@ -130,10 +130,10 @@ public class GameTest {
     }
     @Test
     public void testStringToPiece(){
-        String pawnBlack = "P";
-        String queenWhite = "q";
-        String bishopBlack = "B";
-        String rookWhite = "r";
+        char pawnBlack = 'P';
+        char queenWhite = 'q';
+        char bishopBlack = 'B';
+        char rookWhite = 'r';
 
         assertEquals(Piece.createBlackPawn().getRepresentation(), game.stringToPiece(pawnBlack).getRepresentation());
         assertEquals(Piece.createWhiteQueen().getRepresentation(), game.stringToPiece(queenWhite).getRepresentation());

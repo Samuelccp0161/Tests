@@ -1,8 +1,10 @@
 package chess;
 
+import chess.pieces.NoPiece;
 import chess.pieces.Piece;
 
 import java.io.*;
+import java.util.ArrayList;
 
 public class Game {
     private Board board;
@@ -83,7 +85,6 @@ public class Game {
             inputStream.close();
         }
     }
-//    File file = new File("filename");
     public void saveTextual(String filename) throws IOException {
         OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(filename));
         writer.write(board.printBoard());
@@ -91,28 +92,41 @@ public class Game {
     }
     public void loadTextual(String filename) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(filename));
-//        for(int i = 0; i < ; i++){}
-        board.push("a1", Piece.createBlackPawn());
-        for (int i = 0; i < 8; i++) {
-            System.out.printf(reader.readLine() + "\n");
+        Board board1 = new Board();
+        for (int i = 8; i >= 1; i--){
+            pushForLoad(board1, reader.readLine());
         }
 
     }
-    public Piece stringToPiece(String i){
-        return switch (i){
-            case "P" -> Piece.createBlackPawn();
-            case "R" -> Piece.createBlackRook();
-            case "K" -> Piece.createBlackKing();
-            case "Q" -> Piece.createBlackQueen();
-            case "N" -> Piece.createBlackKnight();
-            case "B" -> Piece.createBlackBishop();
+    public void pushForLoad(Board board,String representation){
+        ArrayList<Piece> pieces = new ArrayList<>();
+        for (int i = 0; i < representation.length(); i += 2){
+            Piece piece = stringToPiece(representation.charAt(i));
+            pieces.add(piece);
+        }
+        char file;
+        char rank;
+        int i;
+        for (file = 'a', rank = '1', i = 0 ; file <= 'h' && rank <= '8'; file++, rank++, i++)
 
-            case "p" -> Piece.createWhitePawn();
-            case "r" -> Piece.createWhiteRook();
-            case "k" -> Piece.createWhiteKing();
-            case "q" -> Piece.createWhiteQueen();
-            case "n" -> Piece.createWhiteKnight();
-            case "b" -> Piece.createWhiteBishop();
+            board.push(""  + file + rank,pieces.get(i));
+    }
+
+    public Piece stringToPiece(char representation){
+        return switch (representation){
+            case 'P' -> Piece.createBlackPawn();
+            case 'R' -> Piece.createBlackRook();
+            case 'K' -> Piece.createBlackKing();
+            case 'Q' -> Piece.createBlackQueen();
+            case 'N' -> Piece.createBlackKnight();
+            case 'B' -> Piece.createBlackBishop();
+
+            case 'p' -> Piece.createWhitePawn();
+            case 'r' -> Piece.createWhiteRook();
+            case 'k' -> Piece.createWhiteKing();
+            case 'q' -> Piece.createWhiteQueen();
+            case 'n' -> Piece.createWhiteKnight();
+            case 'b' -> Piece.createWhiteBishop();
 
             default -> Piece.noPiece();
         };
