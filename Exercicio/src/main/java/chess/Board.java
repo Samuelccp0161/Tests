@@ -181,4 +181,5 @@ public class Board implements Iterable<Piece>, Serializable {
 
         return pieceInBoard;
     }
+
 }

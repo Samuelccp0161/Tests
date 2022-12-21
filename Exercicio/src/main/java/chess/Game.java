@@ -1,10 +1,8 @@
 package chess;
 
-import chess.pieces.NoPiece;
 import chess.pieces.Piece;
 
 import java.io.*;
-import java.util.ArrayList;
 
 public class Game {
     private Board board;
@@ -76,13 +74,8 @@ public class Game {
         }
     }
     public void loadSerialized(String filename) throws IOException, ClassNotFoundException{
-        ObjectInputStream inputStream = null;
-        try {
-            inputStream = new ObjectInputStream(new FileInputStream(filename));
+        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(filename))) {
             board = (Board) inputStream.readObject();
-
-        }finally {
-            inputStream.close();
         }
     }
     public void saveTextual(String filename) throws IOException {
@@ -91,28 +84,23 @@ public class Game {
         writer.flush();
     }
     public void loadTextual(String filename) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader(filename));
-        Board board1 = new Board();
-        for (int i = 8; i >= 1; i--){
-            pushForLoad(board1, reader.readLine());
+        try(BufferedReader reader = new BufferedReader(new FileReader(filename));){
+            Board newBoard = new Board();
+            for (int rank = 8; rank >= 1; rank--){
+                pushRank(newBoard, reader.readLine(), rank);
+            }
+            board = newBoard;
         }
-
     }
-    public void pushForLoad(Board board,String representation){
-        ArrayList<Piece> pieces = new ArrayList<>();
-        for (int i = 0; i < representation.length(); i += 2){
-            Piece piece = stringToPiece(representation.charAt(i));
-            pieces.add(piece);
+    public void pushRank(Board board, String line, int rank){
+        char file = 'a';
+        for(char representation : line.toCharArray()) {
+            Piece piece = charToPiece(representation);
+            board.push("" + file + rank, piece);
+            file++;
         }
-        char file;
-        char rank;
-        int i;
-        for (file = 'a', rank = '1', i = 0 ; file <= 'h' && rank <= '8'; file++, rank++, i++)
-
-            board.push(""  + file + rank,pieces.get(i));
     }
-
-    public Piece stringToPiece(char representation){
+    public Piece charToPiece(char representation){
         return switch (representation){
             case 'P' -> Piece.createBlackPawn();
             case 'R' -> Piece.createBlackRook();

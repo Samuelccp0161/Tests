@@ -135,10 +135,10 @@ public class GameTest {
         char bishopBlack = 'B';
         char rookWhite = 'r';
 
-        assertEquals(Piece.createBlackPawn().getRepresentation(), game.stringToPiece(pawnBlack).getRepresentation());
-        assertEquals(Piece.createWhiteQueen().getRepresentation(), game.stringToPiece(queenWhite).getRepresentation());
-        assertEquals(Piece.createBlackBishop().getRepresentation(), game.stringToPiece(bishopBlack).getRepresentation());
-        assertEquals(Piece.createWhiteRook().getRepresentation(), game.stringToPiece(rookWhite).getRepresentation());
+        assertEquals(Piece.createBlackPawn().getRepresentation(), game.charToPiece(pawnBlack).getRepresentation());
+        assertEquals(Piece.createWhiteQueen().getRepresentation(), game.charToPiece(queenWhite).getRepresentation());
+        assertEquals(Piece.createBlackBishop().getRepresentation(), game.charToPiece(bishopBlack).getRepresentation());
+        assertEquals(Piece.createWhiteRook().getRepresentation(), game.charToPiece(rookWhite).getRepresentation());
 
     }
 }

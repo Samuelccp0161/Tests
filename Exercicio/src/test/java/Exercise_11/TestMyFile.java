@@ -9,7 +9,7 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class MyFileTest {
+public class TestMyFile {
     final String filename = "filename.txt";
     @After
     public void tearDown() throws Exception {
