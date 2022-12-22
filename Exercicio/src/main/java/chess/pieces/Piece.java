@@ -2,6 +2,7 @@ package chess.pieces;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Piece implements Comparable<Piece>, Serializable {
     public static final char PAWN_REPRESENTATION = 'p';
@@ -83,5 +84,20 @@ public class Piece implements Comparable<Piece>, Serializable {
     }
     public ArrayList<String> possibleMoves(String position){
         return null;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || this.getClass() != obj.getClass()) return false;
+        Piece that = (Piece) obj;
+        return this.representation == that.representation
+                && this.power ==  that.power
+                && this.color == that.color;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(representation, color, power);
     }
 }

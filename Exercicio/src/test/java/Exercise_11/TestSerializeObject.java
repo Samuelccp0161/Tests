@@ -1,15 +1,21 @@
 package Exercise_11;
 
+import chess.Board;
+import chess.Game;
+import chess.pieces.Piece;
 import org.junit.Test;
 
 import java.io.*;
 
-public class TestSerializeObject {
+import static org.junit.Assert.*;
 
+public class TestSerializeObject {
     @Test
-    public void testSerializeObject() throws IOException {
-        File file = new File("filename");
-        ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(file));
-        outputStream.writeObject();
+    public void testSerializeObject() throws IOException, ClassNotFoundException {
+        Piece piece = Piece.createBlackPawn();
+        Piece clone = (Piece) CloneObject.cloneObject(piece);
+
+        assertNotSame(piece, clone);
+        assertEquals(piece, clone);
     }
 }

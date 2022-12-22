@@ -64,7 +64,7 @@ public class Game {
         }
         return power;
     }
-    public void saveSerialized(String filename) throws IOException{
+    public void  saveSerialized(String filename) throws IOException{
         ObjectOutputStream outputStream = null;
         try {
             outputStream = new ObjectOutputStream(new FileOutputStream(filename));
