@@ -9,7 +9,9 @@ import org.junit.Test;
 import util.Dir;
 
 import java.io.*;
+import java.nio.file.Files;
 import java.util.List;
+import java.util.jar.Attributes;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.*;
@@ -88,6 +90,22 @@ public class TestDir {
         for (int i = 0; i < files.size(); i++) {
             assertEquals(filenames[i], files.get(i).read());
         }
+    }
+    @Test
+    public void testDirAttributes() throws IOException {
+        Dir dir = new Dir(filename);
+        dir.ensureExists();
+        File dirFile = new File(filename);
+
+        Dir.Attributes attributes = dir.attributes();
+        assertFalse(attributes.isHidden());
+        assertFalse(attributes.isReadOnly());
+
+        assertTrue(dirFile.setReadOnly());
+        attributes = dir.attributes();
+
+        assertFalse(attributes.isHidden());
+        assertTrue(attributes.isReadOnly());
     }
 
     @Test

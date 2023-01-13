@@ -43,6 +43,30 @@ public class Dir {
         }
         directory.delete();
     }
+
+    public Attributes attributes(){
+        Attributes atr = new Attributes();
+        return atr;
+    }
+    public boolean ss(){
+//        return !attributes().isReadOnly && attributes().isHidden;
+    }
+
+    public class Attributes{
+        private boolean isReadOnly;
+        private boolean isHidden;
+        public boolean isReadOnly(){
+            return isReadOnly;
+        }
+        public boolean isHidden() {
+            return isHidden;
+        }
+        private Attributes(){
+            isReadOnly = isReadOnly;
+            isHidden = isHidden();
+        }
+
+    }
 }
 
 
