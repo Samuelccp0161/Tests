@@ -1,4 +1,4 @@
-package util;
+package Exercise_11.util;
 
 public class StringUtil {
     private StringUtil(){}

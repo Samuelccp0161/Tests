@@ -4,7 +4,7 @@ import chess.pieces.King;
 import chess.pieces.Piece;
 import org.junit.Before;
 import org.junit.Test;
-import util.StringUtil;
+import Exercise_11.util.StringUtil;
 
 import java.io.File;
 import java.io.IOException;

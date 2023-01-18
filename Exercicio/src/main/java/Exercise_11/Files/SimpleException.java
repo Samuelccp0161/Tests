@@ -1,4 +1,4 @@
-package Exceptions;
+package Exercise_11.Files;
 
 public class SimpleException extends RuntimeException {
     public SimpleException(Exception e) {

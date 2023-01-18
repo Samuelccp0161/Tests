@@ -1,4 +1,4 @@
-package com.jimbob.ach;
+package com.jimbob;
 
 import javax.xml.crypto.Data;
 

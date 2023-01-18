@@ -1,6 +1,6 @@
-package Exceptions;
+package Exercise_11.Files;
 
-import util.StringUtil;
+import Exercise_11.util.StringUtil;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.*;

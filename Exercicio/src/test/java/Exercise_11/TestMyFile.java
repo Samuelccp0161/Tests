@@ -1,5 +1,8 @@
 package Exercise_11;
 
+import Exercise_11.Files.FileExistException;
+import Exercise_11.Files.FileNotExistException;
+import Exercise_11.Files.MyFile;
 import org.junit.After;
 import org.junit.Test;
 
@@ -13,7 +16,7 @@ public class TestMyFile {
     final String filename = "filename.txt";
     @After
     public void tearDown() throws Exception {
-
+        new MyFile(filename).delete();
     }
     private String read(String filename) throws IOException {
         BufferedReader reader = null;

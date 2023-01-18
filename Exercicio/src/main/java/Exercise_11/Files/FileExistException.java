@@ -1,4 +1,4 @@
-package Exercise_11;
+package Exercise_11.Files;
 
 public class FileExistException extends RuntimeException{
 

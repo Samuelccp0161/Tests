@@ -5,7 +5,6 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
 import static org.junit.Assert.*;
 
 public class TestNumberOne {
@@ -210,7 +209,6 @@ public class TestNumberOne {
         for (int i = 1; i <= 100; i++) {
             numbers.add(i);
         }
-
         int i = random(0,99);
         int j = random(0,99);
         int f = numbers.get(i);
@@ -227,7 +225,6 @@ public class TestNumberOne {
         System.out.println(numbers);
         System.out.println(numbers.size());
         }
-
     @Test
     public void testQuestNineTeen() {
         int x = random(1, 100);
@@ -252,15 +249,15 @@ public class TestNumberOne {
     @Test
     public void testQuestSTwenty(){
         final long seed = 1;
-// random com seed
+        // random com seed
         Random newm = new Random(seed);
         List<Double> number = new ArrayList<>();
             number.add(newm.nextDouble());
-//random com seed
+        //random com seed
         Random test1 = new Random(seed);
         List<Double> number1 = new ArrayList<>();
             number1.add(test1.nextDouble());
-// randrom sem seed
+        // randrom sem seed
         Random test2 = new Random();
         List<Double> number2 = new ArrayList<>();
         number2.add(test2.nextDouble());
@@ -321,7 +318,6 @@ public class TestNumberOne {
                 break;
             valorLong++;
         }
-
         assertEquals(Byte.SIZE, valorByte);
         assertEquals(Character.SIZE, valorChar);
         assertEquals(Short.SIZE, valorShort);

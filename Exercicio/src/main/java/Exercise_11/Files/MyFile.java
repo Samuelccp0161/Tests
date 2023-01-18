@@ -1,4 +1,7 @@
-package Exercise_11;
+package Exercise_11.Files;
+
+import Exercise_11.Files.FileExistException;
+import Exercise_11.Files.FileNotExistException;
 
 import java.io.*;
 import java.util.ArrayList;

@@ -1,7 +1,6 @@
 package Exercise_11;
 
-import chess.Board;
-import chess.Game;
+import Exercise_11.Files.CloneObject;
 import chess.pieces.Piece;
 import org.junit.Test;
 

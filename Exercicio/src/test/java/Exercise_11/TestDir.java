@@ -1,25 +1,19 @@
 package Exercise_11;
 
-import Exceptions.FileAlreadyExistsException;
-import Exceptions.Format;
-import Exceptions.SimpleException;
+import Exercise_11.Files.FileAlreadyExistsException;
+import Exercise_11.Files.MyFile;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import util.Dir;
-
+import Exercise_11.util.Dir;
 import java.io.*;
-import java.nio.file.Files;
 import java.util.List;
-import java.util.jar.Attributes;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.*;
 
 public class TestDir {
     final String filename = "filename";
     Dir dir;
-
     @Before
     public void setUp() throws Exception {
         dir = new Dir(filename);
@@ -28,7 +22,6 @@ public class TestDir {
     public void deleteFiles() {
         dir.delete();
     }
-
     @Test
     public void dirTest() throws IOException {
         final File directory = new File(filename);
@@ -44,7 +37,6 @@ public class TestDir {
         assertTrue(directory.exists());
         assertTrue(directory.isDirectory());
     }
-
     @Test
     public void dirException() throws IOException {
         File file = new File(filename);
@@ -56,7 +48,6 @@ public class TestDir {
         } catch (FileAlreadyExistsException ignore) {
         }
     }
-
     @Test
     public void testListFilesOneFile() throws IOException {
         final String filename1 = filename + "/file";
@@ -97,12 +88,12 @@ public class TestDir {
         dir.ensureExists();
         File dirFile = new File(filename);
 
-        Dir.Attributes attributes = dir.attributes();
+        Dir.Attributes attributes = dir.attributes(dir);
         assertFalse(attributes.isHidden());
         assertFalse(attributes.isReadOnly());
 
         assertTrue(dirFile.setReadOnly());
-        attributes = dir.attributes();
+        attributes = dir.attributes(dir);
 
         assertFalse(attributes.isHidden());
         assertTrue(attributes.isReadOnly());
@@ -122,5 +113,4 @@ public class TestDir {
 
         assertFalse(new File(filename).exists());
     }
-
 }

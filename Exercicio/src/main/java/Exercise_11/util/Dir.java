@@ -1,19 +1,16 @@
-package util;
+package Exercise_11.util;
 
-import Exceptions.FileAlreadyExistsException;
-import Exercise_11.MyFile;
-
-import java.io.File;
-import java.io.IOException;
+import Exercise_11.Files.FileAlreadyExistsException;
+import Exercise_11.Files.MyFile;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertTrue;
-
 public class Dir {
     File directory;
-
+    String path;
     public Dir(String path)  {
+        this.path = path;
         this.directory = new File(path);
     }
     public void ensureExists()  {
@@ -44,29 +41,25 @@ public class Dir {
         directory.delete();
     }
 
-    public Attributes attributes(){
-        Attributes atr = new Attributes();
+    public Attributes attributes(Dir dir){
+        Attributes atr = new Attributes(dir);
         return atr;
     }
-    public boolean ss(){
-//        return !attributes().isReadOnly && attributes().isHidden;
-    }
-
-    public class Attributes{
-        private boolean isReadOnly;
-        private boolean isHidden;
+    public static class Attributes {
+        private final boolean isReadOnly;
+        private final boolean isHidden;
         public boolean isReadOnly(){
             return isReadOnly;
         }
         public boolean isHidden() {
             return isHidden;
         }
-        private Attributes(){
-            isReadOnly = isReadOnly;
-            isHidden = isHidden();
+        private Attributes(Dir dir){
+            isReadOnly = !dir.directory.canWrite() && dir.directory.canRead();
+            isHidden = dir.directory.isHidden();
         }
-
     }
+
 }
 
 
