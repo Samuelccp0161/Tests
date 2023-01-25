@@ -57,7 +57,7 @@ public class Account {
     }
     private AchTransactionData createData(BigDecimal amount){
         AchTransactionData data = new AchTransactionData();
-        data.description = "tranfer from bank";
+        data.description = "transfer from bank";
         data.amount = amount;
         data.aba = bankAba;
         data.account = bankAccountNumber;
