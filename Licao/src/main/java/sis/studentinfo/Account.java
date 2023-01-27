@@ -5,7 +5,7 @@ import com.jimbob.*;
 import javax.xml.crypto.Data;
 import java.math.BigDecimal;
 
-public class Account {
+public class Account implements Accountable{
     private BigDecimal balance = new BigDecimal("0.00");
     private int transactionCount = 0;
     private String bankAba;
