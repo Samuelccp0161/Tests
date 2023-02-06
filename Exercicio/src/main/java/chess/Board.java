@@ -2,7 +2,7 @@ package chess;
 
 import chess.pieces.NoPiece;
 import chess.pieces.Piece;
-import Exercise_11.util.StringUtil;
+import Exercise_11.Util.StringUtil;
 
 import java.io.Serializable;
 import java.util.*;

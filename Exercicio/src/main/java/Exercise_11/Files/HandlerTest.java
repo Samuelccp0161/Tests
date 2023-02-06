@@ -1,6 +1,6 @@
 package Exercise_11.Files;
 
-import Exercise_11.util.StringUtil;
+import Exercise_11.Util.StringUtil;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.*;

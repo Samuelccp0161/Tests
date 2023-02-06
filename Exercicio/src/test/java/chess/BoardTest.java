@@ -5,7 +5,7 @@ import chess.pieces.NoPiece;
 import chess.pieces.Piece;
 import org.junit.Before;
 import org.junit.Test;
-import Exercise_11.util.StringUtil;
+import Exercise_11.Util.StringUtil;
 
 import java.util.Iterator;
 import static org.junit.Assert.*;

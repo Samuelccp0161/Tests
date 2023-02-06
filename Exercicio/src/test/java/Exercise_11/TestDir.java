@@ -5,7 +5,7 @@ import Exercise_11.Files.MyFile;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import Exercise_11.util.Dir;
+import Exercise_11.Util.Dir;
 import java.io.*;
 import java.util.List;
 import static org.junit.Assert.assertEquals;

@@ -1,4 +1,4 @@
-package Exercise_11.util;
+package Exercise_11.Util;
 
 import Exercise_11.Files.FileAlreadyExistsException;
 import Exercise_11.Files.MyFile;
