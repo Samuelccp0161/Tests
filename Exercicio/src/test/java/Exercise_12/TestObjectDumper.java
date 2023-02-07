@@ -1,5 +1,6 @@
 package Exercise_12;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.List;
@@ -23,7 +24,7 @@ public class TestObjectDumper {
         // name1: abc"
         // name2: def"
         List<String> fields = dump.lines().toList();
-        System.out.println(fields);
+//        System.out.println(fields);
         assertTrue("Expected: \"name1: abc\"", fields.contains("name1: abc"));
         assertTrue("Expected: \"name2: def\"", fields.contains("name2: def"));
 
@@ -42,7 +43,7 @@ public class TestObjectDumper {
         // name1: abc"
         // name2: def"
         List<String> fields = dump.lines().toList();
-        System.out.println(fields);
+//        System.out.println(fields);
         assertTrue("Expected: \"name1: abc\"", fields.contains("name1: abc"));
         assertTrue("Expected: \"name2: def\"", fields.contains("name2: def"));
 
@@ -52,5 +53,55 @@ public class TestObjectDumper {
     class ClassWithPrivateFields {
         public String name1 = "abc";
         private String name2 = "def";
+    }
+    @Test
+    public void testWithStaticFields() throws IllegalAccessException {
+        ClassWithStaticFields one = new ClassWithStaticFields();
+        final String dump = ObjectDumper.getDump(one);
+//        System.out.println(dump);
+        List<String> fields = dump.lines().toList();
+//        System.out.println(fields);
+        assertTrue("Expected: \"name1: abc\"", fields.contains("name1: abc"));
+        assertTrue("Expected: \"static name2: def\"", fields.contains("static name2: def"));
+
+        assertNotEquals('\n', dump.charAt(dump.length() - 1));
+    }
+
+    class ClassWithStaticFields {
+        private String name1 = "abc";
+        private static String name2 = "def";
+    }
+
+    @Test
+    public void testWithNestedFields() throws IllegalAccessException {
+        ClassWithNestedFields one = new ClassWithNestedFields();
+        final String dump = ObjectDumper.getDump(one);
+        System.out.println(dump);
+        final var expected = "name: abc\ninnerField: {\ninnerName: def\n}";
+        assertEquals(expected, dump);
+
+        assertNotEquals('\n', dump.charAt(dump.length() - 1));
+    }
+
+    class ClassWithNestedFields {
+        public String name = "abc";
+        public InnerClass innerField = new InnerClass();
+    }
+
+    static class InnerClass {
+        public String innerName = "def";
+    }
+
+    @Test
+    public void testFactorial() {
+//        System.out.println(String.class);
+        assertEquals(120, factorial(5));
+    }
+
+    private int factorial(int n) {
+        if (n <= 1)
+            return 1;
+        else
+            return n * factorial(n - 1);
     }
 }
