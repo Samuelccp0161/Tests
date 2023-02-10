@@ -76,8 +76,9 @@ public class TestObjectDumper {
     public void testWithNestedFields() throws IllegalAccessException {
         ClassWithNestedFields one = new ClassWithNestedFields();
         final String dump = ObjectDumper.getDump(one);
-        System.out.println(dump);
-        final var expected = "name: abc\ninnerField: {\ninnerName: def\n}";
+//        System.out.println(dump);
+        final var expected =
+                "name: abc\ninnerField: {\n\tinnerName: def\n}";
         assertEquals(expected, dump);
 
         assertNotEquals('\n', dump.charAt(dump.length() - 1));
@@ -90,6 +91,7 @@ public class TestObjectDumper {
 
     static class InnerClass {
         public String innerName = "def";
+
     }
 
     @Test
