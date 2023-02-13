@@ -39,7 +39,5 @@ public class ObjectDumper {
     public static boolean isStatic(Field field){
         return Modifier.isStatic(field.getModifiers());
     }
-//    public static boolean isJavaOrJavax(Field field){
-//        return field.getClass().equals("java") || field.getClass().equals("javax")
-//    }
+
 }

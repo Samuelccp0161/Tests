@@ -21,10 +21,7 @@ public class TestObjectDumper {
     public void testWithTwoFields() throws IllegalAccessException {
         ClassWithTwoFields one = new ClassWithTwoFields();
         final String dump = ObjectDumper.getDump(one);
-        // name1: abc"
-        // name2: def"
         List<String> fields = dump.lines().toList();
-//        System.out.println(fields);
         assertTrue("Expected: \"name1: abc\"", fields.contains("name1: abc"));
         assertTrue("Expected: \"name2: def\"", fields.contains("name2: def"));
 
@@ -58,7 +55,6 @@ public class TestObjectDumper {
     public void testWithStaticFields() throws IllegalAccessException {
         ClassWithStaticFields one = new ClassWithStaticFields();
         final String dump = ObjectDumper.getDump(one);
-//        System.out.println(dump);
         List<String> fields = dump.lines().toList();
 //        System.out.println(fields);
         assertTrue("Expected: \"name1: abc\"", fields.contains("name1: abc"));
@@ -76,7 +72,6 @@ public class TestObjectDumper {
     public void testWithNestedFields() throws IllegalAccessException {
         ClassWithNestedFields one = new ClassWithNestedFields();
         final String dump = ObjectDumper.getDump(one);
-//        System.out.println(dump);
         final var expected =
                 "name: abc\ninnerField: {\n\tinnerName: def\n}";
         assertEquals(expected, dump);
@@ -92,18 +87,5 @@ public class TestObjectDumper {
     static class InnerClass {
         public String innerName = "def";
 
-    }
-
-    @Test
-    public void testFactorial() {
-//        System.out.println(String.class);
-        assertEquals(120, factorial(5));
-    }
-
-    private int factorial(int n) {
-        if (n <= 1)
-            return 1;
-        else
-            return n * factorial(n - 1);
     }
 }
