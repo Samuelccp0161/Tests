@@ -17,9 +17,9 @@ public class TestObjectClone {
     }
     static class TestClone {
         String string = "Marte";
-        public TestClone() {}
         public TestClone(String string){
             this.string = string;
         }
+
     }
 }

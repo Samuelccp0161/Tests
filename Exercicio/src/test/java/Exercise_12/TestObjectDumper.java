@@ -10,8 +10,8 @@ import static org.junit.Assert.*;
 public class TestObjectDumper {
     @Test
     public void testWithOneField() throws IllegalAccessException {
-        ClassWithOneField one = new ClassWithOneField();
-        assertEquals("name: menusculo", ObjectDumper.getDump(one));
+        ClassWithOneField withOneField = new ClassWithOneField();
+        assertEquals("name: menusculo", ObjectDumper.getDump(withOneField));
     }
     class ClassWithOneField {
         public String name = "menusculo";
@@ -70,8 +70,8 @@ public class TestObjectDumper {
 
     @Test
     public void testWithNestedFields() throws IllegalAccessException {
-        ClassWithNestedFields one = new ClassWithNestedFields();
-        final String dump = ObjectDumper.getDump(one);
+        ClassWithNestedFields withNestedFields = new ClassWithNestedFields();
+        final String dump = ObjectDumper.getDump(withNestedFields);
         final var expected =
                 "name: abc\ninnerField: {\n\tinnerName: def\n}";
         assertEquals(expected, dump);

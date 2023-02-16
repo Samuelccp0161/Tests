@@ -18,10 +18,13 @@ public class ObjectDumper {
                 valor.append("static ");
             }
 
-            if (isFromJavaOrJavax(field))
-                valor.append(field.getName()).append(": ").append(field.get(obj));
+            final Object fieldValue = field.get(obj);
+            final String fieldName = field.getName();
+
+            if (isFromJavaOrJavax(fieldValue))
+                valor.append(fieldName).append(": ").append(fieldValue);
             else {
-                valor.append(field.getName()).append(": ").append("{\n").append("\t" + getDump(field.get(obj))).append("\n}");
+                valor.append(fieldName).append(": ").append("{\n").append("\t").append(getDump(fieldValue)).append("\n}");
             }
 
             if (i != fields.length -1){
@@ -31,9 +34,9 @@ public class ObjectDumper {
         return valor.toString();
     }
 
-    private static boolean isFromJavaOrJavax(Field field) throws IllegalAccessException {
-        Class<?> klass = field.getType();
-        return klass.getPackage().getName().startsWith("java");
+    private static boolean isFromJavaOrJavax(Object obj) throws IllegalAccessException {
+        Class<?> klass = obj.getClass();
+        return klass.getName().startsWith("java");
     }
 
     public static boolean isStatic(Field field){

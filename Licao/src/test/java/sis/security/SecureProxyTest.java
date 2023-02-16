@@ -31,14 +31,14 @@ public class SecureProxyTest {
 
     @Test
     public void testInsecureMethod() throws Throwable {
-        Method insecureMethod = object.getClass().getDeclaredMethod(insecureMethodName, new Class[]{});
+        Method insecureMethod = object.getClass().getDeclaredMethod(insecureMethodName);
         proxy.invoke(proxy, insecureMethod, new Object[]{});
         assertTrue(insecureMethodCalled);
     }
 
     @Test
     public void testSecureMethod() throws Throwable {
-        Method secureMethod = object.getClass().getDeclaredMethod(secureMethodName, new Class[]{});
+        Method secureMethod = object.getClass().getDeclaredMethod(secureMethodName);
         try {
             proxy.invoke(proxy, secureMethod, new Object[]{});
             fail("expected PermissionException");

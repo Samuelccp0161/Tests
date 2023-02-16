@@ -8,9 +8,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class SecureProxy implements InvocationHandler {
-    private List<String> secureMethods;
-    private Object target;
-
+    private final List<String> secureMethods;
+    private final Object target;
     public SecureProxy(Object target, String... secureMethods) {
         this.target = target;
         this.secureMethods = Arrays.asList(secureMethods);
