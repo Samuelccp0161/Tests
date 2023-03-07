@@ -1,4 +1,4 @@
-package sis.Ui;
+package sis.ui;
 
 import static org.junit.Assert.*;
 import sis.studentinfo.Student;

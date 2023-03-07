@@ -1,4 +1,4 @@
-package sis.SuperClass;
+package sis.superClass;
 
 public class SuperClass {
     public static boolean constructorWasCalled = false;

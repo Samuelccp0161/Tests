@@ -1,6 +1,6 @@
 package sis;
 
-import sis.SuperClassTest.SuperClassTest;
+import sis.superClassTest.SuperClassTest;
 import sis.report.RosterReportTest;
 import sis.studentinfo.*;
 import org.junit.runner.RunWith;
