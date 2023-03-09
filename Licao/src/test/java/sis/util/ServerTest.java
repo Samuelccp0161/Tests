@@ -1,5 +1,9 @@
 package sis.util;
 
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import sis.search.ResultsListener;
 import sis.search.Search;
 import sis.search.SearchTest;
 
@@ -13,7 +17,8 @@ public class ServerTest {
             SearchTest.URL, SearchTest.URL, SearchTest.URL
     };
 
-    protected void setUp() throws  Exception{
+    @Before
+    public void setUp() throws  Exception{
         TestUtil.delete(SearchTest.FILE);
         LineWriter.write(SearchTest.FILE, SearchTest.TEST_HTML);
 
@@ -21,12 +26,15 @@ public class ServerTest {
             public void executed(Search search){
                 numberOfResults++;
             }
-        }
+        };
         server = new Server(listener);
     }
-    protected void tearDown() throws Exception{
+
+    @After
+    public void tearDown() throws Exception{
         TestUtil.delete(SearchTest.FILE);
     }
+    @Test
     public void testSearch() throws Exception{
         long start = System.currentTimeMillis();
         for (String url : URLS){

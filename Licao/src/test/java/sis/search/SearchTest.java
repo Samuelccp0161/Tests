@@ -19,8 +19,8 @@ public class SearchTest {
             "/body></html>"
     };
 
-    public static final String FILE = "/temp/testFileSearch.html";
-    private static final String URL = "file: " + FILE;
+    public static final String FILE = "testFileSearch.html";
+    public static final String URL = "file: " + FILE;
 
     protected void setUp() throws IOException {
         TestUtil.delete(FILE);
