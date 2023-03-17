@@ -2,10 +2,7 @@ package sis.search;
 
 import sis.util.StringUtil;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Arrays;
@@ -45,8 +42,7 @@ public class Search {
         }
     }
     private void searchUrl() throws IOException{
-        URLConnection connection = url.openConnection();
-        InputStream input = connection.getInputStream();
+        InputStream input = getInputStream(url);
         BufferedReader reader = null;
         try {
             reader = new BufferedReader(new InputStreamReader(input));
@@ -61,4 +57,15 @@ public class Search {
                 reader.close();
         }
     }
+    private InputStream getInputStream(URL url) throws IOException{
+        System.out.println(url.getProtocol());
+        if (url.getProtocol().startsWith("http")){
+            URLConnection connection = url.openConnection();
+            return connection.getInputStream();
+        }else if (url.getProtocol().equals("file")){
+            return new FileInputStream(url.getPath());
+        }
+        return null;
+    }
+
 }

@@ -22,10 +22,20 @@ public class Account implements Accountable{
         public String toString(){
             return value;
         }
+
     }
     public void credit(BigDecimal amount) {
         balance = balance.add(amount);
         transactionCount++;
+    }
+    public void withdraw(BigDecimal amount){
+        if (amount.compareTo(balance) > 0)
+            return;
+        try {
+            Thread.sleep(1);
+        }catch (InterruptedException e){
+        }
+        balance = balance.subtract(amount);
     }
     public BigDecimal getBalance() {
         return balance;

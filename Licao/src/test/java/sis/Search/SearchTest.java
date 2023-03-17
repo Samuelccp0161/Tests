@@ -1,15 +1,39 @@
 package sis.Search;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import sis.search.Search;
+import sis.util.LineWriter;
+import sis.util.TestUtil;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import static org.junit.Assert.*;
 
 public class SearchTest {
-    private static final String URL = "http://www.langrsoft.com";
+    public static final String[] TEST_HTML = {
+            "<html>",
+                "<body>",
+                    "Book: Agile Java, by Jeff Langr<br />",
+                    "Synopsis: Mr Langr teaches you<br />",
+                    "Java via test-driven development.<br />",
+                "</body>",
+            "</html>"
+    };
+    public static final String FILE = " testFileSearch.html";
+    public static final String URL = "file:" + FILE;
+    @Before
+    public void setUp() throws IOException{
+        TestUtil.delete(FILE);
+        LineWriter.write(FILE, TEST_HTML);
+    }
+    @After
+    public void tearDown() throws IOException{
+        TestUtil.delete(FILE);
+    }
     @Test
     public void testCreate() throws IOException {
         Search search = new Search(URL,"x");
