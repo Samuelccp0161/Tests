@@ -1,8 +1,8 @@
-package sis.SuperClassTest;
+package sis.superClassTest;
 
 import org.junit.Test;
-import sis.SuperClass.SubClass;
-import sis.SuperClass.SuperClass;
+import sis.superClass.SubClass;
+import sis.superClass.SuperClass;
 
 import static org.junit.Assert.assertTrue;
 

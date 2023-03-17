@@ -1,4 +1,4 @@
-package sis.Ui;
+package sis.ui;
 
 import sis.studentinfo.Student;
 

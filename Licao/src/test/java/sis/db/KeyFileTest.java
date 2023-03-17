@@ -2,7 +2,6 @@ package sis.db;
 
 import sis.util.TestUtil;
 
-import java.io.File;
 import java.io.IOException;
 
 import static org.junit.Assert.*;
