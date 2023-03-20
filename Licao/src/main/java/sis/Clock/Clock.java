@@ -3,8 +3,8 @@ package sis.Clock;
 import java.util.*;
 
 public class Clock implements Runnable{
-    private ClockListener listener;
-    private boolean run;
+    private final ClockListener listener;
+    private boolean run = true;
 
     public Clock(ClockListener listener){
         this.listener = listener;
@@ -14,6 +14,7 @@ public class Clock implements Runnable{
         run = false;
     }
     public void run(){
+        Thread.currentThread().setPriority(Thread.MAX_PRIORITY - 1);
         long lastTime = System.currentTimeMillis();
         while (run){
             try {

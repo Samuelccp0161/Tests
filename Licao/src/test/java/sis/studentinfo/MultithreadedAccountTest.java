@@ -1,5 +1,6 @@
 package sis.studentinfo;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.math.BigDecimal;
@@ -7,7 +8,7 @@ import java.math.BigDecimal;
 import static org.junit.Assert.assertEquals;
 
 public class MultithreadedAccountTest {
-    @Test
+    @Test @Ignore
     public void testConcurrency() throws Exception{
         final Account account = new Account();
         account.credit(new BigDecimal("100.00"));

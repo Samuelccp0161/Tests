@@ -1,5 +1,7 @@
 package sis.search;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import sis.util.LineWriter;
 import sis.util.TestUtil;
@@ -11,22 +13,24 @@ import static org.junit.Assert.*;
 
 public class SearchTest {
     public static final String[] TEST_HTML = {
-            "<hyml>",
-            "<body>",
-            "Book: Agile Java, by Jeff Langr <br />",
-            "Synopsis: Mr Langr teaches you<br />",
-            "Java via test-driven development.<br />",
-            "/body></html>"
+            "<html>",
+                "<body>",
+                    "Book: Agile Java, by Jeff Langr <br />",
+                    "Synopsis: Mr Langr teaches you<br />",
+                    "Java via test-driven development.<br />",
+                "</body>",
+            "</html>"
     };
 
     public static final String FILE = "testFileSearch.html";
-    public static final String URL = "file: " + FILE;
-
-    protected void setUp() throws IOException {
+    public static final String URL = "file:" + FILE;
+    @Before
+    public void setUp() throws IOException {
         TestUtil.delete(FILE);
         LineWriter.write(FILE, TEST_HTML);
     }
-    protected void tearDown() throws IOException{
+    @After
+    public void tearDown() throws IOException{
         TestUtil.delete(FILE);
     }
 
