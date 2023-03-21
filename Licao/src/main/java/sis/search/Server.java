@@ -7,8 +7,8 @@ import java.util.concurrent.LinkedBlockingQueue;
 public class Server extends Thread {
     private BlockingQueue<Search> queue = new LinkedBlockingQueue<Search>();
     private ResultsListener listener;
-    static final String START_MSG = "started";
-    static final String END_MSG = "finished";
+    public static final String START_MSG = "started";
+    public static final String END_MSG = "finished";
     private static ThreadLocal<List<String>> threadLog = new ThreadLocal<>(){
         protected List<String> initialValue(){
             return new ArrayList<>();
@@ -28,6 +28,7 @@ public class Server extends Thread {
             }
         }
     }
+
     public void add(Search search) throws Exception{
         queue.put(search);
     }
@@ -35,7 +36,7 @@ public class Server extends Thread {
         return completeLog;
     }
     private void execute(Search search){
-        new Thread(new Runnable() {
+        Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
                 log(START_MSG, search);
@@ -44,7 +45,16 @@ public class Server extends Thread {
                 listener.executed(search);
                 completeLog.addAll(threadLog.get());
             }
-        }).start();
+        });
+        thread.setUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
+            @Override
+            public void uncaughtException(Thread th, Throwable throwable){
+                System.out.println("caught");
+                completeLog.add(search + " " + throwable.getMessage());
+                listener.executed(search);
+            }
+        });
+        thread.start();
     }
     private void log(String message, Search search){
         threadLog.get().add(search + " " + message + " at " + new Date());

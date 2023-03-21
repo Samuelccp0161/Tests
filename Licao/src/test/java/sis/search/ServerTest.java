@@ -1,20 +1,18 @@
-package sis.Search;
+package sis.search;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import sis.search.ResultsListener;
-import sis.search.Search;
-import sis.search.Server;
 import sis.util.LineWriter;
 import sis.util.TestUtil;
 
-import java.io.IOException;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.junit.Assert.*;
 
 public class ServerTest {
-    private int numberOfResults = 0;
+    private final AtomicInteger numberOfResults = new AtomicInteger();
     private Server server;
     private static final long TIMEOUT = 3000L;
     private static final String[] URLS = {
@@ -27,7 +25,7 @@ public class ServerTest {
 
         ResultsListener listener = new ResultsListener(){
             public void executed(Search search){
-                numberOfResults++;
+                numberOfResults.getAndAdd(1);
             }
         };
         server = new Server(listener);
@@ -54,21 +52,45 @@ public class ServerTest {
         waitForResults();
         verifyLogs();
     }
+    @Test
+    public void testException() throws Exception{
+        final String errorMessage = "problem";
+        Search faultySearch = new Search(URLS[0], "" ){
+            @Override
+            public void execute() {
+                System.out.println("executed");
+                throw new RuntimeException(errorMessage);
+            }
+        };
+        server.add(faultySearch);
+        waitForResults(1);
+        List<String> log = server.getLog();
+        assertTrue(log.get(0).contains(errorMessage));
+    }
+    private void waitForResults(){
+        waitForResults(URLS.length);
+    }
     private void executeSearches() throws Exception {
         for (String url : URLS)
             server.add(new Search(url, "xxx"));
     }
 
-    private void waitForResults() {
+    private void waitForResults(int count) {
         long start = System.currentTimeMillis();
-        while (numberOfResults < URLS.length) {
+        while (numberOfResults.get() < count) {
             try {Thread.sleep(1); }
             catch (InterruptedException e) {}
             if (System.currentTimeMillis() - start > TIMEOUT)
                 fail("timeout");
         }
     }
-    private void verifyLogs(String startSearchMsg, String endSearchMsg){
+    private void verifyLogs(){
+        List<String> list = server.getLog();
+        assertEquals(URLS.length * 2, list.size());
+        for (int i = 0; i < URLS.length; i += 2)
+            verifySameLogs(list.get(i), list.get(i + 1));
+    }
+    private void verifySameLogs(String startSearchMsg, String endSearchMsg){
         String startSearch = substring(startSearchMsg, Server.START_MSG);
         String endSearch = substring(endSearchMsg, Server.END_MSG);
         assertEquals(startSearch, endSearch);
