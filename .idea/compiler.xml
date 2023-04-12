@@ -10,9 +10,5 @@
         <module name="Exercicio" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="Exercicio" target="18" />
-      <module name="Licao" target="18" />
-    </bytecodeTargetLevel>
   </component>
 </project>

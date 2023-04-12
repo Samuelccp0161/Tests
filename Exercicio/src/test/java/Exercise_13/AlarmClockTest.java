@@ -4,7 +4,6 @@ import Ecercise_13.AlarmClock;
 import Ecercise_13.AlarmListener;
 import org.junit.Test;
 
-import java.net.http.WebSocket;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -29,10 +28,10 @@ public class AlarmClockTest {
         };
         final String alarmMessage = "Alarm 1";
         final var alarmDuration = 500;
-        AlarmClock alarmClock = new AlarmClock(alarmDuration, listener, alarmMessage);
+        AlarmClock alarmClock = new AlarmClock(listener);
 
         assertTrue("The alarm should not have finished already", finishedAlarms.isEmpty());
-        alarmClock.start();
+        alarmClock.start(alarmDuration, alarmMessage);
 
         long start = System.currentTimeMillis();
 
@@ -46,33 +45,28 @@ public class AlarmClockTest {
         long timeElapsed = finish - start;
         assertEquals(alarmDuration, timeElapsed, 50);
     }
+    @Test
+    public void alarmsTestAndCancel() throws InterruptedException {
+        AlarmListener listener = new AlarmListener() {
+            @Override
+            public void sendMessage(String message) {
+                finishedAlarms.add(message);
+                synchronized (monitor){
+                    monitor.notifyAll();
+                }
+            }
+        };
+        final String alarmMessage = "Alarm 1";
+        final String alarmMessage2 = "Alarm 2";
 
-//    @Test
-//    public void alarmTest() throws InterruptedException {
-//        AlarmListener listener = new AlarmListener() {
-//            @Override
-//            public void sendMessage(String message) {
-//                finishedAlarms.add(message);
-//            }
-//        };
-//        final String alarmMessage = "Alarm 1";
-//        final var alarmDuration = 500;
-//        AlarmClock alarmClock = new AlarmClock(alarmDuration, listener, alarmMessage);
-//        Object b = new Object();
-//
-//        assertTrue("The alarm should not have finished already", finishedAlarms.isEmpty());
-//        alarmClock.start();
-//
-//        long start = System.currentTimeMillis();
-//        long finish = start;
-//
-//
-//        while (finishedAlarms.isEmpty() && finish - start < 2 * alarmDuration) {
-//            Thread.sleep(25);
-//            finish = System.currentTimeMillis();
-//        }
-//        assertEquals(alarmMessage, finishedAlarms.get(0));
-//        long timeElapsed = finish - start;
-//        assertEquals(alarmDuration, timeElapsed, 50);
-//    }
+        final var alarmDuration = 500;
+        final var alarmDuration2 = 800;
+
+        AlarmClock alarmClock = new AlarmClock(listener);
+
+        assertTrue("The alarm should not have finished already", finishedAlarms.isEmpty());
+
+        alarmClock.start(alarmDuration, alarmMessage, alarmClock2, alarmMessage2);
+
+    }
 }

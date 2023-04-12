@@ -5,17 +5,14 @@ import java.util.Collections;
 import java.util.List;
 
 public class AlarmClock {
-    public int millis;
     AlarmListener listener;
-    String message;
+    AlarmClock alarmClock;
 
-    public AlarmClock(int millis, AlarmListener listener, String message) {
-        this.millis = millis;
+    public AlarmClock(AlarmListener listener) {
         this.listener = listener;
-        this.message = message;
     }
 
-    public void start() throws InterruptedException {
+    public void start(int millis, String message) throws InterruptedException {
 
         Thread thread = new Thread(new Runnable() {
 
