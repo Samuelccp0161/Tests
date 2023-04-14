@@ -46,7 +46,7 @@ public class AlarmClockTest {
         assertEquals(alarmDuration, timeElapsed, 50);
     }
     @Test
-    public void alarmsTestAndCancel() throws InterruptedException {
+    public void alarmsTest() throws InterruptedException {
         AlarmListener listener = new AlarmListener() {
             @Override
             public void sendMessage(String message) {
@@ -60,13 +60,42 @@ public class AlarmClockTest {
         final String alarmMessage2 = "Alarm 2";
 
         final var alarmDuration = 500;
-        final var alarmDuration2 = 800;
+        final var alarmDuration2 = 200;
 
         AlarmClock alarmClock = new AlarmClock(listener);
 
-        assertTrue("The alarm should not have finished already", finishedAlarms.isEmpty());
+        alarmClock.start(alarmDuration, alarmMessage);
+        alarmClock.start( alarmDuration2, alarmMessage2);
 
-        alarmClock.start(alarmDuration, alarmMessage, alarmClock2, alarmMessage2);
+        Thread.sleep(alarmDuration2 + 30);
+        assertEquals(alarmMessage2, finishedAlarms.get(0));
+        Thread.sleep(alarmDuration - alarmDuration2);
+        assertEquals(alarmMessage, finishedAlarms.get(1));
 
+
+    }
+
+    @Test
+    public void cancelAlarmsTest() throws InterruptedException {
+        AlarmListener listener = new AlarmListener() {
+            @Override
+            public void sendMessage(String message) {
+                finishedAlarms.add(message);
+                synchronized (monitor){
+                    monitor.notifyAll();
+                }
+            }
+        };
+        final String alarmMessage = "Alarm 1";
+        final var alarmDuration = 500;
+        AlarmClock alarmClock = new AlarmClock(listener);
+
+        alarmClock.start(alarmDuration, alarmMessage);
+
+        alarmClock.cancel(alarmMessage);
+
+        Thread.sleep(alarmDuration + 30);
+
+        assertTrue(finishedAlarms.isEmpty());
     }
 }
