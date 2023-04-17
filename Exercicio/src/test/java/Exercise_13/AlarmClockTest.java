@@ -2,6 +2,7 @@ package Exercise_13;
 
 import Ecercise_13.AlarmClock;
 import Ecercise_13.AlarmListener;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -14,6 +15,20 @@ public class AlarmClockTest {
     private final List<String> finishedAlarms = Collections.synchronizedList(new ArrayList<>());
     private final Object monitor = new Object();
     private int count = 0;
+    private AlarmListener alarmListener;
+
+    @Before
+    public void setUp() throws Exception {
+        alarmListener = new AlarmListener() {
+            @Override
+            public void sendMessage(String message) {
+                finishedAlarms.add(message);
+                synchronized (monitor){
+                    monitor.notifyAll();
+                }
+            }
+        };
+    }
 
     @Test
     public void alarmTest() throws InterruptedException {
@@ -76,19 +91,10 @@ public class AlarmClockTest {
     }
 
     @Test
-    public void cancelAlarmsTest() throws InterruptedException {
-        AlarmListener listener = new AlarmListener() {
-            @Override
-            public void sendMessage(String message) {
-                finishedAlarms.add(message);
-                synchronized (monitor){
-                    monitor.notifyAll();
-                }
-            }
-        };
+    public void cancelOneAlarmTest() throws InterruptedException {
         final String alarmMessage = "Alarm 1";
         final var alarmDuration = 500;
-        AlarmClock alarmClock = new AlarmClock(listener);
+        AlarmClock alarmClock = new AlarmClock(alarmListener);
 
         alarmClock.start(alarmDuration, alarmMessage);
 
@@ -98,4 +104,24 @@ public class AlarmClockTest {
 
         assertTrue(finishedAlarms.isEmpty());
     }
+
+    @Test
+    public void cancelAlarmTest() throws InterruptedException {
+        final String alarm1 = "Alarm 1";
+        final String alarm2 = "Alarm 2";
+
+        final var alarmDuration = 500;
+        AlarmClock alarmClock = new AlarmClock(alarmListener);
+
+        alarmClock.start(alarmDuration, alarm1);
+        alarmClock.start(alarmDuration, alarm2);
+
+        alarmClock.cancel(alarm1);
+
+        Thread.sleep(alarmDuration + 30);
+
+        assertEquals(alarm2, finishedAlarms.get(0));
+    }
+
+
 }

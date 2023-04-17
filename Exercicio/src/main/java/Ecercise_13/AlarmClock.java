@@ -7,15 +7,12 @@ import java.util.List;
 
 public class AlarmClock {
     AlarmListener listener;
-    HashMap<Integer, String> alarms = new HashMap<>();
+
     public AlarmClock(AlarmListener listener) {
         this.listener = listener;
     }
-
+    HashMap<String, Thread> alarms = new HashMap<>();
     public void start(int millis, String message) throws InterruptedException {
-
-        alarms.put(millis, message);
-
         Thread thread = new Thread(new Runnable() {
 
             @Override
@@ -23,19 +20,17 @@ public class AlarmClock {
                 try {
                     Thread.sleep(millis);
                     listener.sendMessage(message);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
+                } catch (InterruptedException ignore) {
                 }
             }
         });
         thread.start();
+        alarms.put(message, thread);
+//        th.interrupt();
     }
 
-    public String getMessage(int i) {
-        return alarms.get(i);
-    }
     public void cancel(String name) {
-
+            alarms.get(name).interrupt();
     }
 }
 
