@@ -1,7 +1,5 @@
 package Exercise_13;
 
-import Ecercise_13.AlarmClock;
-import Ecercise_13.AlarmListener;
 import org.junit.Before;
 import org.junit.Test;
 

@@ -1,9 +1,6 @@
-package Ecercise_13;
+package Exercise_13;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 
 public class AlarmClock {
     AlarmListener listener;
@@ -26,7 +23,6 @@ public class AlarmClock {
         });
         thread.start();
         alarms.put(message, thread);
-//        th.interrupt();
     }
 
     public void cancel(String name) {
