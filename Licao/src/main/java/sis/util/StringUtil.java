@@ -1,6 +1,9 @@
 package sis.util;
 
+import java.util.List;
+
 public class StringUtil {
+
     static public int occurrences(String string, String substring){
         int occurrences = 0;
         int length = substring.length();
@@ -10,4 +13,19 @@ public class StringUtil {
                 occurrences++;
         return occurrences;
         }
+    public static String concatenate(List<?> list){
+        StringBuilder builder = new StringBuilder();
+        for (Object element : list)
+            builder.append(String.format("%s%n", element));
+        return builder.toString();
+        }
+    public static String concatenateNumbers(List<? extends Number> list, int decimalPlaces) {
+        String decimalFormat = "%." + decimalPlaces + "f";
+        StringBuilder builder = new StringBuilder();
+        for (Number element : list) {
+            double value = element.doubleValue();
+            builder.append(String.format(decimalFormat + "%n", value));
+        }
+        return builder.toString();
+    }
 }
