@@ -1,16 +1,20 @@
 package Exercise_14;
 
-public class Ring {
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+public class Ring<T> implements Iterable<T> {
     Node current;
     public int size;
 
-    public void add(int number){
+    public void add(T object){
         if(size == 0){
-            current = new Node(number);
+            current = new Node(object);
             current.next = current;
             current.prev = current;
         } else{
-            Node node = new Node(number);
+            Node node = new Node(object);
             node.next = current.next;
             current.next = node;
 
@@ -20,24 +24,20 @@ public class Ring {
             next();
         }
         size++;
-
-
     }
-    public int get(){
+    public T get(){
+        if (size() == 0){
+            throw new EmptyRingException("could not get the element");
+        }
         return current.value;
-    }
-    public void next(){
-        current = current.next;
-    }
-    public void prev(){
-        current = current.prev;
-    }
-
-    public int size() {
-        return size;
     }
 
     public void remove(){
+        if (size() == 0){
+            throw new EmptyRingException("could not remove because the ring is empty");
+        }
+
+
         Node nextNode = current.next;
         Node prevNode = current.prev;
 
@@ -45,13 +45,40 @@ public class Ring {
         prevNode.next = nextNode;
 
         current = prevNode;
-
     }
-    private static class Node {
+    public void next(){
+        if (size() == 0){
+            throw new EmptyRingException("it was not possible to go to the next one, because the ring is empty");
+        }
+        current = current.next;
+    }
+
+    public void prev(){
+        if (size() == 0){
+            throw new EmptyRingException("it was not possible to go to the previous one, because the ring is empty");
+        }
+        current = current.prev;
+    }
+
+    public int size() {
+        return size;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        List<T> list = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            list.add(current.value);
+            next();
+        }
+        return list.iterator();
+    }
+
+    private class Node {
         private Node next;
         private Node prev;
-        public int value;
-        public Node(int val){
+        public T value;
+        public Node(T val){
             this.value = val;
             next = null;
             prev = null;
