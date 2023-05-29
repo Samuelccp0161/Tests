@@ -34,6 +34,10 @@ private void runTests(Class<?> testClass){
         assert testMethodNames.length == runner.getTestMethods().size() :
                 "expected " + testMethodNames.length + " test method(s)";
     }
+    public void ignoreMethodTest(){
+        runTests(Ignore.class);
+        verifyTests(methodNameA, methodNameB);
+    }
     private void verifyMethodNames(String... testMethodNames){
         Set<String> actualMethodNames = getTestMethodNames();
         for (String methodName : testMethodNames)
@@ -53,4 +57,10 @@ class SingleMethodTest{
 class MultipleMethodTest{
     @TestMethod public void testA(){}
     @TestMethod public void testB(){}
+    class IgnoreMethodTest{
+        @TestMethod public void testA(){}
+        @TestMethod public void testB(){}
+        @Ignore
+        @TestMethod public void testC(){}
+    }
 }
