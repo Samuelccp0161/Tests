@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 import static org.junit.Assert.assertEquals;
 
 public class MultithreadedAccountTest {
-    @Test @Ignore
+    @Test @Ignore("ele ta falhando por conta que ele deveria falhar.")
     public void testConcurrency() throws Exception{
         final Account account = new Account();
         account.credit(new BigDecimal("100.00"));
