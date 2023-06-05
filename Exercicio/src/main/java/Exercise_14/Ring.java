@@ -1,5 +1,7 @@
 package Exercise_14;
 
+import org.junit.Assert;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -23,6 +25,7 @@ public class Ring<T> implements Iterable<T> {
 
             next();
         }
+        assert (current == null) : "Elemento nulo";
         size++;
     }
     public T get(){

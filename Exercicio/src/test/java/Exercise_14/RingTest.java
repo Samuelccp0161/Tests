@@ -1,5 +1,6 @@
 package Exercise_14;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -157,4 +158,18 @@ public class RingTest {
 
         assertEquals(Arrays.asList(1, 2, 3, 60) , numbers);
     }
+    @Test
+    public void testNullReject() {
+        Ring<Integer> ring = new Ring<>();
+        try {
+            ring.add(null);
+            fail("Deveria ter dado erro");
+        }catch (AssertionError assertionError){
+            assertEquals("Elemento nulo", assertionError.getMessage());
+        }
+    }
 }
+
+
+
+// eu tenho que fazer um teste, quando eu add algo nulo, eu tenho que ter um assert que rejeite isso.
