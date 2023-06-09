@@ -1,25 +1,24 @@
 package Exercise_15;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class ToStringer {
-
-    public static String getDump(Object obj) throws Exception {
+    public static int getOrder(Field field) {
+        return field.getAnnotation(Dump.class).order();
+    }
+    public static String getDump(Object obj)  throws Exception {
         Field[] fields = obj.getClass().getDeclaredFields();
         List<Field> fieldsWithDump = new ArrayList<>();
 
-        for (Field field : fields){
+        for (Field field : fields) {
             if (field.getAnnotation(Dump.class) != null)
                 fieldsWithDump.add(field);
         }
 
-        for (int i = 0; i < fieldsWithDump.size(); i++){
-        // estudar collections.sort que é algo que eu posso usar para ordenar.
-        }
-
+        fieldsWithDump.sort((f1, f2) -> {
+//            return f1  - f2;
+        });
         List<String> values = new ArrayList<>();
 
         for (Field field : fieldsWithDump) {
