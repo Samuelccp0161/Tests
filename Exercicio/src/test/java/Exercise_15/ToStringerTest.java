@@ -46,7 +46,7 @@ public class ToStringerTest {
     public void testOutputMethod() throws Exception {
         OutputDump outputDump = new OutputDump();
         String dump = ToStringer.getDump(outputDump);
-        assertEquals("str = 1, str2 = 2", dump);
+        assertEquals("str1 = \"1\", str2 = 2", dump);
     }
 
 
@@ -77,7 +77,7 @@ public class ToStringerTest {
 
     }
     static class OutputDump{
-        @Dump(outputMethod = "print")
+        @Dump(outputMethod = "print", quote = true)
         String str1 = "isso sera ignorado";
 
         @Dump
