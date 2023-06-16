@@ -8,7 +8,6 @@ public class ToStringerTest {
 
     @Test
     public void testEmptyDump() throws Exception {
-        //vou passsar uma objeto(qualquer objeto) aonde nao tenha nenhuma anotação @dump.
         EmptyDump emptyDump = new EmptyDump();
         String dump = ToStringer.getDump(emptyDump);
         assertEquals("", dump);
@@ -49,6 +48,19 @@ public class ToStringerTest {
         assertEquals("str1 = \"1\", str2 = 2", dump);
     }
 
+    @Test
+    public void testOutputMultipleMethods() throws Exception {
+        OutputsDump outputsDump = new OutputsDump();
+        String dump = ToStringer.getDump(outputsDump);
+        assertEquals("str1 = \"1\", str2 = 2 3, str23 = 23", dump);
+    }
+
+    @Test
+    public void testSeparator() throws Exception {
+        SeparatorDump separatorDump = new SeparatorDump();
+        String dump = ToStringer.getDump(separatorDump);
+        assertEquals("str1 = \"1\", str2 = 2-3", dump);
+    }
 
     static class EmptyDump{
         String str = "2";
@@ -75,9 +87,10 @@ public class ToStringerTest {
         @Dump(quote = true)
         String str = "1";
 
+
     }
     static class OutputDump{
-        @Dump(outputMethod = "print", quote = true)
+        @Dump(outputMethods = "print", quote = true)
         String str1 = "isso sera ignorado";
 
         @Dump
@@ -85,6 +98,45 @@ public class ToStringerTest {
 
         String print() {
             return "1";
+        }
+    }
+    static class OutputsDump{
+        @Dump(outputMethods = {"print1"}, quote = true)
+        String str1 = "isso sera ignorado 1";
+
+        @Dump(outputMethods = {"print2", "print3"})
+        String str2 = "isso sera ignorado 2";
+
+        @Dump
+        String str23 = "23";
+
+        String print1() {
+            return "1";
+        }
+
+        String print2() {
+            return "2";
+        }
+        String print3() {
+            return "3";
+        }
+    }
+    static class SeparatorDump{
+        @Dump(outputMethods = {"print1"}, quote = true)
+        String str1 = "isso sera ignorado 1";
+
+        @Dump(outputMethods = {"print2", "print3"}, separator = "-")
+        String str2 = "isso sera ignorado 2";
+
+        String print1() {
+            return "1";
+        }
+
+        String print2() {
+            return "2";
+        }
+        String print3() {
+            return "3";
         }
     }
 }

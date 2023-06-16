@@ -1,14 +1,24 @@
 package Exercise_15;
 
-import java.io.File;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.*;
 
 public class ToStringer  {
     public static String getRepresentationValueMethod(Field field,Object obj) throws Exception {
-        return obj.getClass().getDeclaredMethod(field.getAnnotation(Dump.class).outputMethod()).invoke(obj).toString();
+        String[] methodNames = field.getAnnotation(Dump.class).outputMethods();
+
+        List<Method> methods = new ArrayList<>();
+        for (String name : methodNames){
+            methods.add(obj.getClass().getDeclaredMethod(name));
+        }
+        List<String> list = new ArrayList<>();
+        for (Method method : methods){
+            list.add(method.invoke(obj).toString());
+        }
+        return String.join(field.getDeclaredAnnotation(Dump.class).separator(), list);
     }
+
     public static String getDump(Object obj)  throws Exception {
         List<Field> fieldsWithDump = getFields(obj);
         fieldsWithDump.sort((f1, f2) -> {
@@ -40,7 +50,7 @@ public class ToStringer  {
             String fieldRepresentation = field.getName() + " = ";
             String value = field.get(obj).toString();
 
-            if (!field.getAnnotation(Dump.class).outputMethod().equals("toString")){
+            if (field.getAnnotation(Dump.class).outputMethods().length > 0){
                 value = getRepresentationValueMethod(field, obj);
             }
 
@@ -51,6 +61,4 @@ public class ToStringer  {
         }
         return values;
     }
-
-
 }
