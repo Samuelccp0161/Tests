@@ -21,7 +21,7 @@ public class RingTest {
 
     @Test
     public void addMultipleTest() {
-        Ring<String> ring = new Ring<>();
+        Ring<String> ring = new Ring<String>();
 
         ring.add("number1");
         assertEquals(1, ring.size());

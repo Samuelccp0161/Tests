@@ -11,14 +11,14 @@ import static org.junit.Assert.assertEquals;
 public class TestObjectClone {
     @Test
     public void testObjectClone() throws Exception {
-        TestClone object = new TestClone("nn");
+        TestClone object = new TestClone();
         TestClone cloneObject = (TestClone) CloneObject.clone(object);
         assertEquals(object.string, cloneObject.string);
     }
     static class TestClone {
         String string = "Marte";
-        public TestClone(String string){
-            this.string = string;
+        public TestClone(){
+            this.string = "nn";
         }
 
     }

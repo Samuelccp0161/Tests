@@ -11,6 +11,8 @@ public class Ring<T> implements Iterable<T> {
     public int size;
 
     public void add(T object){
+        assert (object != null) : "Elemento nulo";
+
         if(size == 0){
             current = new Node(object);
             current.next = current;
@@ -25,7 +27,6 @@ public class Ring<T> implements Iterable<T> {
 
             next();
         }
-        assert (current == null) : "Elemento nulo";
         size++;
     }
     public T get(){
